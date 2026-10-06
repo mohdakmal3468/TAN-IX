@@ -1,407 +1,338 @@
 """
 dashboard/app.py
 ----------------
-Streamlit Interactive Dashboard for TAN-IX:
-State-Level Multi-Agent Supply Chain Risk & Inventory Manager for UP Leather Goods
+TAN-IX Streamlit dashboard. It talks to the FastAPI backend over HTTP,
+so START THE API FIRST:   uvicorn api.main:app --reload
+Then run this:            streamlit run dashboard/app.py
 
-Features:
-- Live geospatial visualization of the UP Leather Corridor (Kanpur, Unnao, Agra, Noida)
-- Real-time warehouse inventory health meters with threshold warnings
-- Capstone Disruption Simulator (NGT environmental raids, Ganges monsoon floods, Fog delays)
-- Multi-Agent deliberation console (Inventory, Risk, Logistics, Orchestrator)
-- Human-in-the-Loop (HITL) approval cockpit with Discord webhook integration
+Pages: Command Center | Inventory | Approvals | Agent Activity
 """
+import os
+from datetime import datetime
 
-import streamlit as st
 import pandas as pd
 import pydeck as pdk
 import requests
-import json
-import os
-import sys
+import streamlit as st
 
-# Ensure parent directory is in path so we can import local modules directly if needed
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+API = os.getenv("API_BASE_URL", "http://127.0.0.1:8000").rstrip("/")
 
-from config import UP_CLUSTERS, FASTAPI_HOST, FASTAPI_PORT, DISCORD_WEBHOOK_URL
-from tools.firestore_tools import get_all_clusters_inventory, update_cluster_inventory, check_critical_stockouts
-from tools.risk_tools import get_cluster_risk_report, simulate_disruption, clear_disruptions, ACTIVE_DISRUPTIONS
-from tools.bigquery_tools import get_corridor_performance_stats
-from tools.vector_tools import search_policy_docs
-from agents.orchestrator import StateMasterOrchestrator
+st.set_page_config(page_title="TAN-IX | UP Leather Supply Chain", page_icon="👞", layout="wide")
 
-# Initialize Streamlit Page Config
-st.set_page_config(
-    page_title="TAN-IX | UP Leather Multi-Agent Supply Chain",
-    page_icon="👞",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Custom CSS for rich aesthetics and modern typography
-st.markdown("""
-<style>
-    .main-header {
-        font-size: 2.2rem;
-        font-weight: 700;
-        background: linear-gradient(90deg, #b91c1c, #d97706, #2563eb);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.2rem;
-    }
-    .sub-header {
-        font-size: 1.05rem;
-        color: #475569;
-        margin-bottom: 1.5rem;
-    }
-    .metric-card {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 16px;
-        margin-bottom: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    .status-badge-critical {
-        background-color: #fee2e2;
-        color: #b91c1c;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 0.8rem;
-    }
-    .status-badge-healthy {
-        background-color: #dcfce7;
-        color: #15803d;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-weight: 600;
-        font-size: 0.8rem;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# Initialize Session State
-if "orchestrator" not in st.session_state:
-    st.session_state.orchestrator = StateMasterOrchestrator()
-if "last_assessment" not in st.session_state:
-    st.session_state.last_assessment = None
-if "pending_plan" not in st.session_state:
-    st.session_state.pending_plan = None
-if "execution_message" not in st.session_state:
-    st.session_state.execution_message = None
+STATUS_ICON = {"ok": "🟢", "low": "🟠", "critical": "🔴"}
+STATUS_RGB = {"ok": [34, 197, 94, 210], "low": [245, 158, 11, 210], "critical": [239, 68, 68, 230]}
 
 
-# --- SIDEBAR ---
+# ----------------------------------------------------------------------------
+# Small helpers for talking to the API
+# ----------------------------------------------------------------------------
+def api_get(path, params=None):
+    try:
+        r = requests.get(f"{API}{path}", params=params, timeout=20)
+        r.raise_for_status()
+        return r.json()
+    except Exception:
+        return None
+
+
+def api_post(path, params=None, body=None, timeout=180):
+    try:
+        r = requests.post(f"{API}{path}", params=params, json=body, timeout=timeout)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        st.error(f"API call failed: {e}")
+        return None
+
+
+def decide(plan_id, action):
+    """Approve or reject a plan through the existing callback endpoint."""
+    try:
+        r = requests.get(f"{API}/approval/discord-callback",
+                         params={"plan_id": plan_id, "action": action}, timeout=30)
+        return r.ok and "Approval Error" not in r.text
+    except Exception:
+        return False
+
+
+def flash(kind, msg):
+    st.session_state["flash"] = (kind, msg)
+
+
+def show_flash():
+    if "flash" in st.session_state:
+        kind, msg = st.session_state.pop("flash")
+        getattr(st, kind)(msg)
+
+
+# ----------------------------------------------------------------------------
+# Sidebar
+# ----------------------------------------------------------------------------
+health = api_get("/health")
 with st.sidebar:
-    st.image("https://img.icons8.com/fluency/96/leather.png", width=64)
-    st.title("TAN-IX Control Center")
-    st.markdown("**Uttar Pradesh Leather Corridors**")
-    st.caption("Kanpur • Unnao • Agra • Noida")
-
+    st.title("👞 TAN-IX")
+    st.caption("UP Leather Supply Chain · Kanpur · Unnao · Agra · Noida")
+    page = st.radio("Go to", ["Command Center", "Inventory", "Approvals", "Agent Activity"])
     st.divider()
-
-    st.subheader("⚠️ Emergency Simulator")
-    st.caption("Test multi-agent reactions during your Capstone presentation:")
-
-    if st.button("🌊 Ganges Basin Flood Warning (Kanpur)"):
-        simulate_disruption("Kanpur", "Weather/Flood", "Water levels at Kanpur Barrage crossed alert mark. Jajmau lowlands at risk.")
-        st.toast("Injected Ganges Flood Warning into Kanpur!", icon="🌊")
-        st.rerun()
-
-    if st.button("📜 NGT Effluent Inspection Shutdown"):
-        simulate_disruption("Kanpur", "Regulatory/NGT", "UPPCB ordered temporary 48h halt for 12 Jajmau tanning units.")
-        st.toast("Injected NGT Regulatory Notice!", icon="📜")
-        st.rerun()
-
-    if st.button("🌫️ Yamuna Expressway Fog Alert"):
-        simulate_disruption("Agra", "Logistics/Fog", "Dense fog reducing visibility < 50m. Night commercial vehicle curfew imposed.")
-        st.toast("Injected Yamuna Expressway Fog Warning!", icon="🌫️")
-        st.rerun()
-
-    if st.button("🔄 Reset Disruptions"):
-        clear_disruptions()
-        st.toast("All disruptions cleared to baseline.", icon="✅")
-        st.rerun()
-
-    st.divider()
-
-    st.subheader("📡 Infrastructure Status")
-    st.markdown(f"**Discord Webhook:** {'🟢 Active' if DISCORD_WEBHOOK_URL else '🟡 Local Simulated Queue'}")
-    st.markdown(f"**Data Store:** 🟢 Firestore Local Seed Engine")
-    st.markdown(f"**Analytics:** 🟢 BigQuery Corridor Logs")
-
-
-# --- TOP HEADER ---
-st.markdown('<div class="main-header">TAN-IX: State-Level Multi-Agent Supply Chain & Risk Manager</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">Autonomous Inventory Balancing & Environmental Resilience for Uttar Pradesh Leather Industrial Clusters</div>', unsafe_allow_html=True)
-
-if st.session_state.execution_message:
-    st.success(st.session_state.execution_message)
-    st.session_state.execution_message = None
-
-# --- TOP SUMMARY METRICS ---
-all_inventory = get_all_clusters_inventory()
-critical_shortages = check_critical_stockouts()
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric(
-        label="🏭 Kanpur (Tanneries)",
-        value="Operational",
-        delta=f"{len(ACTIVE_DISRUPTIONS)} Active Alerts" if any(d['cluster'] == 'Kanpur' for d in ACTIVE_DISRUPTIONS) else "Normal",
-        delta_color="inverse" if any(d['cluster'] == 'Kanpur' for d in ACTIVE_DISRUPTIONS) else "normal"
-    )
-
-with col2:
-    st.metric(
-        label="🐂 Unnao (Leather Complex)",
-        value="Surplus Available",
-        delta="Wet-Blue Buffer Ready",
-        delta_color="normal"
-    )
-
-with col3:
-    agra_deficit = next((c for c in critical_shortages if c["cluster"] == "Agra"), None)
-    st.metric(
-        label="👞 Agra (Footwear Hub)",
-        value="Deficit Warning" if agra_deficit else "Operational",
-        delta=f"Short {agra_deficit['deficit']} {agra_deficit['unit']}" if agra_deficit else "Balanced",
-        delta_color="inverse" if agra_deficit else "normal"
-    )
-
-with col4:
-    noida_deficit = next((c for c in critical_shortages if c["cluster"] == "Noida"), None)
-    st.metric(
-        label="👜 Noida (Luxury Export)",
-        value="Critical Low" if noida_deficit else "Operational",
-        delta=f"Short {noida_deficit['deficit']} {noida_deficit['unit']}" if noida_deficit else "Balanced",
-        delta_color="inverse" if noida_deficit else "normal"
-    )
-
-st.divider()
-
-# --- MAIN WORKSPACE: MAP & LIVE STOCK STATUS ---
-tab_map, tab_agents, tab_analytics, tab_policy = st.tabs([
-    "🗺️ Corridor Geospatial Map & Live Stock",
-    "🤖 Multi-Agent Orchestrator & Deliberation",
-    "📊 BigQuery Historical Logistics Analytics",
-    "📚 Vector Search & UP Leather Policy"
-])
-
-# --- TAB 1: GEOSPATIAL MAP & WAREHOUSE INVENTORY ---
-with tab_map:
-    left_col, right_col = st.columns([1.2, 1])
-
-    with left_col:
-        st.subheader("📍 Uttar Pradesh Leather Industrial Corridor")
-        
-        # Prepare Map Data
-        map_points = []
-        for cname, cdata in UP_CLUSTERS.items():
-            risk_info = get_cluster_risk_report(cname)
-            map_points.append({
-                "name": cname,
-                "lat": cdata["lat"],
-                "lon": cdata["lon"],
-                "role": cdata["primary_role"],
-                "risk_score": risk_info["composite_risk_score"],
-                "color": cdata["color"],
-                "radius": 15000 + (risk_info["composite_risk_score"] * 150)
-            })
-        
-        map_df = pd.DataFrame(map_points)
-
-        # Pydeck Scatterplot and Arcs connecting clusters along the expressways
-        arc_data = [
-            {"from_name": "Kanpur", "to_name": "Unnao", "from_lon": 80.3319, "from_lat": 26.4499, "to_lon": 80.4878, "to_lat": 26.5458},
-            {"from_name": "Kanpur", "to_name": "Agra", "from_lon": 80.3319, "from_lat": 26.4499, "to_lon": 78.0081, "to_lat": 27.1767},
-            {"from_name": "Agra", "to_name": "Noida", "from_lon": 78.0081, "from_lat": 27.1767, "to_lon": 77.3910, "to_lat": 28.5355}
-        ]
-        arc_df = pd.DataFrame(arc_data)
-
-        view_state = pdk.ViewState(
-            latitude=27.2,
-            longitude=79.2,
-            zoom=6.8,
-            pitch=35
-        )
-
-        layer_points = pdk.Layer(
-            "ScatterplotLayer",
-            data=map_df,
-            get_position=["lon", "lat"],
-            get_color="color",
-            get_radius="radius",
-            pickable=True,
-            auto_highlight=True
-        )
-
-        layer_arcs = pdk.Layer(
-            "ArcLayer",
-            data=arc_df,
-            get_source_position=["from_lon", "from_lat"],
-            get_target_position=["to_lon", "to_lat"],
-            get_source_color=[220, 53, 69, 160],
-            get_target_color=[33, 150, 243, 160],
-            get_width=4
-        )
-
-        deck = pdk.Deck(
-            layers=[layer_points, layer_arcs],
-            initial_view_state=view_state,
-            tooltip={"text": "{name}\nRole: {role}\nRisk Score: {risk_score}/100"}
-        )
-
-        st.pydeck_chart(deck)
-        st.caption("🔴 Red: Tanning Hubs (Kanpur) | 🟠 Orange: Banthar (Unnao) | 🟢 Green: Footwear (Agra) | 🔵 Blue: Export (Noida)")
-
-    with right_col:
-        st.subheader("📦 Cluster Live Stock Levels (Firestore)")
-        
-        selected_cluster = st.selectbox("Select Cluster to Inspect Details:", list(UP_CLUSTERS.keys()), index=2)
-        cluster_info = all_inventory.get(selected_cluster, {})
-        items = cluster_info.get("inventory", {})
-
-        st.markdown(f"**Warehouse ID:** `{cluster_info.get('warehouse_id', 'WH-00')}` | **Status:** `{cluster_info.get('status', 'Operational')}`")
-
-        for item_name, idata in items.items():
-            qty = idata.get("quantity", 0)
-            min_th = idata.get("min_threshold", 1)
-            cap = idata.get("capacity", qty * 2)
-            unit = idata.get("unit", "units")
-            status = idata.get("status", "Normal")
-
-            pct = min(1.0, qty / cap) if cap else 0.5
-
-            st.write(f"**{item_name}** ({qty:,} / {cap:,} {unit})")
-            
-            # Color-coded bar
-            if "Critical" in status:
-                st.progress(pct, text=f"🚨 CRITICAL SHORTAGE - Deficit: {min_th - qty:,} {unit}")
-            elif "Low" in status:
-                st.progress(pct, text=f"⚠️ Low Stock - Safety Margin at risk")
-            elif "Surplus" in status:
-                st.progress(pct, text=f"🟢 Healthy Surplus Available for Inter-District Dispatch")
-            else:
-                st.progress(pct, text=f"✅ Nominal Buffer")
-
-
-# --- TAB 2: MULTI-AGENT ORCHESTRATOR & DELIBERATION ---
-with tab_agents:
-    st.subheader("🤖 Autonomous Multi-Agent Deliberation Console")
-    st.write("Click below to trigger the collaborative agent reasoning cycle across Kanpur, Unnao, Agra, and Noida:")
-
-    if st.button("🚀 Trigger Full State Multi-Agent Assessment", type="primary", use_container_width=True):
-        with st.spinner("Specialist Agents collaborating... (Inventory -> Risk -> Logistics -> Master Orchestrator)"):
-            assessment = st.session_state.orchestrator.run_state_assessment()
-            st.session_state.last_assessment = assessment
-            if assessment.get("proposed_rebalance_plans"):
-                st.session_state.pending_plan = assessment["proposed_rebalance_plans"][0]
-        st.rerun()
-
-    if st.session_state.last_assessment:
-        ass = st.session_state.last_assessment
-
-        st.markdown("### 📋 Orchestrator Executive Synthesis")
-        st.info(ass.get("orchestrator_synthesis", "Assessment completed."))
-
-        # 3 Specialist Agent Outputs in columns
-        ag1, ag2, ag3 = st.columns(3)
-
-        with ag1:
-            st.markdown("#### 1️⃣ District Inventory Agent")
-            inv_rep = ass.get("inventory_report", {})
-            st.markdown(f"**Status:** `{inv_rep.get('status')}`")
-            st.markdown(f"**Deficits Flagged:** `{inv_rep.get('critical_deficits_count')}`")
-            st.caption(inv_rep.get("ai_executive_brief", ""))
-            if inv_rep.get("critical_deficits"):
-                st.error(f"Urgent Replenishment Needed in: {inv_rep['critical_deficits'][0]['cluster']}")
-
-        with ag2:
-            st.markdown("#### 2️⃣ Regional Risk Agent")
-            risk_rep = ass.get("risk_report", {})
-            st.markdown(f"**Threat Level:** `{risk_rep.get('system_threat_level')}`")
-            st.caption(risk_rep.get("ai_risk_brief", ""))
-            if risk_rep.get("high_risk_clusters"):
-                st.warning(f"Vulnerable Zone: {risk_rep['high_risk_clusters'][0]['cluster']} (Risk: {risk_rep['high_risk_clusters'][0]['score']}/100)")
-
-        with ag3:
-            st.markdown("#### 3️⃣ Intra-State Logistics Agent")
-            if ass.get("proposed_rebalance_plans"):
-                log_rep = ass["proposed_rebalance_plans"][0].get("logistics_details", {})
-                st.markdown(f"**Route:** `{log_rep.get('route', {}).get('route_name')}`")
-                st.markdown(f"**Transit:** `{log_rep.get('route', {}).get('estimated_transit_hours')} hrs` | **Cost:** `₹{log_rep.get('route', {}).get('total_estimated_cost_inr'):,}`")
-                st.caption(log_rep.get("ai_logistics_brief", ""))
-            else:
-                st.write("No active inter-cluster transit required.")
-
-        st.divider()
-
-        # Human-in-the-Loop Cockpit
-        if st.session_state.pending_plan and st.session_state.pending_plan.get("approval_status") == "PENDING":
-            plan = st.session_state.pending_plan
-            st.markdown("### 🛑 Human-in-the-Loop Approval Action Card")
-            st.warning("The Autonomous System has formulated an action plan that requires human authorization before warehouse inventory is committed.")
-
-            card_c1, card_c2 = st.columns([2, 1])
-            with card_c1:
-                st.markdown(f"**Plan ID:** `{plan['plan_id']}`")
-                st.markdown(f"**Proposed Movement:** Transfer **{plan['quantity']:,} units** of `{plan['item']}` from **{plan['origin']}** to **{plan['destination']}**")
-                st.markdown(f"**Expressway Route:** {plan['route_name']} (Est. {plan['transit_hours']} hours transit)")
-                st.markdown(f"**Estimated Logistics Cost:** ₹{plan['estimated_cost_inr']:,} ({plan['policy_incentive']})")
-                st.markdown(f"**Risk Justification:** {plan['risk_justification']}")
-
-            with card_c2:
-                st.markdown("**Authorize Dispatch:**")
-                if st.button("✅ AUTHORIZE STOCK REBALANCE", type="primary", use_container_width=True):
-                    exec_res = st.session_state.orchestrator.execute_approved_plan(plan["plan_id"])
-                    st.session_state.execution_message = f"✅ Plan {plan['plan_id']} authorized & executed! Stock moved from {plan['origin']} to {plan['destination']}."
-                    st.session_state.pending_plan = None
-                    st.rerun()
-
-                if st.button("❌ REJECT PLAN", use_container_width=True):
-                    st.session_state.pending_plan = None
-                    st.session_state.execution_message = "❌ Rebalance Plan rejected by human supervisor."
-                    st.rerun()
-
+    if health:
+        st.success("API online")
     else:
-        st.info("Click 'Trigger Full State Multi-Agent Assessment' above to initiate the pipeline.")
+        st.error("API offline")
+        st.code("uvicorn api.main:app --reload")
+    if st.button("🔄 Refresh data"):
+        st.rerun()
+    st.caption(f"Last updated: {datetime.now():%H:%M:%S}")
+
+if not health:
+    st.warning("Start the API first, then press Refresh.")
+    st.stop()
 
 
-# --- TAB 3: BIGQUERY HISTORICAL ANALYTICS ---
-with tab_analytics:
-    st.subheader("📊 BigQuery Historical Logistics Corridor Performance")
-    bq_stats = get_corridor_performance_stats()
+# ----------------------------------------------------------------------------
+# Page 1: Command Center
+# ----------------------------------------------------------------------------
+def page_command_center():
+    st.header("Command Center")
+    k = api_get("/kpis") or {}
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Active alerts", k.get("active_alerts_count", 0))
+    c2.metric("Active disruptions", k.get("active_disruptions_count", 0))
+    c3.metric("Critical stock items", k.get("critical_inventory_count", 0))
+    c4.metric("Pending approvals", k.get("pending_approvals_count", 0))
 
-    m1, m2 = st.columns(2)
-    m1.metric("Historical Shipments Analyzed", bq_stats.get("total_historical_shipments_analyzed", 0))
-    m2.metric("Average Freight Shipment Cost", f"₹{bq_stats.get('avg_shipment_cost_inr', 0):,}")
+    districts = (api_get("/districts") or {}).get("districts", [])
+    inventory = (api_get("/inventory") or {}).get("inventory", [])
+    lanes = (api_get("/lanes/risk") or {}).get("lanes", [])
 
-    st.markdown("#### Expressway Reliability Breakdown")
-    corridor_data = []
-    for corridor_name, cinfo in bq_stats.get("corridor_breakdown", {}).items():
-        corridor_data.append({
-            "Corridor": corridor_name,
-            "Route": cinfo.get("route_name"),
-            "Trips": cinfo.get("total_trips"),
-            "Delayed Trips": cinfo.get("delayed_trips"),
-            "On-Time %": f"{cinfo.get('on_time_percentage')}%",
-            "Delay Factors": ", ".join(cinfo.get("delay_factors", [])) or "None"
-        })
-    st.dataframe(pd.DataFrame(corridor_data), use_container_width=True)
+    # Worst stock status per district decides the marker colour
+    rank = {"ok": 0, "low": 1, "critical": 2}
+    worst = {}
+    for item in inventory:
+        d, s = item["district"], item["status_color"]
+        if rank[s] >= rank[worst.get(d, "ok")]:
+            worst[d] = s
+
+    coords = {d["name"]: (d["lon"], d["lat"]) for d in districts}
+    points = pd.DataFrame([{
+        "name": d["name"], "lon": d["lon"], "lat": d["lat"],
+        "stock": worst.get(d["name"], "ok"), "color": STATUS_RGB[worst.get(d["name"], "ok")],
+    } for d in districts])
+
+    def lane_rgb(score):
+        if score >= 75: return [220, 38, 38]
+        if score >= 50: return [249, 115, 22]
+        if score >= 25: return [234, 179, 8]
+        return [100, 116, 139]
+
+    line_rows = []
+    for ln in lanes:
+        a, b = coords.get(ln["origin"]), coords.get(ln["destination"])
+        if a and b:
+            line_rows.append({"sx": a[0], "sy": a[1], "tx": b[0], "ty": b[1],
+                              "color": lane_rgb(ln["risk_score"]), "route": ln["route_name"],
+                              "risk": ln["risk_score"]})
+    lines = pd.DataFrame(line_rows)
+
+    left, right = st.columns([1.3, 1])
+    with left:
+        st.subheader("Corridor map")
+        if not points.empty:
+            layers = [pdk.Layer("ScatterplotLayer", data=points, get_position=["lon", "lat"],
+                                get_fill_color="color", get_radius=18000, pickable=True)]
+            if not lines.empty:
+                layers.insert(0, pdk.Layer("LineLayer", data=lines, get_source_position=["sx", "sy"],
+                                           get_target_position=["tx", "ty"], get_color="color",
+                                           get_width=4, pickable=True))
+            st.pydeck_chart(pdk.Deck(layers=layers,
+                                     initial_view_state=pdk.ViewState(latitude=27.4, longitude=79.2, zoom=6),
+                                     tooltip={"text": "{name}{route}\nStock: {stock}\nRisk: {risk}"}))
+        st.caption("Dots = worst stock status in that district (green/orange/red). "
+                   "Lines = freight lanes coloured by risk score.")
+    with right:
+        st.subheader("Lane risk scores")
+        if lanes:
+            df = pd.DataFrame(lanes).sort_values("risk_score", ascending=False).head(8)
+            st.bar_chart(df.set_index("route_name")["risk_score"])
+        st.subheader("Active disruptions")
+        disruptions = (api_get("/disruptions/active") or {}).get("disruptions", [])
+        if not disruptions:
+            st.success("No active disruptions")
+        for d in disruptions:
+            st.warning(f"**{d['title']}** ({d['severity']}) · {d['location']}\n\n"
+                       f"Lanes affected: {', '.join(d['affected_lanes']) or 'none'}")
+
+    st.subheader("Dispatch schedule")
+    sched = (api_get("/dispatch-schedule") or {}).get("schedule", [])
+    if sched:
+        cols = ["dispatch_id", "origin", "destination", "product", "quantity",
+                "carrier", "route_name", "cost_inr", "eta_hours", "status"]
+        st.dataframe(pd.DataFrame(sched)[cols], use_container_width=True, hide_index=True)
+
+    with st.expander("Historical analytics (BigQuery)"):
+        stats = api_get("/historical/stats") or {}
+        a, b = st.columns(2)
+        a.metric("Past shipments analysed", stats.get("total_historical_shipments_analyzed", 0))
+        b.metric("Average shipment cost (₹)", f"{stats.get('avg_shipment_cost_inr', 0):,}")
+        rows = [{"Corridor": n, "Trips": v.get("total_trips"), "Delayed": v.get("delayed_trips"),
+                 "On-time %": v.get("on_time_percentage")}
+                for n, v in (stats.get("corridor_breakdown") or {}).items()]
+        if rows:
+            st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
 
 
-# --- TAB 4: VECTOR SEARCH & UP LEATHER POLICIES ---
-with tab_policy:
-    st.subheader("📚 Semantic Knowledge Base: UP Leather & Environmental Policies")
-    st.write("Query the vector knowledge store to inspect statutory policies, NGT guidelines, and freight subsidies:")
+# ----------------------------------------------------------------------------
+# Page 2: Inventory
+# ----------------------------------------------------------------------------
+def page_inventory():
+    st.header("Inventory")
+    inventory = (api_get("/inventory") or {}).get("inventory", [])
+    if not inventory:
+        st.info("No inventory data. Run: python scripts/reset_demo.py")
+        return
+    df = pd.DataFrame(inventory)
+    f1, f2 = st.columns(2)
+    district = f1.selectbox("District", ["All"] + sorted(df["district"].unique()))
+    product = f2.selectbox("Product", ["All"] + sorted(df["product"].unique()))
+    if district != "All":
+        df = df[df["district"] == district]
+    if product != "All":
+        df = df[df["product"] == product]
 
-    query = st.text_input("Enter search query (e.g., 'NGT effluent shutdown Kanpur' or 'ODOP freight subsidy')", "ODOP leather goods freight subsidy")
-    if query:
-        matches = search_policy_docs(query, top_k=3)
-        for m in matches:
-            with st.expander(f"📄 {m.get('title')} (Relevance: {m.get('relevance_score')})"):
-                st.markdown(f"**Cluster:** `{m.get('cluster')}` | **Category:** `{m.get('category')}`")
-                st.write(m.get("content"))
+    m1, m2, m3 = st.columns(3)
+    m1.metric("🔴 Critical", int((df["status_color"] == "critical").sum()))
+    m2.metric("🟠 Low", int((df["status_color"] == "low").sum()))
+    m3.metric("🟢 OK", int((df["status_color"] == "ok").sum()))
+
+    df = df.assign(Status=df["status_color"].map(STATUS_ICON) + " " + df["status"])
+    show = df[["Status", "district", "product", "quantity", "reorder_point",
+               "daily_burn_rate", "days_left"]].rename(columns={
+        "district": "District", "product": "Product", "quantity": "In stock",
+        "reorder_point": "Reorder at", "daily_burn_rate": "Used per day", "days_left": "Days left"})
+    st.dataframe(show, use_container_width=True, hide_index=True,
+                 column_config={"Days left": st.column_config.ProgressColumn(
+                     "Days left", min_value=0, max_value=20, format="%.1f")})
+    st.caption("Critical = under half the reorder point or 2 days of stock left. Low = below reorder point.")
+
+
+# ----------------------------------------------------------------------------
+# Page 3: Approvals (human in the loop)
+# ----------------------------------------------------------------------------
+def page_approvals():
+    st.header("Approvals")
+    show_flash()
+    pending = (api_get("/approvals", {"status": "pending"}) or {}).get("approvals", [])
+    if not pending:
+        st.success("Nothing waiting for approval.")
+    for a in pending:
+        pid = a["plan_id"]
+        with st.container(border=True):
+            c1, c2 = st.columns([3, 1])
+            with c1:
+                st.markdown(f"**{pid}** — move **{a['quantity']:,.0f} {a['product']}** "
+                            f"from **{a['origin']}** to **{a['destination']}**")
+                st.write(f"Route: {a['route_name']} · Carrier: {a['carrier']} · "
+                         f"Cost: ₹{a['estimated_cost_inr']:,.0f}")
+            with c2:
+                if st.button("✅ Approve", key=f"ok_{pid}", type="primary", use_container_width=True):
+                    if decide(pid, "approve"):
+                        flash("success", f"{pid} approved. Live stock has been updated.")
+                    else:
+                        flash("error", f"Could not approve {pid}. Check the API terminal.")
+                    st.rerun()
+                if st.button("❌ Reject", key=f"no_{pid}", use_container_width=True):
+                    decide(pid, "reject")
+                    flash("info", f"{pid} rejected. No stock was moved.")
+                    st.rerun()
+    with st.expander("Approval history"):
+        allr = (api_get("/approvals", {"status": "all"}) or {}).get("approvals", [])
+        if allr:
+            cols = ["plan_id", "origin", "destination", "product", "quantity", "estimated_cost_inr", "status"]
+            st.dataframe(pd.DataFrame(allr)[cols], use_container_width=True, hide_index=True)
+
+
+# ----------------------------------------------------------------------------
+# Page 4: Agent Activity + Scenario Simulator
+# ----------------------------------------------------------------------------
+def render_run(res):
+    st.subheader("Result of the run")
+    st.caption(f"Run ID: {res.get('run_id')} · Status: {res.get('system_status')}")
+    if res.get("orchestrator_synthesis"):
+        st.info(res["orchestrator_synthesis"])
+
+    plan = res.get("final_plan")
+    if plan:
+        a, b, c, d = st.columns(4)
+        a.metric("Transfer", f"{plan['quantity']:,.0f} {plan['item']}")
+        b.metric("Route", f"{plan['origin']} → {plan['destination']}")
+        c.metric("Cost (₹)", f"{plan['estimated_cost_inr']:,.0f}")
+        d.metric("Transit (hours)", plan["transit_hours"])
+        if str(plan.get("approval_status")).lower() == "approved":
+            st.success(f"Auto-approved by guardrails. {plan.get('governance_note', '')}")
+        else:
+            st.warning(f"Waiting for a human. {plan.get('governance_note', '')} "
+                       f"Open the **Approvals** page to approve or reject.")
+    else:
+        st.success("All districts are within safe stock limits. No transfer needed.")
+
+    st.markdown("#### What the agents did, step by step")
+    for e in res.get("reasoning_events", []):
+        with st.expander(f"Step {e['step']} · {e['component']} · {e['action']}"):
+            st.write(e["details"])
+
+    policies = res.get("attached_policies", [])
+    if policies:
+        st.markdown("#### Policies the orchestrator applied")
+        for p in policies:
+            with st.expander(p.get("title", "Policy")):
+                st.write(p.get("content") or p.get("text") or "")
+
+    pkg = res.get("draft_documentation_package")
+    if pkg:
+        st.markdown("#### Draft transit permit (Form UP-EWAY-01)")
+        st.code(pkg.get("filled_permit_manifest", ""), language="text")
+
+
+def page_agent_activity():
+    st.header("Agent Activity")
+    show_flash()
+
+    st.subheader("1. Create a problem (scenario simulator)")
+    c1, c2, c3, c4 = st.columns(4)
+    scenarios = [
+        (c1, "🚧 Highway blockade (Unnao)", {"scenario_type": "highway_blockade", "cluster": "Unnao"}),
+        (c2, "📈 Demand spike (Agra)", {"scenario_type": "demand_spike", "cluster": "Agra"}),
+        (c3, "🌊 Ganges flood (Kanpur)", {"scenario_type": "monsoon_flood", "cluster": "Kanpur"}),
+        (c4, "✅ Clear all", {"scenario_type": "clear"}),
+    ]
+    for col, label, body in scenarios:
+        if col.button(label, use_container_width=True):
+            res = api_post("/scenario/trigger", body={"severity": "CRITICAL", **body})
+            if res:
+                flash("success", res.get("message", "Scenario applied."))
+                st.rerun()
+    show_flash()
+
+    st.subheader("2. Let the agents respond")
+    if st.button("🚀 Run multi-agent assessment", type="primary", use_container_width=True):
+        with st.status("Agents are working...", expanded=True) as status:
+            st.write("Inventory Agent → Risk Agent → Logistics Agent → Policies → Guardrails")
+            res = api_post("/orchestrator/run", params={"trigger": "Dashboard demo run"})
+            status.update(label="Run complete" if res else "Run failed",
+                          state="complete" if res else "error")
+        if res:
+            st.session_state["last_run"] = res
+
+    if st.session_state.get("last_run"):
+        render_run(st.session_state["last_run"])
+
+    with st.expander("Earlier runs"):
+        runs = (api_get("/runs", {"limit": 10}) or {}).get("runs", [])
+        if runs:
+            cols = ["timestamp", "trigger", "summary", "approval_status"]
+            st.dataframe(pd.DataFrame(runs).reindex(columns=cols), use_container_width=True, hide_index=True)
+        else:
+            st.caption("No saved runs yet.")
+
+
+{"Command Center": page_command_center, "Inventory": page_inventory,
+ "Approvals": page_approvals, "Agent Activity": page_agent_activity}[page]()
