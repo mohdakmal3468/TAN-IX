@@ -27,6 +27,15 @@
     "base_toll_inr": 780
   },
   {
+    "lane_id": "LANE-03-ALT",
+    "origin": "Kanpur",
+    "destination": "Agra",
+    "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+    "distance_km": 275,
+    "standard_transit_hours": 6.2,
+    "base_toll_inr": 340
+  },
+  {
     "lane_id": "LANE-04",
     "origin": "Agra",
     "destination": "Kanpur",
@@ -34,6 +43,15 @@
     "distance_km": 285,
     "standard_transit_hours": 4.5,
     "base_toll_inr": 780
+  },
+  {
+    "lane_id": "LANE-04-ALT",
+    "origin": "Agra",
+    "destination": "Kanpur",
+    "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+    "distance_km": 275,
+    "standard_transit_hours": 6.2,
+    "base_toll_inr": 340
   },
   {
     "lane_id": "LANE-05",
