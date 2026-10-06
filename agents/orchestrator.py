@@ -44,6 +44,13 @@ from tools.policy_tools import search_policy
 from tools.discord_tools import send_discord_approval_request, record_approval_decision, PENDING_APPROVALS
 from tools.firestore_client import set_document, get_document, list_documents
 from tools.firestore_tools import update_cluster_inventory
+from agents.guardrails import (
+    evaluate_guardrails,
+    save_approval_item,
+    update_approval_status,
+    get_approval_status,
+    wait_for_approval_resolution
+)
 from config import GEMINI_API_KEY, GEMINI_MODEL, UP_CLUSTERS
 
 MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
@@ -166,7 +173,9 @@ class StateMasterOrchestrator:
     def run_state_assessment(
         self,
         trigger: str = "Periodic Multi-Agent Supply Chain Audit",
-        target_deficit_district: Optional[str] = None
+        target_deficit_district: Optional[str] = None,
+        wait_for_approval_timeout: float = 0.0,
+        requires_compliance_signoff: bool = False
     ) -> Dict[str, Any]:
         """
         Executes a complete end-to-end multi-agent orchestration cycle:
@@ -456,25 +465,37 @@ class StateMasterOrchestrator:
             )
 
             # ------------------------------------------------------------------
-            # Step 7: Governance & Approval Tier Resolution
+            # Step 7: Governance & Guardrails Evaluation
             # ------------------------------------------------------------------
-            # Tier 1: <= INR 10,000 -> Autonomous AI Approval
-            # Tier 2: INR 10,001 - INR 50,000 -> District Logistics Supervisor HITL
-            # Tier 3: > INR 50,000 -> State Directorate
-            if est_cost <= 10000.0:
-                approval_tier = "TIER_1_AUTONOMOUS"
-                approval_status = "AUTO_APPROVED"
-                tier_description = "Expenditure <= INR 10,000. Auto-approved by State Master Orchestrator AI."
-            elif est_cost <= 50000.0:
-                approval_tier = "TIER_2_SUPERVISOR_HITL"
-                approval_status = "PENDING"
-                tier_description = "Expenditure between INR 10,001 and INR 50,000. Requires District Logistics Supervisor HITL approval."
-            else:
-                approval_tier = "TIER_3_DIRECTORATE"
-                approval_status = "PENDING"
-                tier_description = "Expenditure > INR 50,000. Requires State Directorate dual-key sign-off."
-
             plan_id = f"PLAN-UP-{len(self.execution_history) + 1:04d}"
+
+            # Calculate base route cost vs actual cost to evaluate reroute cost increase
+            base_toll = float(b_route.get("toll_inr", 780.0))
+            nominal_freight = distance_km * 38.0
+            baseline_cost = base_toll + nominal_freight
+
+            guardrail_payload = {
+                "action": "INTER_CLUSTER_STOCK_REBALANCE",
+                "type": "transfer",
+                "origin": donor_cluster,
+                "destination": target_cluster,
+                "product": deficit_item,
+                "quantity": deficit_qty,
+                "estimated_cost_inr": est_cost,
+                "amount": est_cost,
+                "logistics_status": logistics_status,
+                "is_reroute": is_rerouted,
+                "original_cost_inr": baseline_cost,
+                "new_cost_inr": est_cost,
+                "requires_compliance_signoff": requires_compliance_signoff,
+                "document_type": "Form UP-EWAY-01 Transit Permit" if requires_compliance_signoff else None
+            }
+
+            guardrail_decision = evaluate_guardrails(guardrail_payload)
+
+            approval_status = guardrail_decision.status  # "approved" or "pending"
+            approval_tier = "AUTO_APPROVED" if guardrail_decision.approved else "REQUIRES_HUMAN_APPROVAL"
+            tier_description = guardrail_decision.reason
 
             # Calculate ODOP 15% subsidy savings
             odop_rebate_inr = round(est_cost * 0.15, 2)
@@ -498,6 +519,7 @@ class StateMasterOrchestrator:
                 "logistics_status": logistics_status,
                 "approval_tier": approval_tier,
                 "approval_status": approval_status,
+                "guardrail_rule": guardrail_decision.rule_name,
                 "governance_note": tier_description,
                 "risk_justification": (
                     f"Replenish critical deficit in {target_cluster} ({deficit_item}: {top_deficit.get('current_quantity', 0)} units on hand). "
@@ -505,29 +527,67 @@ class StateMasterOrchestrator:
                 ),
                 "logistics_details": logistics_plan,
                 "attached_policies": attached_policies,
-                "documentation_package": draft_doc_package
+                "documentation_package": draft_doc_package,
+                "execution_status": "AUTO_APPROVED_EXECUTED" if guardrail_decision.approved else "PAUSED_AWAITING_APPROVAL"
             }
 
-            # Human-in-the-Loop Dispatch
-            if approval_status == "PENDING":
+            # Save approval item to Firestore collection 'approvals' with status ('pending' or 'approved')
+            save_approval_item(
+                approval_id=plan_id,
+                item_type=guardrail_decision.action_type,
+                details={
+                    "plan_id": plan_id,
+                    "origin": donor_cluster,
+                    "destination": target_cluster,
+                    "product": deficit_item,
+                    "quantity": deficit_qty,
+                    "unit": "units",
+                    "route": b_route.get("route_name"),
+                    "carrier": b_carrier.get("carrier_name"),
+                    "estimated_cost_inr": est_cost,
+                    "rule_triggered": guardrail_decision.rule_name,
+                    "reason": guardrail_decision.reason
+                },
+                amount=est_cost,
+                status=approval_status,
+                rule_triggered=guardrail_decision.rule_name,
+                reason=guardrail_decision.reason
+            )
+
+            # Human-in-the-Loop Dispatch and execution pausing if requires human approval
+            if guardrail_decision.requires_human_approval:
                 discord_res = send_discord_approval_request(master_plan)
                 master_plan["discord_dispatch"] = discord_res
+
+                # Pause execution until status changes if wait_for_approval_timeout > 0
+                if wait_for_approval_timeout > 0:
+                    wait_res = wait_for_approval_resolution(plan_id, timeout_seconds=wait_for_approval_timeout)
+                    if wait_res["resolved"]:
+                        approval_status = wait_res["status"]
+                        master_plan["approval_status"] = approval_status
+                        master_plan["execution_status"] = "RESUMED_UPON_APPROVAL" if approval_status == "approved" else "HALTED_REJECTED"
+                    else:
+                        master_plan["execution_status"] = "PAUSED_AWAITING_APPROVAL"
+            else:
+                master_plan["execution_status"] = "AUTO_APPROVED_EXECUTED"
 
             proposed_plans.append(master_plan)
 
             log_event(
                 step=7,
                 evt_id="EVT-07-GOVERNANCE",
-                component="Human Governance & HITL",
-                action="APPROVAL_TIER_CLASSIFICATION",
+                component="Guardrails Engine",
+                action="GUARDRAILS_EVALUATION",
                 details=(
-                    f"Classified Plan {plan_id} under {approval_tier} (Estimated Cost: INR {est_cost:,.2f}). "
-                    f"Status: {approval_status}. {tier_description}"
+                    f"Evaluated Plan {plan_id} against guardrails: {guardrail_decision.rule_name}. "
+                    f"Status: {approval_status} ({'Human approval required' if guardrail_decision.requires_human_approval else 'Auto-approved'}). "
+                    f"{tier_description}"
                 ),
                 payload={
                     "plan_id": plan_id,
-                    "approval_tier": approval_tier,
-                    "approval_status": approval_status
+                    "rule": guardrail_decision.rule_name,
+                    "approval_status": approval_status,
+                    "requires_human": guardrail_decision.requires_human_approval
                 }
             )
 
@@ -614,6 +674,7 @@ class StateMasterOrchestrator:
         """
         Executes an authorized plan by modifying live inventory balances in the data store.
         """
+        update_approval_status(plan_id, "approved", decision_by="District Logistics Supervisor", note="Authorized and Dispatched")
         decision = record_approval_decision(plan_id, "approve")
         if not decision.get("success"):
             return decision

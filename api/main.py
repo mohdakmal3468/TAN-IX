@@ -60,6 +60,7 @@ from tools.logistics_tools import _load_all_carriers
 from tools.bigquery_tools import get_corridor_performance_stats
 from tools.vector_tools import search_policy_docs
 from agents.orchestrator import StateMasterOrchestrator
+from agents.guardrails import update_approval_status
 from tools.discord_tools import PENDING_APPROVALS
 
 # Data paths for fallback
@@ -746,6 +747,7 @@ def discord_approval_callback(plan_id: str = Query(...), action: str = Query(...
         </html>
         """
     else:
+        update_approval_status(plan_id, "rejected", decision_by="District Logistics Supervisor", note="Rejected via Callback")
         if plan_id in PENDING_APPROVALS:
             PENDING_APPROVALS[plan_id]["approval_status"] = "REJECTED"
         return f"""
