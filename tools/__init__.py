@@ -18,6 +18,13 @@ from tools.firestore_client import (
     get_collection_count
 )
 
+from tools.inventory_tools import (
+    get_stock_level,
+    days_of_stock_left,
+    list_below_reorder_point,
+    find_surplus_districts
+)
+
 __all__ = [
     "get_all_clusters_inventory",
     "get_cluster_inventory",
@@ -38,5 +45,9 @@ __all__ = [
     "set_document",
     "list_documents",
     "batch_write_documents",
-    "get_collection_count"
+    "get_collection_count",
+    "get_stock_level",
+    "days_of_stock_left",
+    "list_below_reorder_point",
+    "find_surplus_districts"
 ]

@@ -20,24 +20,32 @@ load_dotenv()
 PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "tan-ix-demo"))
 DATABASE_NAME = os.getenv("FIRESTORE_DATABASE", "(default)")
 
-_client_instance = None
+USE_MOCK_DATA = os.getenv("USE_MOCK_DATA", "true").lower() in ("true", "1", "yes")
+
+_client_instance = None  # None = not tried, False = failed/mock, Client = active
 
 
 def get_firestore_client():
     """
     Initializes or returns a singleton Google Cloud Firestore client.
-    Returns None if google-cloud-firestore is unavailable or credentials fail.
+    Returns None if in mock mode, google-cloud-firestore is unavailable, or credentials fail.
     """
     global _client_instance
+    if _client_instance is False:
+        return None
     if _client_instance is not None:
         return _client_instance
+
+    if USE_MOCK_DATA:
+        _client_instance = False
+        return None
 
     try:
         from google.cloud import firestore
         _client_instance = firestore.Client(project=PROJECT_ID, database=DATABASE_NAME)
         return _client_instance
     except Exception as e:
-        # Note the exception without crashing; callers can handle fallback
+        _client_instance = False
         return None
 
 
