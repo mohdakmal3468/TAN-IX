@@ -178,3 +178,21 @@ class ApprovalRequest(BaseModel):
     created_at: datetime = Field(default_factory=datetime.utcnow, description="Generation timestamp")
     decision_by: Optional[str] = Field(None, description="Supervisor identity authorizing/rejecting")
     decision_at: Optional[datetime] = Field(None, description="Authorization timestamp")
+
+
+# ==============================================================================
+# 6. Scenario Simulation Trigger Schema
+# ==============================================================================
+
+class ScenarioTriggerRequest(BaseModel):
+    """
+    Demo scenario simulation trigger from UI.
+    """
+    scenario_type: str = Field(
+        ...,
+        description="Type of emergency scenario: highway_blockade, demand_spike, monsoon_flood, ngt_inspection, clear",
+        example="highway_blockade"
+    )
+    cluster: Optional[str] = Field(default="Unnao", description="Target district cluster", example="Unnao")
+    description: Optional[str] = Field(None, description="Optional incident narrative details")
+    severity: Optional[str] = Field(default="CRITICAL", description="Disruption severity level: LOW, MEDIUM, HIGH, CRITICAL")
