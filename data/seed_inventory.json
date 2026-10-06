@@ -98,13 +98,13 @@
       "last_updated": "2026-10-06T12:00:00Z",
       "inventory": {
         "shoes": {
-          "quantity": 2641,
+          "quantity": 280,
           "unit": "pairs",
-          "min_threshold": 1500,
-          "capacity": 10000,
+          "min_threshold": 2000,
+          "capacity": 560,
           "unit_cost_inr": 850,
-          "daily_burn_rate": 106,
-          "status": "Normal"
+          "daily_burn_rate": 450.0,
+          "status": "CRITICAL_DEFICIT"
         },
         "belts": {
           "quantity": 180,
