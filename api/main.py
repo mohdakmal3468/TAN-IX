@@ -762,10 +762,73 @@ def discord_approval_callback(plan_id: str = Query(...), action: str = Query(...
 
 
 @app.post("/orchestrator/run", tags=["Multi-Agent Orchestration"])
-def run_orchestrator_cycle():
+def run_orchestrator_cycle(trigger: Optional[str] = Query(None, description="Optional custom trigger")):
     """Triggers autonomous multi-agent reasoning and rebalancing cycle."""
-    result = orchestrator.run_state_assessment()
+    trig_text = trigger or "User Triggered Multi-Agent Audit"
+    result = orchestrator.run_state_assessment(trigger=trig_text)
     return result
+
+
+@app.get("/runs", tags=["Multi-Agent Orchestration"])
+def get_agent_runs(limit: int = Query(50, ge=1, le=200, description="Max runs to return")):
+    """
+    Returns historical and live agent orchestration execution runs from Firestore.
+    Formatted for the frontend 'agent activity' timeline display.
+    """
+    raw_runs = list_documents("agent_runs", limit=limit)
+    formatted = []
+    for r in raw_runs:
+        rid = r.get("run_id") or r.get("id") or r.get("_id")
+        plan = r.get("final_plan") or {}
+        events = r.get("reasoning_events") or []
+        formatted.append({
+            "run_id": rid,
+            "timestamp": r.get("timestamp"),
+            "trigger": r.get("trigger", "Periodic Audit"),
+            "status": r.get("status", "COMPLETED"),
+            "plan_id": plan.get("plan_id"),
+            "origin": plan.get("origin"),
+            "destination": plan.get("destination"),
+            "product": plan.get("item") or plan.get("product"),
+            "quantity": plan.get("quantity"),
+            "unit": plan.get("unit", "units"),
+            "route_name": plan.get("route_name"),
+            "carrier": plan.get("carrier"),
+            "estimated_cost_inr": plan.get("estimated_cost_inr"),
+            "approval_tier": plan.get("approval_tier"),
+            "approval_status": plan.get("approval_status"),
+            "total_reasoning_steps": len(events),
+            "summary": r.get("summary", ""),
+            "events_preview": [
+                {
+                    "step": e.get("step"),
+                    "component": e.get("component"),
+                    "action": e.get("action"),
+                    "details": e.get("details")
+                }
+                for e in events[:4]
+            ]
+        })
+
+    return {
+        "total": len(formatted),
+        "runs": formatted
+    }
+
+
+@app.get("/runs/{id}", tags=["Multi-Agent Orchestration"])
+def get_agent_run_by_id(id: str):
+    """
+    Retrieves the complete detail of a specific orchestrator execution run by run_id.
+    Includes sub-agent outputs, statutory policies, draft documentation, and full reasoning events.
+    """
+    run_doc = get_document("agent_runs", id)
+    if not run_doc:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Agent run '{id}' not found in Firestore collection 'agent_runs'."
+        )
+    return run_doc
 
 
 # ==============================================================================

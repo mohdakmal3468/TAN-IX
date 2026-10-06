@@ -24,7 +24,10 @@
     "route_name": "Agra-Lucknow Expressway & NH-19",
     "distance_km": 285,
     "standard_transit_hours": 4.5,
-    "base_toll_inr": 780
+    "base_toll_inr": 780,
+    "is_blocked": false,
+    "_id": "LANE-03",
+    "id": "LANE-03"
   },
   {
     "lane_id": "LANE-03-ALT",
@@ -33,7 +36,10 @@
     "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
     "distance_km": 275,
     "standard_transit_hours": 6.2,
-    "base_toll_inr": 340
+    "base_toll_inr": 340,
+    "is_blocked": false,
+    "_id": "LANE-03-ALT",
+    "id": "LANE-03-ALT"
   },
   {
     "lane_id": "LANE-04",

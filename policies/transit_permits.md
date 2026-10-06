@@ -34,3 +34,52 @@ All freight shipments moving commercial hides, crust, components, or finished le
 1. Every commercial freight truck must possess an active FASTag RFID transponder linked to the carrier’s GSTIN.
 2. Toll plaza RFID readers automatically scan the vehicle manifest at Agra-Lucknow Expressway Entry (Kanpur Mile 0, Agra Mile 285) and Jewar Toll Plaza (Yamuna Expressway).
 3. Missing or mismatched permit numbers trigger automated vehicle impoundment and state transit fines of ₹10,000 INR.
+
+---
+
+## 4. UP State Transit Permit Manifest Template (Form UP-EWAY-01)
+
+```text
+================================================================================
+                    GOVERNMENT OF UTTAR PRADESH
+        DEPARTMENT OF COMMERCIAL TAXES & UP TRANSPORT COMMISSION
+             FORM UP-EWAY-01: INTER-DISTRICT TRANSIT PERMIT
+================================================================================
+Permit ID:          {PERMIT_ID}
+Issue Date:         {TIMESTAMP}
+Permit Validity:    {VALIDITY_PERIOD}
+Status:             {PERMIT_STATUS}
+
+1. CONSIGNMENT & COMMODITY SUMMARY
+--------------------------------------------------------------------------------
+Origin Cluster:     {ORIGIN_CLUSTER} (Warehouse / Tannery Hub)
+Destination:        {DESTINATION_CLUSTER} (Footwear / Production Facility)
+Commodity:          {PRODUCT}
+Quantity:           {QUANTITY} {UNIT}
+Estimated Value:    INR {INVOICE_VALUE}
+Statutory e-Way:    {EWAY_REQUIRED} (Mandatory for invoice value > INR 50,000)
+
+2. LOGISTICS ROUTING & CARRIER DISPATCH
+--------------------------------------------------------------------------------
+Assigned Carrier:   {CARRIER_NAME} (Carrier ID: {CARRIER_ID})
+Vehicle Assigned:   {VEHICLE_TYPE}
+Corridor Route:     {ROUTE_NAME} (Route ID: {ROUTE_ID})
+Transit Distance:   {DISTANCE_KM} km
+Estimated Transit:  {ETA_HOURS} hours
+Base Toll Charges:  INR {TOLL_INR}
+Total Freight Cost: INR {TOTAL_COST_INR}
+
+3. REGULATORY COMPLIANCE & POLICY VERIFICATION
+--------------------------------------------------------------------------------
+Delivery SLA:       {DELIVERY_SLA_POLICY}
+Vet Certificate:    {VET_INSPECTION_STATUS}
+Hazmat / Chromium:  {HAZMAT_STATUS}
+Emergency Subsidy:  {ODOP_SUBSIDY_STATUS}
+Rerouting / Detour: {DETOUR_ADVISORY}
+RFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)
+
+Authorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)
+Approval Reference: {PLAN_ID}
+================================================================================
+```
+

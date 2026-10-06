@@ -1,0 +1,8 @@
+[
+  {
+    "test_metric": 42.0,
+    "status": "TEST_OK",
+    "_id": "TEST-001",
+    "id": "TEST-001"
+  }
+]

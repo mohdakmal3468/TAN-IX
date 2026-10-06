@@ -11,6 +11,7 @@ Provides type-safe helper functions for:
 """
 
 import os
+import json
 from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
 
@@ -49,64 +50,157 @@ def get_firestore_client():
         return None
 
 
+DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
+MOCK_DIR = os.path.join(DATA_DIR, "firestore_mock")
+
+
+def _get_mock_collection_path(collection: str) -> str:
+    """Returns the local mock JSON path for a collection."""
+    os.makedirs(MOCK_DIR, exist_ok=True)
+    return os.path.join(MOCK_DIR, f"{collection}.json")
+
+
+def _match_doc_id(item: Dict[str, Any], doc_id: str) -> bool:
+    """Checks if a dictionary item matches the requested document ID."""
+    candidate_keys = ["_id", "id", "run_id", "request_id", "plan_id", "inventory_id", "event_id", "lane_id", "shipment_id", "route_id", "carrier_id"]
+    for k in candidate_keys:
+        if str(item.get(k, "")) == str(doc_id):
+            return True
+    return False
+
+
 def get_document(collection: str, doc_id: str) -> Optional[Dict[str, Any]]:
     """
     Retrieves a single document from a Firestore collection by ID.
-    Returns dictionary of document fields, or None if not found.
+    Falls back to data/firestore_mock/<collection>.json when client is unavailable.
     """
     client = get_firestore_client()
-    if client is None:
-        return None
+    if client is not None:
+        try:
+            doc_ref = client.collection(collection).document(doc_id)
+            doc = doc_ref.get()
+            if doc.exists:
+                data = doc.to_dict()
+                data["_id"] = doc.id
+                return data
+        except Exception as e:
+            print(f"[Firestore Error] get_document failed for {collection}/{doc_id}: {e}")
 
-    try:
-        doc_ref = client.collection(collection).document(doc_id)
-        doc = doc_ref.get()
-        if doc.exists:
-            data = doc.to_dict()
-            data["_id"] = doc.id
-            return data
-        return None
-    except Exception as e:
-        print(f"[Firestore Error] get_document failed for {collection}/{doc_id}: {e}")
-        return None
+    # Fallback to local mock data
+    mock_file = _get_mock_collection_path(collection)
+    if os.path.exists(mock_file) and os.path.getsize(mock_file) > 0:
+        try:
+            with open(mock_file, "r", encoding="utf-8") as f:
+                content = json.load(f)
+                if isinstance(content, list):
+                    for item in content:
+                        if isinstance(item, dict) and _match_doc_id(item, doc_id):
+                            return item
+                elif isinstance(content, dict):
+                    if doc_id in content:
+                        res = content[doc_id]
+                        if isinstance(res, dict) and "_id" not in res:
+                            res["_id"] = doc_id
+                        return res
+        except Exception as e:
+            print(f"[Firestore Mock Error] Reading {mock_file}: {e}")
+
+    return None
 
 
 def set_document(collection: str, doc_id: str, data: Dict[str, Any], merge: bool = True) -> bool:
     """
     Writes or merges a single document into a Firestore collection.
+    Automatically saves to data/firestore_mock/<collection>.json as a persistent fallback.
     """
     client = get_firestore_client()
-    if client is None:
-        return False
+    firestore_success = False
 
+    if client is not None:
+        try:
+            doc_ref = client.collection(collection).document(doc_id)
+            doc_ref.set(data, merge=merge)
+            firestore_success = True
+        except Exception as e:
+            print(f"[Firestore Error] set_document failed for {collection}/{doc_id}: {e}")
+
+    # Synchronize to local mock store
     try:
-        doc_ref = client.collection(collection).document(doc_id)
-        doc_ref.set(data, merge=merge)
+        mock_file = _get_mock_collection_path(collection)
+        items = []
+        if os.path.exists(mock_file) and os.path.getsize(mock_file) > 0:
+            with open(mock_file, "r", encoding="utf-8") as f:
+                try:
+                    loaded = json.load(f)
+                    if isinstance(loaded, list):
+                        items = loaded
+                    elif isinstance(loaded, dict):
+                        items = list(loaded.values())
+                except json.JSONDecodeError:
+                    items = []
+
+        # Update or append
+        doc_entry = dict(data)
+        doc_entry["_id"] = doc_id
+        if "id" not in doc_entry and not any(k in doc_entry for k in ["run_id", "request_id", "inventory_id"]):
+            doc_entry["id"] = doc_id
+
+        found_index = -1
+        for idx, itm in enumerate(items):
+            if isinstance(itm, dict) and _match_doc_id(itm, doc_id):
+                found_index = idx
+                break
+
+        if found_index >= 0:
+            if merge:
+                items[found_index].update(doc_entry)
+            else:
+                items[found_index] = doc_entry
+        else:
+            items.insert(0, doc_entry)
+
+        with open(mock_file, "w", encoding="utf-8") as f:
+            json.dump(items, f, indent=2)
+
         return True
     except Exception as e:
-        print(f"[Firestore Error] set_document failed for {collection}/{doc_id}: {e}")
-        return False
+        print(f"[Firestore Mock Error] Writing {collection}/{doc_id}: {e}")
+        return firestore_success
 
 
 def list_documents(collection: str, limit: int = 100) -> List[Dict[str, Any]]:
     """
     Fetches up to `limit` documents from a collection.
+    Falls back to data/firestore_mock/<collection>.json when client is unavailable.
     """
     client = get_firestore_client()
-    if client is None:
-        return []
+    if client is not None:
+        try:
+            docs = client.collection(collection).limit(limit).stream()
+            results = []
+            for doc in docs:
+                item = doc.to_dict()
+                item["_id"] = doc.id
+                results.append(item)
+            if results:
+                return results
+        except Exception as e:
+            print(f"[Firestore Error] list_documents failed for {collection}: {e}")
 
-    try:
-        docs = client.collection(collection).limit(limit).stream()
-        results = []
-        for doc in docs:
-            item = doc.to_dict()
-            item["_id"] = doc.id
-            results.append(item)
-        return results
-    except Exception as e:
-        print(f"[Firestore Error] list_documents failed for {collection}: {e}")
-        return []
+    # Fallback to local mock data
+    mock_file = _get_mock_collection_path(collection)
+    if os.path.exists(mock_file) and os.path.getsize(mock_file) > 0:
+        try:
+            with open(mock_file, "r", encoding="utf-8") as f:
+                loaded = json.load(f)
+                if isinstance(loaded, list):
+                    return loaded[:limit]
+                elif isinstance(loaded, dict):
+                    return list(loaded.values())[:limit]
+        except Exception as e:
+            print(f"[Firestore Mock Error] Listing {collection}: {e}")
+
+    return []
 
 
 def batch_write_documents(collection: str, documents: List[Dict[str, Any]], id_key: str = "id") -> int:

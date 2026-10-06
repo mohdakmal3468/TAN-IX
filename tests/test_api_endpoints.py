@@ -152,6 +152,39 @@ class TestApiEndpoints(unittest.TestCase):
         self.assertTrue(r_data["success"])
         self.assertEqual(r_data["status"], "NORMAL")
 
+    def test_get_runs_and_run_detail(self):
+        """Tests GET /runs and GET /runs/{id} endpoints."""
+        # 1. Trigger orchestrator cycle to ensure at least one run is created
+        orch_resp = self.client.post("/orchestrator/run?trigger=Test+API+Run")
+        self.assertEqual(orch_resp.status_code, 200)
+        orch_data = orch_resp.json()
+        run_id = orch_data["run_id"]
+        self.assertTrue(run_id.startswith("RUN-"))
+
+        # 2. Query GET /runs
+        runs_resp = self.client.get("/runs")
+        self.assertEqual(runs_resp.status_code, 200)
+        runs_data = runs_resp.json()
+        self.assertIn("runs", runs_data)
+        self.assertGreaterEqual(runs_data["total"], 1)
+
+        run_ids = [r["run_id"] for r in runs_data["runs"]]
+        self.assertIn(run_id, run_ids)
+
+        # 3. Query GET /runs/{id}
+        single_resp = self.client.get(f"/runs/{run_id}")
+        self.assertEqual(single_resp.status_code, 200)
+        detail = single_resp.json()
+        self.assertEqual(detail["run_id"], run_id)
+        self.assertIn("subagents_output", detail)
+        self.assertIn("reasoning_events", detail)
+        self.assertIn("final_plan", detail)
+
+        # 4. Non-existent run returns 404
+        not_found_resp = self.client.get("/runs/RUN-DOES-NOT-EXIST-9999")
+        self.assertEqual(not_found_resp.status_code, 404)
+
 
 if __name__ == "__main__":
     unittest.main()
+

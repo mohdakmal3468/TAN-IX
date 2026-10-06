@@ -273,6 +273,13 @@ def unblock_route(route_id: str) -> Dict[str, Any]:
 def reset_blocked_routes():
     """Resets all blocked routes back to baseline operational state."""
     BLOCKED_ROUTES.clear()
+    all_routes = _load_all_routes()
+    for r in all_routes:
+        if r.get("is_blocked"):
+            r["is_blocked"] = False
+            lid = str(r.get("lane_id") or r.get("route_id") or "")
+            set_document("routes", lid, {"is_blocked": False}, merge=True)
+
 
 
 # ==============================================================================
