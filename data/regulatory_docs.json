@@ -1,0 +1,30 @@
+[
+  {
+    "doc_id": "DOC-NGT-2024-KANPUR",
+    "title": "National Green Tribunal (NGT) Mandate on Jajmau & Banthar Effluent Treatment",
+    "cluster": "Kanpur / Unnao",
+    "category": "Environmental Regulation",
+    "content": "All chrome tanning units in Jajmau (Kanpur) and Banthar (Unnao) are subject to zero liquid discharge (ZLD) inspection protocols. In the event of primary effluent treatment plant (PETP) overflow or Ganges river contamination during heavy rainfall (>65mm/day), the UP Pollution Control Board (UPPCB) has statutory authority to enforce temporary 48-hour to 72-hour power and water disconnections for non-compliant tannery clusters. Supply chain managers are advised to maintain a minimum 14-day buffer of tanned crust leather in regional warehouses outside the immediate flood basin."
+  },
+  {
+    "doc_id": "DOC-UP-EXPRESSWAY-FREIGHT",
+    "title": "Uttar Pradesh Expressways Industrial Development Authority (UPEIDA) Freight Guidelines",
+    "cluster": "Statewide",
+    "category": "Logistics & Transport",
+    "content": "Commercial cargo transport along the Agra-Lucknow Expressway and Yamuna Expressway requires fast-tag commercial registration. Heavy vehicle speed limits are capped at 80 km/h. During dense fog windows (December to February), night freight between 23:00 and 06:00 is restricted or subjected to pilot convoy escorts, increasing inter-cluster transit time between Kanpur and Noida by an estimated 2 to 3.5 hours."
+  },
+  {
+    "doc_id": "DOC-UP-ODOP-LEATHER",
+    "title": "UP One District One Product (ODOP) Leather Goods Inter-Cluster Subsidies",
+    "cluster": "Kanpur, Agra, Unnao",
+    "category": "Trade Policy",
+    "content": "Under the UP ODOP scheme, intra-state freight between designated leather hubs (Kanpur saddlery, Agra footwear, Unnao raw processing) qualifies for an emergency 15% state freight rebate when stock rebalancing is initiated to avert export order cancellations. The State Master Orchestrator must document origin-destination e-way bills and cluster production shortages."
+  },
+  {
+    "doc_id": "DOC-GANGA-BASIN-FLOOD",
+    "title": "UP State Disaster Management Authority (UPSDMA) Ganges Monsoon Advisory",
+    "cluster": "Kanpur, Unnao",
+    "category": "Weather & Disaster Risk",
+    "content": "Heavy monsoon spells upstream in Uttarakhand and central UP result in water discharge from the Narora and Kanpur Barrages. Low-lying warehousing clusters near Jajmau Ganga Bridge and Shuklaganj are vulnerable to localized inundation. Raw hide stocks must be elevated or temporarily transferred to inland warehouses in Unnao Industrial Area or elevated Agra logistics hubs."
+  }
+]

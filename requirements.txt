@@ -1,0 +1,14 @@
+# Core Multi-Agent & Google Cloud Stack
+google-adk
+google-cloud-firestore
+google-cloud-bigquery
+
+# Backend & Web Frameworks
+fastapi
+uvicorn
+streamlit
+
+# Environment & Data Utilities
+python-dotenv
+pandas
+requests
