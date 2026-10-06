@@ -16,6 +16,7 @@ from tools.risk_tools import (
 )
 from tools.bigquery_tools import query_historical_shipments, get_corridor_performance_stats
 from tools.vector_tools import search_policy_docs
+from tools.policy_tools import search_policy
 from tools.discord_tools import send_discord_approval_request, record_approval_decision
 from tools.firestore_client import (
     get_firestore_client,
@@ -50,6 +51,7 @@ __all__ = [
     "query_historical_shipments",
     "get_corridor_performance_stats",
     "search_policy_docs",
+    "search_policy",
     "send_discord_approval_request",
     "record_approval_decision",
     "get_firestore_client",
