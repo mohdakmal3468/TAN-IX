@@ -68,6 +68,28 @@ def get_stock_level(district: str, product: str) -> Dict[str, Any]:
     target_district = district.capitalize().strip()
     target_product = product.lower().strip()
 
+    # Route through MCP server if USE_MCP flag is enabled
+    if os.getenv("USE_MCP", "false").lower() in ("true", "1", "yes"):
+        try:
+            from tools.mcp_server import call_mcp_tool
+            res = call_mcp_tool("get_stock_level", district=target_district, product=target_product)
+            if res.get("status") != "NOT_FOUND":
+                return {
+                    "district": target_district,
+                    "product": target_product,
+                    "quantity": res["quantity"],
+                    "unit": res["unit"],
+                    "daily_burn_rate": res["daily_burn_rate"],
+                    "reorder_point": res["reorder_point"],
+                    "safety_stock": 300,
+                    "unit_cost_inr": 350,
+                    "status": res["status"],
+                    "days_left": res["days_left"],
+                    "via_mcp": True
+                }
+        except Exception:
+            pass
+
     records = _get_all_inventory_records()
     for rec in records:
         if (rec.get("district", "").capitalize() == target_district and
