@@ -1,0 +1,110 @@
+[
+  {
+    "lane_id": "LANE-01",
+    "origin": "Kanpur",
+    "destination": "Unnao",
+    "route_name": "NH-27 / Ganga Bridge Corridor",
+    "distance_km": 25,
+    "standard_transit_hours": 0.8,
+    "base_toll_inr": 80
+  },
+  {
+    "lane_id": "LANE-02",
+    "origin": "Unnao",
+    "destination": "Kanpur",
+    "route_name": "NH-27 / Ganga Bridge Corridor",
+    "distance_km": 25,
+    "standard_transit_hours": 0.8,
+    "base_toll_inr": 80
+  },
+  {
+    "lane_id": "LANE-03",
+    "origin": "Kanpur",
+    "destination": "Agra",
+    "route_name": "Agra-Lucknow Expressway & NH-19",
+    "distance_km": 285,
+    "standard_transit_hours": 4.5,
+    "base_toll_inr": 780
+  },
+  {
+    "lane_id": "LANE-04",
+    "origin": "Agra",
+    "destination": "Kanpur",
+    "route_name": "Agra-Lucknow Expressway & NH-19",
+    "distance_km": 285,
+    "standard_transit_hours": 4.5,
+    "base_toll_inr": 780
+  },
+  {
+    "lane_id": "LANE-05",
+    "origin": "Kanpur",
+    "destination": "Noida",
+    "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+    "distance_km": 465,
+    "standard_transit_hours": 6.8,
+    "base_toll_inr": 1350
+  },
+  {
+    "lane_id": "LANE-06",
+    "origin": "Noida",
+    "destination": "Kanpur",
+    "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+    "distance_km": 465,
+    "standard_transit_hours": 6.8,
+    "base_toll_inr": 1350
+  },
+  {
+    "lane_id": "LANE-07",
+    "origin": "Unnao",
+    "destination": "Agra",
+    "route_name": "Agra-Lucknow Expressway",
+    "distance_km": 290,
+    "standard_transit_hours": 4.6,
+    "base_toll_inr": 810
+  },
+  {
+    "lane_id": "LANE-08",
+    "origin": "Agra",
+    "destination": "Unnao",
+    "route_name": "Agra-Lucknow Expressway",
+    "distance_km": 290,
+    "standard_transit_hours": 4.6,
+    "base_toll_inr": 810
+  },
+  {
+    "lane_id": "LANE-09",
+    "origin": "Unnao",
+    "destination": "Noida",
+    "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+    "distance_km": 475,
+    "standard_transit_hours": 7.0,
+    "base_toll_inr": 1390
+  },
+  {
+    "lane_id": "LANE-10",
+    "origin": "Noida",
+    "destination": "Unnao",
+    "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+    "distance_km": 475,
+    "standard_transit_hours": 7.0,
+    "base_toll_inr": 1390
+  },
+  {
+    "lane_id": "LANE-11",
+    "origin": "Agra",
+    "destination": "Noida",
+    "route_name": "Yamuna Expressway",
+    "distance_km": 195,
+    "standard_transit_hours": 2.5,
+    "base_toll_inr": 590
+  },
+  {
+    "lane_id": "LANE-12",
+    "origin": "Noida",
+    "destination": "Agra",
+    "route_name": "Yamuna Expressway",
+    "distance_km": 195,
+    "standard_transit_hours": 2.5,
+    "base_toll_inr": 590
+  }
+]

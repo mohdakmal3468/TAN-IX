@@ -1,0 +1,201 @@
+shipment_id,date,origin,destination,carrier,route,product,quantity,unit,distance_km,planned_hours,actual_hours,delay_hours,cost_inr,weather_condition,delay_reason,status
+SHP-2026-0011,2026-07-01,Kanpur,Unnao,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,bags,1693,units,25,0.4,0.4,0.0,1994,Clear,None,Delivered
+SHP-2026-0013,2026-07-01,Agra,Kanpur,UP State Freight Express,Agra-Lucknow Expressway & NH-19,bags,961,units,285,5.2,5.2,0.0,13393,Rain / Monsoon,None,Delivered
+SHP-2026-0130,2026-07-01,Unnao,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,belts,1254,units,475,8.6,8.6,0.0,22050,Clear,None,Delivered
+SHP-2026-0112,2026-07-02,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,belts,2188,units,475,8.6,8.6,0.0,22122,Clear,None,Delivered
+SHP-2026-0131,2026-07-02,Kanpur,Agra,UP State Freight Express,Agra-Lucknow Expressway & NH-19,bags,1014,units,285,5.2,5.2,0.0,12984,Foggy / Mist,None,Delivered
+SHP-2026-0039,2026-07-04,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,belts,1269,units,475,11.9,13.5,1.6,15212,Overcast,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0097,2026-07-04,Kanpur,Unnao,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,836,units,25,0.5,2.2,1.7,1354,Clear,Heavy local freight congestion near Ganga bridge,Delivered
+SHP-2026-0195,2026-07-04,Unnao,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,jackets,1587,garments,475,10.3,10.3,0.0,17756,Clear,None,Delivered
+SHP-2026-0117,2026-07-05,Agra,Kanpur,Awadh Inter-District Fleet,Agra-Lucknow Expressway & NH-19,belts,697,units,285,6.2,7.1,0.9,11021,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0126,2026-07-05,Noida,Agra,UP State Freight Express,Yamuna Expressway,jackets,705,garments,195,3.5,3.5,0.0,9166,Clear,None,Delivered
+SHP-2026-0185,2026-07-05,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,jackets,1046,garments,195,4.9,6.4,1.5,6618,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0035,2026-07-06,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,bags,508,units,465,11.6,11.6,0.0,14753,Clear,None,Delivered
+SHP-2026-0065,2026-07-06,Unnao,Kanpur,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,shoes,513,pairs,25,0.6,2.2,1.6,1547,Clear,Heavy local freight congestion near Ganga bridge,Delivered
+SHP-2026-0109,2026-07-06,Unnao,Kanpur,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,shoes,711,pairs,25,0.6,0.6,0.0,909,Rain / Monsoon,None,Delivered
+SHP-2026-0081,2026-07-07,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,357,units,465,8.5,8.5,0.0,21026,Clear,None,Delivered
+SHP-2026-0175,2026-07-07,Unnao,Agra,Yamuna Fast Haulers,Agra-Lucknow Expressway,belts,2147,units,290,4.1,4.1,0.0,16994,Foggy / Mist,None,Delivered
+SHP-2026-0031,2026-07-10,Noida,Kanpur,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,shoes,2177,pairs,465,6.6,6.6,0.0,26662,Clear,None,Delivered
+SHP-2026-0154,2026-07-10,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,jackets,1570,garments,475,6.8,6.8,0.0,27312,Clear,None,Delivered
+SHP-2026-0156,2026-07-10,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,1108,units,25,0.5,0.5,0.0,1901,Clear,None,Delivered
+SHP-2026-0057,2026-07-11,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,shoes,1470,pairs,465,11.6,11.6,0.0,15023,Clear,None,Delivered
+SHP-2026-0075,2026-07-11,Kanpur,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,bags,1431,units,465,10.1,10.1,0.0,17455,Clear,None,Delivered
+SHP-2026-0146,2026-07-11,Noida,Unnao,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,shoes,937,pairs,475,6.8,6.8,0.0,27830,Clear,None,Delivered
+SHP-2026-0189,2026-07-11,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,bags,2426,units,290,7.2,7.2,0.0,9464,Clear,None,Delivered
+SHP-2026-0128,2026-07-12,Agra,Noida,Awadh Inter-District Fleet,Yamuna Expressway,shoes,1930,pairs,195,4.2,4.2,0.0,7785,Overcast,None,Delivered
+SHP-2026-0144,2026-07-12,Kanpur,Unnao,UP State Freight Express,NH-27 / Ganga Bridge Corridor,belts,1941,units,25,0.5,0.5,0.0,1261,Rain / Monsoon,None,Delivered
+SHP-2026-0105,2026-07-13,Agra,Noida,UP State Freight Express,Yamuna Expressway,jackets,451,garments,195,3.5,3.5,0.0,9219,Overcast,None,Delivered
+SHP-2026-0053,2026-07-14,Noida,Agra,Ganga Basin Cargo Logistics,Yamuna Expressway,jackets,1936,garments,195,4.9,4.9,0.0,6155,Rain / Monsoon,None,Delivered
+SHP-2026-0069,2026-07-14,Unnao,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,belts,611,units,290,7.2,7.2,0.0,9278,Foggy / Mist,None,Delivered
+SHP-2026-0114,2026-07-14,Unnao,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway,jackets,1537,garments,290,6.3,6.3,0.0,11264,Clear,None,Delivered
+SHP-2026-0161,2026-07-14,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,2248,units,475,8.6,8.6,0.0,21901,Overcast,None,Delivered
+SHP-2026-0173,2026-07-14,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,513,units,475,8.6,8.6,0.0,22007,Foggy / Mist,None,Delivered
+SHP-2026-0033,2026-07-15,Unnao,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,shoes,1526,pairs,475,10.3,11.9,1.6,17910,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0147,2026-07-15,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,jackets,2110,garments,290,7.2,7.2,0.0,9554,Clear,None,Delivered
+SHP-2026-0015,2026-07-17,Agra,Kanpur,Yamuna Fast Haulers,Agra-Lucknow Expressway & NH-19,shoes,2290,pairs,285,4.1,4.1,0.0,16815,Overcast,None,Delivered
+SHP-2026-0118,2026-07-17,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,shoes,1508,pairs,465,8.5,8.5,0.0,21185,Clear,None,Delivered
+SHP-2026-0139,2026-07-17,Agra,Unnao,Yamuna Fast Haulers,Agra-Lucknow Expressway,shoes,649,pairs,290,4.1,4.1,0.0,16951,Clear,None,Delivered
+SHP-2026-0166,2026-07-17,Noida,Agra,Ganga Basin Cargo Logistics,Yamuna Expressway,belts,647,units,195,4.9,4.9,0.0,6486,Clear,None,Delivered
+SHP-2026-0051,2026-07-19,Kanpur,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,shoes,1262,pairs,465,10.1,10.1,0.0,17463,Clear,None,Delivered
+SHP-2026-0089,2026-07-19,Agra,Noida,UP State Freight Express,Yamuna Expressway,jackets,770,garments,195,3.5,3.5,0.0,9152,Clear,None,Delivered
+SHP-2026-0135,2026-07-19,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,jackets,2116,garments,195,2.8,2.8,0.0,11842,Clear,None,Delivered
+SHP-2026-0155,2026-07-19,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,belts,1731,units,195,2.8,2.8,0.0,11880,Overcast,None,Delivered
+SHP-2026-0174,2026-07-19,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,bags,643,units,475,6.8,6.8,0.0,27665,Clear,None,Delivered
+SHP-2026-0106,2026-07-20,Agra,Unnao,Yamuna Fast Haulers,Agra-Lucknow Expressway,jackets,362,garments,290,4.1,4.1,0.0,17240,Clear,None,Delivered
+SHP-2026-0027,2026-07-21,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,bags,534,units,475,6.8,6.8,0.0,27683,Clear,None,Delivered
+SHP-2026-0055,2026-07-21,Agra,Unnao,Awadh Inter-District Fleet,Agra-Lucknow Expressway,jackets,2367,garments,290,6.3,6.3,0.0,11226,Foggy / Mist,None,Delivered
+SHP-2026-0086,2026-07-21,Kanpur,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,shoes,1151,pairs,465,6.6,6.6,0.0,26643,Clear,None,Delivered
+SHP-2026-0192,2026-07-21,Kanpur,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,shoes,1963,pairs,465,6.6,6.6,0.0,27255,Rain / Monsoon,None,Delivered
+SHP-2026-0198,2026-07-21,Unnao,Kanpur,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,bags,565,units,25,0.5,0.5,0.0,1337,Clear,None,Delivered
+SHP-2026-0152,2026-07-22,Unnao,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,jackets,1485,garments,290,7.2,7.2,0.0,9362,Clear,None,Delivered
+SHP-2026-0092,2026-07-23,Kanpur,Unnao,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,belts,384,units,25,0.4,1.9,1.5,1571,Rain / Monsoon,Adverse weather (Rain / Monsoon) on NH-27 / Ganga Bridge Corridor,Delivered
+SHP-2026-0184,2026-07-23,Noida,Agra,Yamuna Fast Haulers,Yamuna Expressway,bags,846,units,195,2.8,2.8,0.0,11878,Clear,None,Delivered
+SHP-2026-0052,2026-07-25,Kanpur,Unnao,UP State Freight Express,NH-27 / Ganga Bridge Corridor,jackets,598,garments,25,0.5,0.5,0.0,1819,Foggy / Mist,None,Delivered
+SHP-2026-0079,2026-07-25,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,789,units,25,0.5,0.5,0.0,1419,Overcast,None,Delivered
+SHP-2026-0171,2026-07-25,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,belts,2487,units,465,11.6,11.6,0.0,14950,Overcast,None,Delivered
+SHP-2026-0172,2026-07-26,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,jackets,1454,garments,195,4.9,5.9,1.0,6315,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0129,2026-07-27,Agra,Kanpur,Yamuna Fast Haulers,Agra-Lucknow Expressway & NH-19,shoes,1666,pairs,285,4.1,4.1,0.0,16848,Clear,None,Delivered
+SHP-2026-0074,2026-07-28,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,bags,417,units,290,7.2,7.2,0.0,9529,Clear,None,Delivered
+SHP-2026-0167,2026-07-28,Noida,Agra,Yamuna Fast Haulers,Yamuna Expressway,jackets,2382,garments,195,2.8,2.8,0.0,11404,Clear,None,Delivered
+SHP-2026-0196,2026-07-28,Kanpur,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway & NH-19,jackets,782,garments,285,7.1,7.1,0.0,9316,Clear,None,Delivered
+SHP-2026-0018,2026-07-29,Agra,Kanpur,UP State Freight Express,Agra-Lucknow Expressway & NH-19,shoes,1684,pairs,285,5.2,5.2,0.0,13452,Clear,None,Delivered
+SHP-2026-0041,2026-07-29,Kanpur,Unnao,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,belts,1117,units,25,0.6,1.6,1.0,1113,Clear,Heavy local freight congestion near Ganga bridge,Delivered
+SHP-2026-0098,2026-07-29,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,belts,1572,units,475,8.6,8.6,0.0,21535,Clear,None,Delivered
+SHP-2026-0116,2026-07-29,Noida,Unnao,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,jackets,1472,garments,475,6.8,6.8,0.0,27500,Clear,None,Delivered
+SHP-2026-0003,2026-07-30,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,shoes,487,pairs,465,8.5,8.5,0.0,21061,Rain / Monsoon,None,Delivered
+SHP-2026-0103,2026-07-30,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,jackets,1618,garments,475,11.9,12.7,0.8,15182,Overcast,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0108,2026-07-30,Noida,Kanpur,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,shoes,580,pairs,465,11.6,11.6,0.0,14764,Rain / Monsoon,None,Delivered
+SHP-2026-0014,2026-07-31,Noida,Kanpur,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,shoes,758,pairs,465,11.6,14.6,3.0,14784,Foggy / Mist,Adverse weather (Foggy / Mist) on Yamuna Expway + Agra-Lucknow Expway,Delivered
+SHP-2026-0111,2026-07-31,Kanpur,Agra,UP State Freight Express,Agra-Lucknow Expressway & NH-19,belts,623,units,285,5.2,5.2,0.0,13549,Clear,None,Delivered
+SHP-2026-0124,2026-07-31,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,shoes,452,pairs,25,0.5,0.5,0.0,1329,Clear,None,Delivered
+SHP-2026-0199,2026-07-31,Noida,Agra,UP State Freight Express,Yamuna Expressway,bags,2383,units,195,3.5,3.5,0.0,9022,Overcast,None,Delivered
+SHP-2026-0022,2026-08-01,Noida,Agra,Yamuna Fast Haulers,Yamuna Expressway,shoes,548,pairs,195,2.8,2.8,0.0,11331,Clear,None,Delivered
+SHP-2026-0073,2026-08-01,Unnao,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway,bags,1305,units,290,6.3,6.3,0.0,11231,Clear,None,Delivered
+SHP-2026-0084,2026-08-01,Noida,Unnao,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,belts,911,units,475,6.8,6.8,0.0,27227,Foggy / Mist,None,Delivered
+SHP-2026-0010,2026-08-02,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,shoes,1876,pairs,195,4.9,4.9,0.0,6691,Overcast,None,Delivered
+SHP-2026-0078,2026-08-02,Agra,Unnao,Awadh Inter-District Fleet,Agra-Lucknow Expressway,jackets,1654,garments,290,6.3,6.3,0.0,11083,Clear,None,Delivered
+SHP-2026-0164,2026-08-02,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,shoes,1650,pairs,25,0.5,0.5,0.0,1320,Rain / Monsoon,None,Delivered
+SHP-2026-0001,2026-08-03,Noida,Kanpur,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,shoes,1856,pairs,465,6.6,6.6,0.0,27178,Foggy / Mist,None,Delivered
+SHP-2026-0025,2026-08-03,Agra,Unnao,UP State Freight Express,Agra-Lucknow Expressway,jackets,540,garments,290,5.3,5.3,0.0,13489,Clear,None,Delivered
+SHP-2026-0063,2026-08-03,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,shoes,2055,pairs,195,2.8,2.8,0.0,11271,Clear,None,Delivered
+SHP-2026-0115,2026-08-05,Unnao,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway,bags,1509,units,290,6.3,6.3,0.0,11175,Foggy / Mist,None,Delivered
+SHP-2026-0158,2026-08-05,Noida,Kanpur,Awadh Inter-District Fleet,Yamuna Expway + Agra-Lucknow Expway,belts,2101,units,465,10.1,10.1,0.0,17570,Clear,None,Delivered
+SHP-2026-0159,2026-08-06,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,shoes,1571,pairs,25,0.5,0.5,0.0,1407,Clear,None,Delivered
+SHP-2026-0080,2026-08-07,Noida,Agra,Ganga Basin Cargo Logistics,Yamuna Expressway,bags,2448,units,195,4.9,4.9,0.0,6348,Overcast,None,Delivered
+SHP-2026-0087,2026-08-07,Kanpur,Agra,Yamuna Fast Haulers,Agra-Lucknow Expressway & NH-19,belts,310,units,285,4.1,4.1,0.0,16751,Rain / Monsoon,None,Delivered
+SHP-2026-0119,2026-08-07,Unnao,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,bags,973,units,475,10.3,10.3,0.0,18133,Rain / Monsoon,None,Delivered
+SHP-2026-0149,2026-08-07,Kanpur,Unnao,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,belts,1534,units,25,0.4,0.4,0.0,1791,Rain / Monsoon,None,Delivered
+SHP-2026-0030,2026-08-08,Kanpur,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,bags,1277,units,465,8.5,8.5,0.0,21640,Clear,None,Delivered
+SHP-2026-0113,2026-08-08,Agra,Unnao,Awadh Inter-District Fleet,Agra-Lucknow Expressway,belts,602,units,290,6.3,6.3,0.0,11371,Clear,None,Delivered
+SHP-2026-0165,2026-08-09,Agra,Noida,UP State Freight Express,Yamuna Expressway,bags,633,units,195,3.5,3.5,0.0,9238,Clear,None,Delivered
+SHP-2026-0190,2026-08-09,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,1615,units,475,8.6,8.6,0.0,21742,Clear,None,Delivered
+SHP-2026-0029,2026-08-10,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,shoes,635,pairs,475,8.6,8.6,0.0,21975,Clear,None,Delivered
+SHP-2026-0151,2026-08-10,Agra,Noida,Awadh Inter-District Fleet,Yamuna Expressway,shoes,1926,pairs,195,4.2,4.7,0.5,7399,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0058,2026-08-12,Kanpur,Agra,UP State Freight Express,Agra-Lucknow Expressway & NH-19,jackets,925,garments,285,5.2,5.2,0.0,13267,Clear,None,Delivered
+SHP-2026-0187,2026-08-12,Kanpur,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,belts,1471,units,465,6.6,6.6,0.0,27231,Rain / Monsoon,None,Delivered
+SHP-2026-0061,2026-08-13,Noida,Agra,UP State Freight Express,Yamuna Expressway,jackets,1198,garments,195,3.5,3.5,0.0,9278,Clear,None,Delivered
+SHP-2026-0143,2026-08-13,Noida,Unnao,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,bags,418,units,475,6.8,6.8,0.0,27456,Rain / Monsoon,None,Delivered
+SHP-2026-0188,2026-08-13,Unnao,Kanpur,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,jackets,1938,garments,25,0.5,0.5,0.0,1425,Foggy / Mist,None,Delivered
+SHP-2026-0042,2026-08-14,Agra,Noida,UP State Freight Express,Yamuna Expressway,jackets,1644,garments,195,3.5,3.5,0.0,9165,Clear,None,Delivered
+SHP-2026-0183,2026-08-14,Unnao,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,shoes,1884,pairs,290,7.2,7.7,0.5,9099,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0004,2026-08-15,Unnao,Kanpur,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,bags,2157,units,25,0.6,0.6,0.0,1259,Clear,None,Delivered
+SHP-2026-0038,2026-08-15,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,bags,463,units,25,0.5,1.4,0.9,1135,Clear,Heavy local freight congestion near Ganga bridge,Delivered
+SHP-2026-0193,2026-08-16,Kanpur,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway & NH-19,shoes,817,pairs,285,7.1,7.1,0.0,9235,Rain / Monsoon,None,Delivered
+SHP-2026-0121,2026-08-17,Unnao,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway,shoes,1916,pairs,290,6.3,6.3,0.0,11235,Clear,None,Delivered
+SHP-2026-0005,2026-08-18,Agra,Noida,Awadh Inter-District Fleet,Yamuna Expressway,shoes,1000,pairs,195,4.2,4.2,0.0,7793,Clear,None,Delivered
+SHP-2026-0040,2026-08-18,Noida,Agra,Awadh Inter-District Fleet,Yamuna Expressway,jackets,1316,garments,195,4.2,4.2,0.0,7430,Rain / Monsoon,None,Delivered
+SHP-2026-0148,2026-08-20,Unnao,Agra,Yamuna Fast Haulers,Agra-Lucknow Expressway,bags,2293,units,290,4.1,4.1,0.0,16795,Clear,None,Delivered
+SHP-2026-0006,2026-08-21,Agra,Noida,UP State Freight Express,Yamuna Expressway,bags,529,units,195,3.5,3.5,0.0,9203,Clear,None,Delivered
+SHP-2026-0008,2026-08-21,Kanpur,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,belts,1376,units,465,8.5,8.5,0.0,21577,Clear,None,Delivered
+SHP-2026-0028,2026-08-21,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,belts,580,units,475,6.8,6.8,0.0,27380,Rain / Monsoon,None,Delivered
+SHP-2026-0134,2026-08-21,Agra,Kanpur,Yamuna Fast Haulers,Agra-Lucknow Expressway & NH-19,bags,2176,units,285,4.1,4.1,0.0,16760,Clear,None,Delivered
+SHP-2026-0021,2026-08-22,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,belts,686,units,290,7.2,7.2,0.0,9463,Clear,None,Delivered
+SHP-2026-0024,2026-08-22,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,shoes,360,pairs,475,6.8,9.9,3.1,27310,Foggy / Mist,Adverse weather (Foggy / Mist) on Agra-Lucknow Expway + Yamuna Expway,Delivered
+SHP-2026-0064,2026-08-23,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,jackets,1638,garments,465,8.5,8.5,0.0,21264,Foggy / Mist,None,Delivered
+SHP-2026-0125,2026-08-23,Unnao,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,jackets,2158,garments,475,8.6,8.6,0.0,21993,Foggy / Mist,None,Delivered
+SHP-2026-0179,2026-08-23,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,shoes,1480,pairs,475,11.9,11.9,0.0,15034,Clear,None,Delivered
+SHP-2026-0181,2026-08-23,Agra,Kanpur,UP State Freight Express,Agra-Lucknow Expressway & NH-19,bags,2058,units,285,5.2,5.2,0.0,13434,Clear,None,Delivered
+SHP-2026-0037,2026-08-25,Unnao,Kanpur,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,belts,447,units,25,0.4,0.4,0.0,1681,Clear,None,Delivered
+SHP-2026-0136,2026-08-25,Kanpur,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway & NH-19,bags,1860,units,285,6.2,7.3,1.1,11189,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0023,2026-08-26,Agra,Kanpur,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway & NH-19,belts,2028,units,285,7.1,7.1,0.0,8937,Clear,None,Delivered
+SHP-2026-0032,2026-08-26,Agra,Kanpur,Awadh Inter-District Fleet,Agra-Lucknow Expressway & NH-19,belts,1729,units,285,6.2,8.0,1.8,10731,Foggy / Mist,Adverse weather (Foggy / Mist) on Agra-Lucknow Expressway & NH-19,Delivered
+SHP-2026-0170,2026-08-26,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,jackets,478,garments,475,8.6,8.6,0.0,21683,Rain / Monsoon,None,Delivered
+SHP-2026-0017,2026-08-27,Noida,Agra,UP State Freight Express,Yamuna Expressway,bags,1934,units,195,3.5,4.6,1.1,9409,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0076,2026-08-27,Noida,Agra,Ganga Basin Cargo Logistics,Yamuna Expressway,jackets,1284,garments,195,4.9,4.9,0.0,6652,Clear,None,Delivered
+SHP-2026-0133,2026-08-27,Noida,Agra,Yamuna Fast Haulers,Yamuna Expressway,jackets,2136,garments,195,2.8,2.8,0.0,11331,Clear,None,Delivered
+SHP-2026-0160,2026-08-27,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,jackets,2195,garments,195,2.8,2.8,0.0,11262,Overcast,None,Delivered
+SHP-2026-0007,2026-08-28,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,1170,units,25,0.5,0.5,0.0,1888,Clear,None,Delivered
+SHP-2026-0054,2026-08-28,Unnao,Agra,UP State Freight Express,Agra-Lucknow Expressway,belts,2421,units,290,5.3,5.3,0.0,13214,Clear,None,Delivered
+SHP-2026-0071,2026-08-28,Noida,Kanpur,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,jackets,2307,garments,465,6.6,6.6,0.0,27210,Overcast,None,Delivered
+SHP-2026-0137,2026-08-28,Noida,Agra,Yamuna Fast Haulers,Yamuna Expressway,belts,2061,units,195,2.8,2.8,0.0,11567,Clear,None,Delivered
+SHP-2026-0020,2026-08-30,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,belts,841,units,465,11.6,11.6,0.0,15060,Foggy / Mist,None,Delivered
+SHP-2026-0093,2026-08-30,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,bags,1043,units,475,11.9,13.5,1.6,14883,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0072,2026-08-31,Kanpur,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway & NH-19,belts,2437,units,285,7.1,8.7,1.6,9411,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0082,2026-08-31,Kanpur,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,jackets,720,garments,465,8.5,8.5,0.0,21460,Clear,None,Delivered
+SHP-2026-0141,2026-08-31,Kanpur,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,bags,724,units,465,10.1,10.1,0.0,17932,Clear,None,Delivered
+SHP-2026-0083,2026-09-01,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,shoes,1334,pairs,465,8.5,10.1,1.6,21390,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0012,2026-09-03,Noida,Agra,Awadh Inter-District Fleet,Yamuna Expressway,belts,2379,units,195,4.2,5.8,1.6,7974,Foggy / Mist,Adverse weather (Foggy / Mist) on Yamuna Expressway,Delivered
+SHP-2026-0070,2026-09-03,Kanpur,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,shoes,1722,pairs,465,6.6,6.6,0.0,26630,Rain / Monsoon,None,Delivered
+SHP-2026-0101,2026-09-03,Noida,Agra,UP State Freight Express,Yamuna Expressway,shoes,1431,pairs,195,3.5,3.5,0.0,9228,Foggy / Mist,None,Delivered
+SHP-2026-0150,2026-09-03,Unnao,Kanpur,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,jackets,2063,garments,25,0.4,0.4,0.0,1765,Clear,None,Delivered
+SHP-2026-0168,2026-09-03,Agra,Unnao,UP State Freight Express,Agra-Lucknow Expressway,belts,863,units,290,5.3,5.3,0.0,13193,Clear,None,Delivered
+SHP-2026-0019,2026-09-04,Unnao,Kanpur,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,belts,576,units,25,0.4,0.4,0.0,1602,Foggy / Mist,None,Delivered
+SHP-2026-0044,2026-09-04,Kanpur,Unnao,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,jackets,1715,garments,25,0.4,0.4,0.0,2150,Clear,None,Delivered
+SHP-2026-0095,2026-09-04,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,jackets,660,garments,475,6.8,6.8,0.0,27553,Clear,None,Delivered
+SHP-2026-0180,2026-09-04,Noida,Unnao,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,shoes,754,pairs,475,11.9,13.1,1.2,15437,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0132,2026-09-06,Agra,Kanpur,Awadh Inter-District Fleet,Agra-Lucknow Expressway & NH-19,shoes,1013,pairs,285,6.2,6.2,0.0,11001,Clear,None,Delivered
+SHP-2026-0162,2026-09-06,Noida,Kanpur,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,belts,460,units,465,6.6,6.6,0.0,27009,Clear,None,Delivered
+SHP-2026-0060,2026-09-07,Agra,Unnao,Yamuna Fast Haulers,Agra-Lucknow Expressway,bags,1523,units,290,4.1,4.1,0.0,16999,Foggy / Mist,None,Delivered
+SHP-2026-0107,2026-09-07,Agra,Unnao,Awadh Inter-District Fleet,Agra-Lucknow Expressway,bags,1928,units,290,6.3,6.3,0.0,11460,Foggy / Mist,None,Delivered
+SHP-2026-0016,2026-09-08,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,belts,1385,units,195,4.9,4.9,0.0,6366,Clear,None,Delivered
+SHP-2026-0127,2026-09-08,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,jackets,2121,garments,465,8.5,9.6,1.1,21356,Foggy / Mist,Adverse weather (Foggy / Mist) on Yamuna Expway + Agra-Lucknow Expway,Delivered
+SHP-2026-0186,2026-09-08,Agra,Kanpur,Yamuna Fast Haulers,Agra-Lucknow Expressway & NH-19,belts,471,units,285,4.1,4.1,0.0,16677,Clear,None,Delivered
+SHP-2026-0102,2026-09-09,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,bags,2305,units,25,0.5,1.8,1.3,1370,Clear,Heavy local freight congestion near Ganga bridge,Delivered
+SHP-2026-0182,2026-09-09,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,bags,577,units,195,2.8,2.8,0.0,11739,Clear,None,Delivered
+SHP-2026-0036,2026-09-10,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,961,units,465,8.5,8.5,0.0,21417,Clear,None,Delivered
+SHP-2026-0142,2026-09-10,Unnao,Kanpur,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,bags,770,units,25,0.5,0.5,0.0,1469,Clear,None,Delivered
+SHP-2026-0110,2026-09-11,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,bags,1835,units,25,0.5,0.5,0.0,1451,Clear,None,Delivered
+SHP-2026-0059,2026-09-12,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,shoes,1147,pairs,290,7.2,8.7,1.5,9050,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0194,2026-09-12,Noida,Unnao,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,belts,2142,units,475,6.8,6.8,0.0,27218,Clear,None,Delivered
+SHP-2026-0026,2026-09-13,Agra,Unnao,Awadh Inter-District Fleet,Agra-Lucknow Expressway,jackets,2293,garments,290,6.3,6.3,0.0,10829,Clear,None,Delivered
+SHP-2026-0043,2026-09-13,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,bags,413,units,475,11.9,11.9,0.0,14972,Overcast,None,Delivered
+SHP-2026-0077,2026-09-13,Kanpur,Unnao,Yamuna Fast Haulers,NH-27 / Ganga Bridge Corridor,bags,1207,units,25,0.4,0.4,0.0,2209,Clear,None,Delivered
+SHP-2026-0062,2026-09-14,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,belts,2214,units,195,4.9,6.1,1.2,6553,Overcast,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0085,2026-09-14,Unnao,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,belts,2440,units,475,11.9,11.9,0.0,15094,Foggy / Mist,None,Delivered
+SHP-2026-0153,2026-09-14,Noida,Unnao,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,bags,660,units,475,11.9,11.9,0.0,15236,Clear,None,Delivered
+SHP-2026-0100,2026-09-15,Unnao,Agra,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,jackets,1298,garments,290,7.2,7.2,0.0,9225,Clear,None,Delivered
+SHP-2026-0049,2026-09-16,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,shoes,1544,pairs,465,11.6,11.6,0.0,15063,Clear,None,Delivered
+SHP-2026-0091,2026-09-16,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,jackets,629,garments,465,11.6,11.6,0.0,14800,Foggy / Mist,None,Delivered
+SHP-2026-0048,2026-09-17,Unnao,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,belts,2022,units,475,8.6,8.6,0.0,21618,Clear,None,Delivered
+SHP-2026-0191,2026-09-17,Noida,Unnao,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,belts,2118,units,475,11.9,11.9,0.0,15151,Clear,None,Delivered
+SHP-2026-0200,2026-09-17,Agra,Unnao,Yamuna Fast Haulers,Agra-Lucknow Expressway,bags,1811,units,290,4.1,4.1,0.0,16702,Overcast,None,Delivered
+SHP-2026-0002,2026-09-18,Kanpur,Unnao,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,shoes,1850,pairs,25,0.6,0.6,0.0,1523,Clear,None,Delivered
+SHP-2026-0046,2026-09-18,Noida,Agra,UP State Freight Express,Yamuna Expressway,bags,2066,units,195,3.5,3.5,0.0,9218,Rain / Monsoon,None,Delivered
+SHP-2026-0122,2026-09-18,Noida,Agra,Awadh Inter-District Fleet,Yamuna Expressway,jackets,1821,garments,195,4.2,4.2,0.0,7345,Clear,None,Delivered
+SHP-2026-0009,2026-09-19,Agra,Kanpur,UP State Freight Express,Agra-Lucknow Expressway & NH-19,jackets,672,garments,285,5.2,5.2,0.0,13006,Foggy / Mist,None,Delivered
+SHP-2026-0056,2026-09-19,Agra,Unnao,Ganga Basin Cargo Logistics,Agra-Lucknow Expressway,bags,1312,units,290,7.2,8.7,1.5,9526,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0088,2026-09-19,Agra,Kanpur,Awadh Inter-District Fleet,Agra-Lucknow Expressway & NH-19,bags,2159,units,285,6.2,6.2,0.0,10840,Clear,None,Delivered
+SHP-2026-0096,2026-09-19,Kanpur,Unnao,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,jackets,522,garments,25,0.6,0.6,0.0,1390,Clear,None,Delivered
+SHP-2026-0157,2026-09-20,Agra,Noida,Ganga Basin Cargo Logistics,Yamuna Expressway,jackets,2138,garments,195,4.9,4.9,0.0,6808,Foggy / Mist,None,Delivered
+SHP-2026-0123,2026-09-22,Unnao,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,belts,558,units,475,10.3,10.3,0.0,17949,Clear,None,Delivered
+SHP-2026-0050,2026-09-23,Noida,Kanpur,Ganga Basin Cargo Logistics,Yamuna Expway + Agra-Lucknow Expway,jackets,2111,garments,465,11.6,11.6,0.0,14643,Clear,None,Delivered
+SHP-2026-0094,2026-09-23,Unnao,Agra,Awadh Inter-District Fleet,Agra-Lucknow Expressway,bags,728,units,290,6.3,7.7,1.4,11065,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0104,2026-09-23,Unnao,Agra,Yamuna Fast Haulers,Agra-Lucknow Expressway,bags,2237,units,290,4.1,4.1,0.0,16965,Rain / Monsoon,None,Delivered
+SHP-2026-0066,2026-09-24,Kanpur,Unnao,UP State Freight Express,NH-27 / Ganga Bridge Corridor,belts,383,units,25,0.5,0.5,0.0,1714,Clear,None,Delivered
+SHP-2026-0068,2026-09-25,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,742,units,25,0.5,0.5,0.0,1819,Foggy / Mist,None,Delivered
+SHP-2026-0163,2026-09-25,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,bags,1827,units,475,8.6,8.6,0.0,21786,Clear,None,Delivered
+SHP-2026-0034,2026-09-26,Unnao,Kanpur,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,1454,units,25,0.5,0.5,0.0,1438,Rain / Monsoon,None,Delivered
+SHP-2026-0045,2026-09-26,Unnao,Agra,UP State Freight Express,Agra-Lucknow Expressway,bags,481,units,290,5.3,5.3,0.0,13641,Clear,None,Delivered
+SHP-2026-0138,2026-09-26,Unnao,Agra,Yamuna Fast Haulers,Agra-Lucknow Expressway,bags,2048,units,290,4.1,4.1,0.0,16726,Clear,None,Delivered
+SHP-2026-0169,2026-09-27,Unnao,Noida,Yamuna Fast Haulers,Agra-Lucknow Expway + Yamuna Expway,bags,836,units,475,6.8,6.8,0.0,27325,Clear,None,Delivered
+SHP-2026-0047,2026-09-28,Agra,Noida,Yamuna Fast Haulers,Yamuna Expressway,bags,2377,units,195,2.8,2.8,0.0,11632,Clear,None,Delivered
+SHP-2026-0090,2026-09-28,Kanpur,Unnao,UP State Freight Express,NH-27 / Ganga Bridge Corridor,bags,1482,units,25,0.5,0.5,0.0,1541,Clear,None,Delivered
+SHP-2026-0099,2026-09-29,Unnao,Kanpur,Ganga Basin Cargo Logistics,NH-27 / Ganga Bridge Corridor,shoes,930,pairs,25,0.6,0.6,0.0,1401,Rain / Monsoon,None,Delivered
+SHP-2026-0177,2026-09-29,Noida,Kanpur,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,belts,456,units,465,8.5,8.5,0.0,21122,Rain / Monsoon,None,Delivered
+SHP-2026-0176,2026-09-30,Unnao,Noida,Awadh Inter-District Fleet,Agra-Lucknow Expway + Yamuna Expway,belts,1881,units,475,10.3,10.8,0.5,17741,Clear,Toll plaza congestion or vehicle mechanical check,Delivered
+SHP-2026-0197,2026-09-30,Kanpur,Noida,Ganga Basin Cargo Logistics,Agra-Lucknow Expway + Yamuna Expway,belts,802,units,465,11.6,11.6,0.0,14646,Clear,None,Delivered
+SHP-2026-0120,2026-10-01,Noida,Kanpur,Yamuna Fast Haulers,Yamuna Expway + Agra-Lucknow Expway,jackets,608,garments,465,6.6,6.6,0.0,27252,Overcast,None,Delivered
+SHP-2026-0140,2026-10-01,Kanpur,Unnao,Awadh Inter-District Fleet,NH-27 / Ganga Bridge Corridor,shoes,1982,pairs,25,0.5,0.5,0.0,1463,Rain / Monsoon,None,Delivered
+SHP-2026-0145,2026-10-01,Unnao,Noida,UP State Freight Express,Agra-Lucknow Expway + Yamuna Expway,jackets,2019,garments,475,8.6,8.6,0.0,21759,Clear,None,Delivered
+SHP-2026-0178,2026-10-02,Agra,Unnao,Yamuna Fast Haulers,Agra-Lucknow Expressway,shoes,377,pairs,290,4.1,4.1,0.0,17131,Foggy / Mist,None,Delivered
+SHP-2026-0067,2026-10-04,Noida,Unnao,UP State Freight Express,Yamuna Expway + Agra-Lucknow Expway,jackets,1349,garments,475,8.6,8.6,0.0,22061,Clear,None,Delivered

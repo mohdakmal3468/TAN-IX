@@ -1,0 +1,163 @@
+[
+  {
+    "event_id": "EVT-KNP-01",
+    "location": "Kanpur (Jajmau)",
+    "type": "REGULATORY_NGT",
+    "severity": "HIGH",
+    "timestamp": "2026-10-06T09:30:00Z",
+    "title": "UPPCB & NGT Effluent Inspection Shutdown Notice",
+    "description": "Statutory inspection ordered for 14 tanning units along Jajmau PETP; 48-hour output reduction enforced.",
+    "impacted_clusters": [
+      "Kanpur",
+      "Agra"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "event_id": "EVT-KNP-02",
+    "location": "Kanpur (Shuklaganj)",
+    "type": "WEATHER_FLOOD",
+    "severity": "HIGH",
+    "timestamp": "2026-10-05T14:15:00Z",
+    "title": "Ganges River Basin High Water Discharge Warning",
+    "description": "Narora Barrage discharge causing localized waterlogging on access ramps to Jajmau Ganga Bridge.",
+    "impacted_clusters": [
+      "Kanpur",
+      "Unnao"
+    ],
+    "status": "MONITORING"
+  },
+  {
+    "event_id": "EVT-KNP-03",
+    "location": "Kanpur (Chakeri)",
+    "type": "RAW_MATERIAL_SPIKE",
+    "severity": "MEDIUM",
+    "timestamp": "2026-10-04T11:00:00Z",
+    "title": "Chrome Tanning Chemical Shortage",
+    "description": "Import consignments delayed at Nhava Sheva port, driving local chrome tanning salts up by 18%.",
+    "impacted_clusters": [
+      "Kanpur"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "event_id": "EVT-UNO-01",
+    "location": "Unnao (Banthar)",
+    "type": "REGULATORY_NGT",
+    "severity": "MEDIUM",
+    "timestamp": "2026-10-03T16:20:00Z",
+    "title": "UPSIDC CETP Bio-Filter Maintenance",
+    "description": "Planned maintenance of primary biological treatment line limiting wet-blue tanning capacity.",
+    "impacted_clusters": [
+      "Unnao"
+    ],
+    "status": "MONITORING"
+  },
+  {
+    "event_id": "EVT-UNO-02",
+    "location": "Unnao (NH-27 Junction)",
+    "type": "LABOR_STRIKE",
+    "severity": "HIGH",
+    "timestamp": "2026-10-02T08:00:00Z",
+    "title": "Local Commercial Transporters Union Strike",
+    "description": "Toll protest near Banthar toll plaza temporarily halting outward short-haul truck dispatches.",
+    "impacted_clusters": [
+      "Unnao",
+      "Kanpur"
+    ],
+    "status": "RESOLVED"
+  },
+  {
+    "event_id": "EVT-UNO-03",
+    "location": "Unnao (Industrial Area)",
+    "type": "WEATHER_FLOOD",
+    "severity": "MEDIUM",
+    "timestamp": "2026-10-01T12:00:00Z",
+    "title": "Monsoon Inundation in Lowland Tanneries",
+    "description": "Drainage overflow after 78mm torrential downpour delayed raw buffalo hide drying processes.",
+    "impacted_clusters": [
+      "Unnao"
+    ],
+    "status": "RESOLVED"
+  },
+  {
+    "event_id": "EVT-AGR-01",
+    "location": "Agra (Yamuna Expressway Entry)",
+    "type": "EXPRESSWAY_FOG",
+    "severity": "HIGH",
+    "timestamp": "2026-10-06T04:00:00Z",
+    "title": "Dense Winter Fog Night Speed Restrictions",
+    "description": "Visibility below 40m between Agra Mile 20 and Jewar; commercial freight transit capped at 50 km/h.",
+    "impacted_clusters": [
+      "Agra",
+      "Noida"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "event_id": "EVT-AGR-02",
+    "location": "Agra (Sikandra)",
+    "type": "RAW_MATERIAL_SPIKE",
+    "severity": "HIGH",
+    "timestamp": "2026-10-05T10:30:00Z",
+    "title": "Footwear Belt & Upper Raw Component Shortage",
+    "description": "Severe deficit of finished belt leather stock in Sikandra manufacturing clusters halting finishing lines.",
+    "impacted_clusters": [
+      "Agra"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "event_id": "EVT-AGR-03",
+    "location": "Agra (Hing Ki Mandi)",
+    "type": "LABOR_STRIKE",
+    "severity": "MEDIUM",
+    "timestamp": "2026-09-28T13:45:00Z",
+    "title": "Footwear Artisan Association Meeting Halt",
+    "description": "Half-day operational stoppage over state electricity tariff revisions.",
+    "impacted_clusters": [
+      "Agra"
+    ],
+    "status": "RESOLVED"
+  },
+  {
+    "event_id": "EVT-NOI-01",
+    "location": "Noida (Sector 63)",
+    "type": "RAW_MATERIAL_SPIKE",
+    "severity": "HIGH",
+    "timestamp": "2026-10-06T08:15:00Z",
+    "title": "Export Nappa Leather Pre-Christmas Crunch",
+    "description": "Surge in European purchase orders for designer leather jackets creates acute deficit in premium nappa.",
+    "impacted_clusters": [
+      "Noida"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "event_id": "EVT-NOI-02",
+    "location": "Noida (Pari Chowk / Yamuna Expressway)",
+    "type": "EXPRESSWAY_FOG",
+    "severity": "MEDIUM",
+    "timestamp": "2026-10-04T05:30:00Z",
+    "title": "Freight Convoy Congestion at Jewar Toll Plaza",
+    "description": "RFID tag scanner glitch caused 4 km commercial vehicle queue, adding 2.1 hours to transit time.",
+    "impacted_clusters": [
+      "Noida",
+      "Agra"
+    ],
+    "status": "RESOLVED"
+  },
+  {
+    "event_id": "EVT-NOI-03",
+    "location": "Noida (Air Cargo Terminal Link)",
+    "type": "REGULATORY_NGT",
+    "severity": "MEDIUM",
+    "timestamp": "2026-10-02T15:00:00Z",
+    "title": "GRAP Stage-III Diesel Truck Entry Restrictions in NCR",
+    "description": "Commission for Air Quality Management (CAQM) restricted non-BS6 medium commercial trucks into Noida.",
+    "impacted_clusters": [
+      "Noida"
+    ],
+    "status": "ACTIVE"
+  }
+]

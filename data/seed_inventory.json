@@ -1,150 +1,182 @@
 {
   "clusters": {
     "Kanpur": {
-      "warehouse_id": "WH-KNP-01",
+      "warehouse_id": "WH-KAN-01",
       "cluster_name": "Kanpur Leather Hub",
-      "location": "Jajmau Industrial Area, Kanpur",
+      "location": "Industrial Area, Kanpur",
       "status": "Operational",
       "last_updated": "2026-10-06T12:00:00Z",
       "inventory": {
-        "Raw Hides": {
-          "quantity": 12500,
-          "unit": "sq_ft",
-          "min_threshold": 4000,
-          "capacity": 25000,
-          "unit_cost_inr": 120,
-          "status": "Normal"
-        },
-        "Crust Leather": {
-          "quantity": 8900,
-          "unit": "sq_ft",
-          "min_threshold": 3000,
-          "capacity": 18000,
-          "unit_cost_inr": 210,
-          "status": "Normal"
-        },
-        "Chromium Tanning Salts": {
-          "quantity": 4200,
-          "unit": "kg",
+        "shoes": {
+          "quantity": 1837,
+          "unit": "pairs",
           "min_threshold": 1500,
           "capacity": 10000,
-          "unit_cost_inr": 85,
+          "unit_cost_inr": 850,
+          "daily_burn_rate": 112,
           "status": "Normal"
         },
-        "Finished Cowhide": {
-          "quantity": 7400,
-          "unit": "sq_ft",
-          "min_threshold": 2500,
-          "capacity": 15000,
+        "belts": {
+          "quantity": 6800,
+          "unit": "units",
+          "min_threshold": 1200,
+          "capacity": 8000,
           "unit_cost_inr": 340,
+          "daily_burn_rate": 142,
           "status": "Surplus"
+        },
+        "bags": {
+          "quantity": 1138,
+          "unit": "units",
+          "min_threshold": 800,
+          "capacity": 5000,
+          "unit_cost_inr": 1600,
+          "daily_burn_rate": 75,
+          "status": "Normal"
+        },
+        "jackets": {
+          "quantity": 938,
+          "unit": "garments",
+          "min_threshold": 500,
+          "capacity": 3500,
+          "unit_cost_inr": 3800,
+          "daily_burn_rate": 31,
+          "status": "Normal"
         }
       }
     },
     "Unnao": {
-      "warehouse_id": "WH-UNO-02",
-      "cluster_name": "Unnao Leather Complex",
-      "location": "UPSIDC Industrial Area, Banthar, Unnao",
+      "warehouse_id": "WH-UNN-01",
+      "cluster_name": "Unnao Leather Hub",
+      "location": "Industrial Area, Unnao",
       "status": "Operational",
       "last_updated": "2026-10-06T12:00:00Z",
       "inventory": {
-        "Raw Buffalo Hides": {
-          "quantity": 19500,
-          "unit": "sq_ft",
-          "min_threshold": 5000,
-          "capacity": 30000,
-          "unit_cost_inr": 110,
-          "status": "Surplus"
-        },
-        "Wet-Blue Leather": {
-          "quantity": 14200,
-          "unit": "sq_ft",
-          "min_threshold": 4000,
-          "capacity": 22000,
-          "unit_cost_inr": 190,
+        "shoes": {
+          "quantity": 1650,
+          "unit": "pairs",
+          "min_threshold": 1500,
+          "capacity": 10000,
+          "unit_cost_inr": 850,
+          "daily_burn_rate": 139,
           "status": "Normal"
         },
-        "Vegetable Tanning Extracts": {
-          "quantity": 3100,
-          "unit": "kg",
+        "belts": {
+          "quantity": 2148,
+          "unit": "units",
           "min_threshold": 1200,
           "capacity": 8000,
-          "unit_cost_inr": 145,
+          "unit_cost_inr": 340,
+          "daily_burn_rate": 130,
+          "status": "Normal"
+        },
+        "bags": {
+          "quantity": 983,
+          "unit": "units",
+          "min_threshold": 800,
+          "capacity": 5000,
+          "unit_cost_inr": 1600,
+          "daily_burn_rate": 62,
+          "status": "Normal"
+        },
+        "jackets": {
+          "quantity": 716,
+          "unit": "garments",
+          "min_threshold": 500,
+          "capacity": 3500,
+          "unit_cost_inr": 3800,
+          "daily_burn_rate": 38,
           "status": "Normal"
         }
       }
     },
     "Agra": {
-      "warehouse_id": "WH-AGR-03",
-      "cluster_name": "Agra Footwear Cluster",
-      "location": "Sikandra Industrial Area & Hing Ki Mandi, Agra",
-      "status": "Warning",
+      "warehouse_id": "WH-AGR-01",
+      "cluster_name": "Agra Leather Hub",
+      "location": "Industrial Area, Agra",
+      "status": "Operational",
       "last_updated": "2026-10-06T12:00:00Z",
       "inventory": {
-        "Finished Calf Leather": {
-          "quantity": 1450,
-          "unit": "sq_ft",
-          "min_threshold": 3000,
-          "capacity": 12000,
-          "unit_cost_inr": 380,
+        "shoes": {
+          "quantity": 2641,
+          "unit": "pairs",
+          "min_threshold": 1500,
+          "capacity": 10000,
+          "unit_cost_inr": 850,
+          "daily_burn_rate": 106,
+          "status": "Normal"
+        },
+        "belts": {
+          "quantity": 180,
+          "unit": "units",
+          "min_threshold": 1200,
+          "capacity": 8000,
+          "unit_cost_inr": 340,
+          "daily_burn_rate": 159,
           "status": "Critical Low"
         },
-        "Shoe Uppers": {
-          "quantity": 9800,
-          "unit": "pairs",
-          "min_threshold": 3500,
-          "capacity": 20000,
-          "unit_cost_inr": 450,
-          "status": "Normal"
-        },
-        "Leather Soles": {
-          "quantity": 11200,
-          "unit": "pairs",
-          "min_threshold": 4000,
-          "capacity": 25000,
-          "unit_cost_inr": 220,
-          "status": "Normal"
-        },
-        "Polyurethane Adhesives": {
-          "quantity": 1850,
-          "unit": "kg",
-          "min_threshold": 1000,
+        "bags": {
+          "quantity": 1136,
+          "unit": "units",
+          "min_threshold": 800,
           "capacity": 5000,
-          "unit_cost_inr": 290,
+          "unit_cost_inr": 1600,
+          "daily_burn_rate": 86,
+          "status": "Normal"
+        },
+        "jackets": {
+          "quantity": 1004,
+          "unit": "garments",
+          "min_threshold": 500,
+          "capacity": 3500,
+          "unit_cost_inr": 3800,
+          "daily_burn_rate": 42,
           "status": "Normal"
         }
       }
     },
     "Noida": {
-      "warehouse_id": "WH-NOI-04",
-      "cluster_name": "Noida Export Zone",
-      "location": "Phase-II Industrial Area, Sector 63, Noida",
-      "status": "Critical",
+      "warehouse_id": "WH-NOI-01",
+      "cluster_name": "Noida Leather Hub",
+      "location": "Industrial Area, Noida",
+      "status": "Operational",
       "last_updated": "2026-10-06T12:00:00Z",
       "inventory": {
-        "Premium Nappa Leather": {
-          "quantity": 620,
-          "unit": "sq_ft",
-          "min_threshold": 2000,
-          "capacity": 8000,
-          "unit_cost_inr": 550,
-          "status": "Critical Low"
-        },
-        "Designer Hardware and Zippers": {
-          "quantity": 12400,
-          "unit": "units",
-          "min_threshold": 4000,
-          "capacity": 30000,
-          "unit_cost_inr": 65,
-          "status": "Normal"
-        },
-        "Finished Export Garments": {
-          "quantity": 3100,
-          "unit": "garments",
+        "shoes": {
+          "quantity": 2938,
+          "unit": "pairs",
           "min_threshold": 1500,
           "capacity": 10000,
-          "unit_cost_inr": 3200,
+          "unit_cost_inr": 850,
+          "daily_burn_rate": 105,
           "status": "Normal"
+        },
+        "belts": {
+          "quantity": 2277,
+          "unit": "units",
+          "min_threshold": 1200,
+          "capacity": 8000,
+          "unit_cost_inr": 340,
+          "daily_burn_rate": 135,
+          "status": "Normal"
+        },
+        "bags": {
+          "quantity": 1182,
+          "unit": "units",
+          "min_threshold": 800,
+          "capacity": 5000,
+          "unit_cost_inr": 1600,
+          "daily_burn_rate": 81,
+          "status": "Normal"
+        },
+        "jackets": {
+          "quantity": 325,
+          "unit": "garments",
+          "min_threshold": 500,
+          "capacity": 3500,
+          "unit_cost_inr": 3800,
+          "daily_burn_rate": 38,
+          "status": "Low Stock"
         }
       }
     }
