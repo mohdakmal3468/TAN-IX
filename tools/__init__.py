@@ -9,6 +9,14 @@ from tools.risk_tools import get_cluster_risk_report, simulate_disruption, clear
 from tools.bigquery_tools import query_historical_shipments, get_corridor_performance_stats
 from tools.vector_tools import search_policy_docs
 from tools.discord_tools import send_discord_approval_request, record_approval_decision
+from tools.firestore_client import (
+    get_firestore_client,
+    get_document,
+    set_document,
+    list_documents,
+    batch_write_documents,
+    get_collection_count
+)
 
 __all__ = [
     "get_all_clusters_inventory",
@@ -24,5 +32,11 @@ __all__ = [
     "get_corridor_performance_stats",
     "search_policy_docs",
     "send_discord_approval_request",
-    "record_approval_decision"
+    "record_approval_decision",
+    "get_firestore_client",
+    "get_document",
+    "set_document",
+    "list_documents",
+    "batch_write_documents",
+    "get_collection_count"
 ]

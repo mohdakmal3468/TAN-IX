@@ -1,0 +1,59 @@
+[
+  {
+    "request_id": "APR-UP-2026-0001",
+    "type": "STOCK_REBALANCE",
+    "details": {
+      "origin": "Kanpur",
+      "destination": "Agra",
+      "product": "belts",
+      "quantity": 1020,
+      "unit": "units",
+      "route": "Agra-Lucknow Expressway & NH-19",
+      "risk_justification": "Critical shortage of belts in Agra (180 remaining); surplus available in Kanpur (6,800 units)."
+    },
+    "status": "APPROVED",
+    "amount": 19323.0,
+    "requester_agent": "State Master Orchestrator",
+    "created_at": "2026-10-06T09:15:00Z",
+    "decision_by": "State Logistics Director (Admin)",
+    "decision_at": "2026-10-06T09:30:00Z"
+  },
+  {
+    "request_id": "APR-UP-2026-0002",
+    "type": "EMERGENCY_REROUTE",
+    "details": {
+      "origin": "Unnao",
+      "destination": "Noida",
+      "product": "jackets",
+      "quantity": 300,
+      "unit": "garments",
+      "route": "Yamuna Expressway",
+      "risk_justification": "Avoid fog speed restrictions on NH-19 via expressway escort."
+    },
+    "status": "PENDING",
+    "amount": 26800.0,
+    "requester_agent": "Intra-State Logistics Agent",
+    "created_at": "2026-10-06T12:00:00Z",
+    "decision_by": null,
+    "decision_at": null
+  },
+  {
+    "request_id": "APR-UP-2026-0003",
+    "type": "STOCK_REBALANCE",
+    "details": {
+      "origin": "Kanpur",
+      "destination": "Noida",
+      "product": "bags",
+      "quantity": 450,
+      "unit": "units",
+      "route": "Agra-Lucknow Expway + Yamuna Expway",
+      "risk_justification": "Export fulfillment deadline for European market dispatch."
+    },
+    "status": "PENDING",
+    "amount": 31200.0,
+    "requester_agent": "State Master Orchestrator",
+    "created_at": "2026-10-06T13:45:00Z",
+    "decision_by": null,
+    "decision_at": null
+  }
+]

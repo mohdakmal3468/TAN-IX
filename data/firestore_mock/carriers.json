@@ -1,0 +1,42 @@
+[
+  {
+    "carrier_id": "CAR-01",
+    "name": "Yamuna Fast Haulers",
+    "speed_kmh": 70,
+    "base_rate_per_km_inr": 54.0,
+    "reliability_pct": 96.0,
+    "fleet_type": "Express Container Fleet",
+    "primary_corridor": "Yamuna Expressway",
+    "tier": "Premium Fast"
+  },
+  {
+    "carrier_id": "CAR-02",
+    "name": "UP State Freight Express",
+    "speed_kmh": 55,
+    "base_rate_per_km_inr": 42.0,
+    "reliability_pct": 92.5,
+    "fleet_type": "Eicher Pro (9 Ton)",
+    "primary_corridor": "Agra-Lucknow Expressway & NH-19",
+    "tier": "Standard Reliable"
+  },
+  {
+    "carrier_id": "CAR-03",
+    "name": "Awadh Inter-District Fleet",
+    "speed_kmh": 46,
+    "base_rate_per_km_inr": 34.0,
+    "reliability_pct": 84.0,
+    "fleet_type": "Tata 407 (3.5 Ton)",
+    "primary_corridor": "NH-27 & Regional Highways",
+    "tier": "Economy"
+  },
+  {
+    "carrier_id": "CAR-04",
+    "name": "Ganga Basin Cargo Logistics",
+    "speed_kmh": 40,
+    "base_rate_per_km_inr": 28.0,
+    "reliability_pct": 77.0,
+    "fleet_type": "Multi-Axle Heavy Haulers",
+    "primary_corridor": "Old GT Road / NH-19",
+    "tier": "Budget Bulk"
+  }
+]

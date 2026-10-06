@@ -1,0 +1,73 @@
+[
+  {
+    "hub_id": "HUB-KNP-JAJMAU",
+    "name": "Kanpur Leather Hub",
+    "district": "Kanpur",
+    "location": "Jajmau Industrial Area, Kanpur Nagar",
+    "latitude": 26.4499,
+    "longitude": 80.3319,
+    "primary_role": "Heavy Tanning, Saddlery, Industrial Leather",
+    "capacity_sqft": 50000,
+    "operating_status": "OPERATIONAL",
+    "active_vulnerabilities": [
+      "Ganges River flood plain",
+      "NGT effluent discharge restrictions",
+      "CETP overflow risk"
+    ],
+    "contact_email": "ops.kanpur@tanix.up.gov.in",
+    "contact_phone": "+91-512-2589001"
+  },
+  {
+    "hub_id": "HUB-UNO-BANTHAR",
+    "name": "Unnao Leather Complex",
+    "district": "Unnao",
+    "location": "UPSIDC Industrial Area, Banthar",
+    "latitude": 26.5458,
+    "longitude": 80.4878,
+    "primary_role": "Industrial Area Tannery Complex (Wet-Blue & Crust Leather)",
+    "capacity_sqft": 45000,
+    "operating_status": "OPERATIONAL",
+    "active_vulnerabilities": [
+      "Water treatment capacity",
+      "Monsoon effluent logging",
+      "Power supply volatility"
+    ],
+    "contact_email": "ops.unnao@tanix.up.gov.in",
+    "contact_phone": "+91-515-2820110"
+  },
+  {
+    "hub_id": "HUB-AGR-SIKANDRA",
+    "name": "Agra Footwear Cluster",
+    "district": "Agra",
+    "location": "Sikandra Industrial Area & Hing Ki Mandi",
+    "latitude": 27.1767,
+    "longitude": 78.0081,
+    "primary_role": "Footwear Manufacturing, Shoe Uppers & Soles",
+    "capacity_sqft": 60000,
+    "operating_status": "OPERATIONAL",
+    "active_vulnerabilities": [
+      "Raw material transit delays from Kanpur",
+      "Skilled artisan availability",
+      "Expressway fog"
+    ],
+    "contact_email": "ops.agra@tanix.up.gov.in",
+    "contact_phone": "+91-562-2601920"
+  },
+  {
+    "hub_id": "HUB-NOI-SEC63",
+    "name": "Noida Export Zone",
+    "district": "Noida",
+    "location": "Phase-II Industrial Area, Sector 63",
+    "latitude": 28.5355,
+    "longitude": 77.391,
+    "primary_role": "High-Value Fashion Export, Handbags, Luxury Jackets",
+    "capacity_sqft": 35000,
+    "operating_status": "OPERATIONAL",
+    "active_vulnerabilities": [
+      "Strict international shipment deadlines",
+      "Port transit cutoff times (Delhi IGI / Nhava Sheva)"
+    ],
+    "contact_email": "ops.noida@tanix.up.gov.in",
+    "contact_phone": "+91-120-4321099"
+  }
+]
