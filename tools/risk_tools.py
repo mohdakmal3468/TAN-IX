@@ -308,17 +308,23 @@ def calculate_lane_risk_score(
             # Lane has no active disruptions affecting it
             return 0.0
 
-        # Sort to find highest severity disruption
+        # Sort to find highest severity disruption, prioritizing ACTIVE over MONITORING
+        status_rank = {"ACTIVE": 2, "MONITORING": 1}
         severity_rank = {"CRITICAL": 4, "HIGH": 3, "MEDIUM": 2, "LOW": 1}
         matching_disruptions.sort(
-            key=lambda x: severity_rank.get(x.get("severity", "MEDIUM").upper(), 1),
+            key=lambda x: (
+                status_rank.get(x.get("status", "ACTIVE").upper(), 1),
+                severity_rank.get(x.get("severity", "MEDIUM").upper(), 1)
+            ),
             reverse=True
         )
         primary_disruption = matching_disruptions[0]
         eff_severity = primary_disruption.get("severity", "MEDIUM").upper()
+        is_monitoring = primary_disruption.get("status", "ACTIVE").upper() == "MONITORING"
     else:
         eff_severity = str(severity).strip().upper()
         primary_disruption = matching_disruptions[0] if matching_disruptions else None
+        is_monitoring = False
 
     # 1. Severity Points (0 - 40)
     severity_map = {
@@ -381,6 +387,8 @@ def calculate_lane_risk_score(
 
     # Total composite score capped at 100
     total_score = min(100.0, sev_points + dur_points + ship_points)
+    if is_monitoring and severity is None:
+        total_score *= 0.5  # 50% discount for advisory/monitoring status
     return round(total_score, 1)
 
 
@@ -581,22 +589,32 @@ def get_cluster_risk_report(cluster_name: str) -> Dict[str, Any]:
     }
 
 
-def simulate_disruption(cluster_name: str, disruption_type: str, description: str) -> Dict[str, Any]:
+def simulate_disruption(
+    cluster_name: str,
+    disruption_type: str,
+    description: str,
+    severity: str = "HIGH",
+    affected_lanes: Optional[List[str]] = None
+) -> Dict[str, Any]:
     """Injects a simulated emergency into active memory for live agent demonstrations."""
     c_name = cluster_name.capitalize().strip()
+    sev = severity.upper().strip()
     disruption = {
         "id": f"DISRUPT-{len(ACTIVE_DISRUPTIONS) + 1:03d}",
         "event_id": f"DISRUPT-{len(ACTIVE_DISRUPTIONS) + 1:03d}",
         "cluster": c_name,
         "category": disruption_type,
         "type": disruption_type,
-        "severity": "HIGH",
+        "severity": sev,
         "title": f"Simulated Emergency: {disruption_type} in {c_name}",
         "description": description,
         "impact": "Triggered automated multi-agent risk assessment.",
         "impacted_clusters": [c_name],
         "status": "ACTIVE"
     }
+    if affected_lanes:
+        disruption["affected_lanes"] = [str(x).upper() for x in affected_lanes]
+        disruption["lanes"] = disruption["affected_lanes"]
     ACTIVE_DISRUPTIONS.append(disruption)
     return {"status": "Disruption active", "disruption": disruption}
 
