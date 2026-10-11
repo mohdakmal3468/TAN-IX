@@ -12,14 +12,20 @@ Exposes standardized MCP tools for:
 
 Supports:
 - ADK McpToolset integration via stdio connection params.
-- Direct fallback execution behind USE_MCP=true/false environment flag.
+- In-process execution through call_mcp_tool() when USE_MCP=true.
+
+Design rules:
+- The inventory tools delegate to tools/inventory_tools.py, so MCP and direct mode
+  always return the same fields and the same predicted reorder points.
+- Local mock-file handling lives only in tools/firestore_client.py (not repeated here).
+- Errors are raised or returned as errors; no made-up default data is returned.
 """
 
+import contextlib
 import os
 import sys
-import json
 import sqlite3
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from dotenv import load_dotenv
 
 # Ensure root directory is in sys.path
@@ -29,11 +35,15 @@ if ROOT_DIR not in sys.path:
 
 load_dotenv(os.path.join(ROOT_DIR, ".env"))
 
-from mcp.server.mcpserver import MCPServer
+try:
+    from mcp.server.mcpserver import MCPServer          # mcp >= 2.0
+except ImportError:
+    from mcp.server.fastmcp import FastMCP as MCPServer  # mcp 1.x (what google-adk installs)
+
+from tools import inventory_tools
 from tools.firestore_client import get_document, set_document, list_documents
 
 DATA_DIR = os.path.join(ROOT_DIR, "data")
-MOCK_DIR = os.path.join(DATA_DIR, "firestore_mock")
 SQLITE_DB_PATH = os.path.join(DATA_DIR, "leather_logistics.db")
 
 # Initialize Model Context Protocol Server
@@ -56,54 +66,21 @@ def firestore_read(collection: str, doc_id: str = "", limit: int = 50) -> Dict[s
     Returns:
         Dict[str, Any]: Document dictionary or list of documents with metadata.
     """
-    col_clean = collection.strip().lower()
+    col = collection.strip().lower()
 
     if doc_id:
-        # Fetch single document
-        doc = get_document(col_clean, doc_id)
-        if doc is not None:
-            return {"status": "success", "collection": col_clean, "doc_id": doc_id, "data": doc}
+        doc = get_document(col, doc_id)
+        if doc is None:
+            return {"status": "not_found", "collection": col, "doc_id": doc_id, "data": None}
+        return {"status": "success", "collection": col, "doc_id": doc_id, "data": doc}
 
-        # Fallback to local JSON files
-        mock_file = os.path.join(MOCK_DIR, f"{col_clean}.json")
-        if not os.path.exists(mock_file):
-            mock_file = os.path.join(DATA_DIR, f"{col_clean}.json")
-
-        if os.path.exists(mock_file):
-            try:
-                with open(mock_file, "r", encoding="utf-8") as f:
-                    items = json.load(f)
-                    for item in items:
-                        if (item.get("id") == doc_id or item.get("_id") == doc_id
-                                or item.get(f"{col_clean[:-1]}_id") == doc_id
-                                or item.get("inventory_id") == doc_id
-                                or item.get("event_id") == doc_id
-                                or item.get("lane_id") == doc_id):
-                            return {"status": "success", "collection": col_clean, "doc_id": doc_id, "data": item}
-            except Exception as e:
-                return {"status": "error", "message": str(e)}
-
-        return {"status": "not_found", "collection": col_clean, "doc_id": doc_id, "data": None}
-
-    # Fetch collection list
-    docs = list_documents(col_clean, limit=limit)
-    if docs:
-        return {"status": "success", "collection": col_clean, "count": len(docs), "documents": docs}
-
-    # Fallback to local mock
-    mock_file = os.path.join(MOCK_DIR, f"{col_clean}.json")
-    if not os.path.exists(mock_file):
-        mock_file = os.path.join(DATA_DIR, f"{col_clean}.json")
-
-    if os.path.exists(mock_file):
-        try:
-            with open(mock_file, "r", encoding="utf-8") as f:
-                items = json.load(f)
-                return {"status": "success", "collection": col_clean, "count": len(items[:limit]), "documents": items[:limit]}
-        except Exception as e:
-            return {"status": "error", "message": str(e)}
-
-    return {"status": "empty", "collection": col_clean, "count": 0, "documents": []}
+    docs = list_documents(col, limit=limit)
+    return {
+        "status": "success" if docs else "empty",
+        "collection": col,
+        "count": len(docs),
+        "documents": docs,
+    }
 
 
 # ==============================================================================
@@ -123,34 +100,15 @@ def firestore_write(collection: str, doc_id: str, data: Dict[str, Any], merge: b
     Returns:
         Dict[str, Any]: Status confirmation dictionary.
     """
-    col_clean = collection.strip().lower()
-    success = set_document(col_clean, doc_id, data, merge=merge)
-
-    # Also sync to local mock file for consistent offline testing
-    mock_file = os.path.join(MOCK_DIR, f"{col_clean}.json")
-    if os.path.exists(mock_file):
-        try:
-            with open(mock_file, "r", encoding="utf-8") as f:
-                records = json.load(f)
-            found = False
-            for idx, r in enumerate(records):
-                if r.get("id") == doc_id or r.get("inventory_id") == doc_id or r.get("request_id") == doc_id:
-                    records[idx] = {**r, **data} if merge else data
-                    found = True
-                    break
-            if not found:
-                records.append({**data, "id": doc_id})
-            with open(mock_file, "w", encoding="utf-8") as f:
-                json.dump(records, f, indent=2)
-        except Exception:
-            pass
-
+    col = collection.strip().lower()
+    # set_document already keeps the local mock file in sync, so it is not repeated here.
+    written = set_document(col, doc_id, data, merge=merge)
     return {
-        "status": "success",
-        "collection": col_clean,
+        "status": "success" if written else "error",
+        "collection": col,
         "doc_id": doc_id,
-        "firestore_synced": success,
-        "data_written": data
+        "firestore_synced": written,
+        "data_written": data,
     }
 
 
@@ -162,7 +120,7 @@ def firestore_write(collection: str, doc_id: str, data: Dict[str, Any], merge: b
 def bigquery_query(query: str) -> Dict[str, Any]:
     """Executes a SQL analytics query across historical shipment and order logs.
 
-    Queries Google Cloud BigQuery or the local SQLite database (data/leather_logistics.db).
+    Runs against the local SQLite database (data/leather_logistics.db).
     Tables: transit_logs, order_history.
 
     Args:
@@ -171,39 +129,33 @@ def bigquery_query(query: str) -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Execution results containing row count, column names, and row dictionaries.
     """
-    clean_q = query.strip()
+    if not os.path.exists(SQLITE_DB_PATH):
+        raise FileNotFoundError(f"{SQLITE_DB_PATH} not found. Run scripts/setup_bigquery.py first.")
 
-    # Try local SQLite fallback
-    if os.path.exists(SQLITE_DB_PATH):
-        try:
-            # Replace BigQuery dataset prefixes if present (e.g. `leather_logistics.transit_logs` -> `transit_logs`)
-            sqlite_q = clean_q.replace("leather_logistics.", "").replace("`leather_logistics`.", "")
-            sqlite_q = sqlite_q.replace("`", "")
+    # Accept BigQuery-style names such as `leather_logistics.transit_logs`
+    sql = query.strip().replace("`leather_logistics`.", "").replace("leather_logistics.", "").replace("`", "")
 
-            conn = sqlite3.connect(SQLITE_DB_PATH)
+    try:
+        with contextlib.closing(sqlite3.connect(SQLITE_DB_PATH)) as conn:
             conn.row_factory = sqlite3.Row
-            cursor = conn.cursor()
-            cursor.execute(sqlite_q)
-            rows = cursor.fetchall()
-            col_names = [d[0] for d in cursor.description] if cursor.description else []
-            dict_rows = [dict(r) for r in rows]
-            conn.close()
+            cursor = conn.execute(sql)
+            rows = [dict(r) for r in cursor.fetchall()]
+            columns = [c[0] for c in cursor.description] if cursor.description else []
+    except sqlite3.Error as exc:
+        # Returned (not raised) so the calling LLM can read the message and fix its SQL
+        return {"status": "error", "engine": "sqlite", "error": str(exc), "query": query}
 
-            return {
-                "status": "success",
-                "engine": "sqlite_fallback",
-                "row_count": len(dict_rows),
-                "columns": col_names,
-                "rows": dict_rows[:100]  # Cap results for safety
-            }
-        except Exception as e:
-            return {"status": "error", "engine": "sqlite", "error": str(e), "query": clean_q}
-
-    return {"status": "error", "message": "Database not initialized. Please run scripts/setup_bigquery.py."}
+    return {
+        "status": "success",
+        "engine": "sqlite",
+        "row_count": len(rows),
+        "columns": columns,
+        "rows": rows[:100],   # cap results for safety
+    }
 
 
 # ==============================================================================
-# 4. MCP DOMAIN TOOL: GET STOCK LEVEL
+# 4-6. MCP DOMAIN TOOLS (delegate to tools/inventory_tools.py)
 # ==============================================================================
 
 @server.tool()
@@ -215,59 +167,20 @@ def get_stock_level(district: str, product: str) -> Dict[str, Any]:
         product: Product commodity name (shoes, belts, bags, jackets).
 
     Returns:
-        Dict[str, Any]: Stock balance dictionary with quantity, days left, and reorder status.
+        Dict[str, Any]: Stock balance with quantity, days left, predicted status and reorder flag.
+        If the record does not exist, returns found=False with an error message.
     """
-    d_clean = district.capitalize().strip()
-    p_clean = product.lower().strip()
+    stock = inventory_tools.get_stock_level(district, product)
+    if not stock["found"]:
+        return stock
+    stock["days_left"] = inventory_tools.days_of_stock_left(district, product)
+    stock["is_below_reorder"] = stock["quantity"] < stock["reorder_point"]
+    return stock
 
-    # Query inventory over Firestore or local fallback
-    read_res = firestore_read(collection="inventory", limit=100)
-    items = read_res.get("documents", [])
-
-    matched = None
-    for item in items:
-        if item.get("district", "").capitalize() == d_clean and item.get("product", "").lower() == p_clean:
-            matched = item
-            break
-
-    if matched:
-        qty = float(matched.get("quantity", 0.0))
-        burn = float(matched.get("daily_burn_rate", 100.0))
-        reorder = float(matched.get("reorder_point", 1000.0))
-        days_left = round(qty / max(1.0, burn), 1)
-
-        return {
-            "district": d_clean,
-            "product": p_clean,
-            "quantity": qty,
-            "unit": matched.get("unit", "units"),
-            "daily_burn_rate": burn,
-            "reorder_point": reorder,
-            "days_left": days_left,
-            "status": matched.get("status", "NORMAL"),
-            "is_below_reorder": qty < reorder
-        }
-
-    return {
-        "district": d_clean,
-        "product": p_clean,
-        "quantity": 0.0,
-        "unit": "units",
-        "daily_burn_rate": 100.0,
-        "reorder_point": 1000.0,
-        "days_left": 0.0,
-        "status": "NOT_FOUND",
-        "is_below_reorder": True
-    }
-
-
-# ==============================================================================
-# 5. MCP DOMAIN TOOLS: REORDER AUDIT & SURPLUS SEARCH
-# ==============================================================================
 
 @server.tool()
 def list_below_reorder_point(district: str) -> List[Dict[str, Any]]:
-    """Lists all commodities in a district warehouse that have fallen below their safety reorder point.
+    """Lists all commodities in a district warehouse that have fallen below their reorder point.
 
     Args:
         district: District cluster name (Kanpur, Unnao, Agra, Noida).
@@ -275,26 +188,7 @@ def list_below_reorder_point(district: str) -> List[Dict[str, Any]]:
     Returns:
         List[Dict[str, Any]]: Commodities in deficit requiring replenishment.
     """
-    d_clean = district.capitalize().strip()
-    read_res = firestore_read(collection="inventory", limit=100)
-    items = read_res.get("documents", [])
-
-    deficits = []
-    for item in items:
-        if item.get("district", "").capitalize() == d_clean:
-            qty = float(item.get("quantity", 0.0))
-            reorder = float(item.get("reorder_point", 1000.0))
-            if qty < reorder:
-                deficits.append({
-                    "district": d_clean,
-                    "product": item.get("product", ""),
-                    "quantity": qty,
-                    "reorder_point": reorder,
-                    "deficit": round(reorder - qty, 1),
-                    "days_left": round(qty / max(1.0, float(item.get("daily_burn_rate", 100.0))), 1)
-                })
-
-    return deficits
+    return inventory_tools.list_below_reorder_point(district)
 
 
 @server.tool()
@@ -306,33 +200,13 @@ def find_surplus_districts(product: str, min_surplus: float = 0.0) -> List[Dict[
         min_surplus: Minimum excess units above reorder point required (default: 0.0).
 
     Returns:
-        List[Dict[str, Any]]: Donor candidates with available surplus.
+        List[Dict[str, Any]]: Donor candidates with available_surplus, largest first.
     """
-    p_clean = product.lower().strip()
-    read_res = firestore_read(collection="inventory", limit=100)
-    items = read_res.get("documents", [])
-
-    surplus_districts = []
-    for item in items:
-        if item.get("product", "").lower() == p_clean:
-            qty = float(item.get("quantity", 0.0))
-            reorder = float(item.get("reorder_point", 1000.0))
-            excess = qty - reorder
-            if excess > min_surplus:
-                surplus_districts.append({
-                    "district": item.get("district", ""),
-                    "product": p_clean,
-                    "current_quantity": qty,
-                    "reorder_point": reorder,
-                    "surplus_available": round(excess, 1)
-                })
-
-    surplus_districts.sort(key=lambda x: x["surplus_available"], reverse=True)
-    return surplus_districts
+    return inventory_tools.find_surplus_districts(product, min_surplus)
 
 
 # ==============================================================================
-# 6. CLIENT HELPERS & ADK MCP TOOLSET FACTORY
+# CLIENT HELPERS & ADK MCP TOOLSET FACTORY
 # ==============================================================================
 
 def get_mcp_server_path() -> str:
@@ -360,7 +234,7 @@ def get_mcp_toolset():
     return McpToolset(connection_params=get_mcp_connection_params())
 
 
-# In-process tool dispatcher for fallback and direct programmatic calls
+# In-process tool dispatcher for programmatic calls (used when USE_MCP=true)
 TOOL_DISPATCHER = {
     "firestore_read": firestore_read,
     "firestore_write": firestore_write,
@@ -372,7 +246,7 @@ TOOL_DISPATCHER = {
 
 
 def call_mcp_tool(tool_name: str, **kwargs) -> Any:
-    """Executes an MCP tool directly via dispatcher or fallback."""
+    """Executes an MCP tool in-process through the dispatcher."""
     if tool_name not in TOOL_DISPATCHER:
         raise ValueError(f"Unknown MCP tool '{tool_name}'. Available: {list(TOOL_DISPATCHER.keys())}")
     return TOOL_DISPATCHER[tool_name](**kwargs)

@@ -10,7 +10,8 @@
     "safety_stock": 525.0,
     "unit_cost_inr": 850.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855707+00:00"
+    "last_updated": "2026-10-06T08:44:08.855707+00:00",
+    "daily_burn_rate_pct": 1.12
   },
   {
     "inventory_id": "INV-KAN-BEL",
@@ -23,7 +24,8 @@
     "safety_stock": 420.0,
     "unit_cost_inr": 340.0,
     "status": "SURPLUS",
-    "last_updated": "2026-10-06T08:44:08.855729+00:00"
+    "last_updated": "2026-10-06T08:44:08.855729+00:00",
+    "daily_burn_rate_pct": 1.77
   },
   {
     "inventory_id": "INV-KAN-BAG",
@@ -36,7 +38,8 @@
     "safety_stock": 280.0,
     "unit_cost_inr": 1600.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855736+00:00"
+    "last_updated": "2026-10-06T08:44:08.855736+00:00",
+    "daily_burn_rate_pct": 1.5
   },
   {
     "inventory_id": "INV-KAN-JAC",
@@ -49,7 +52,8 @@
     "safety_stock": 175.0,
     "unit_cost_inr": 3800.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855740+00:00"
+    "last_updated": "2026-10-06T08:44:08.855740+00:00",
+    "daily_burn_rate_pct": 0.89
   },
   {
     "inventory_id": "INV-UNN-SHO",
@@ -62,7 +66,8 @@
     "safety_stock": 525.0,
     "unit_cost_inr": 850.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855746+00:00"
+    "last_updated": "2026-10-06T08:44:08.855746+00:00",
+    "daily_burn_rate_pct": 1.39
   },
   {
     "inventory_id": "INV-UNN-BEL",
@@ -75,7 +80,8 @@
     "safety_stock": 420.0,
     "unit_cost_inr": 340.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855750+00:00"
+    "last_updated": "2026-10-06T08:44:08.855750+00:00",
+    "daily_burn_rate_pct": 1.62
   },
   {
     "inventory_id": "INV-UNN-BAG",
@@ -88,7 +94,8 @@
     "safety_stock": 280.0,
     "unit_cost_inr": 1600.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855752+00:00"
+    "last_updated": "2026-10-06T08:44:08.855752+00:00",
+    "daily_burn_rate_pct": 1.24
   },
   {
     "inventory_id": "INV-UNN-JAC",
@@ -101,7 +108,8 @@
     "safety_stock": 175.0,
     "unit_cost_inr": 3800.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855755+00:00"
+    "last_updated": "2026-10-06T08:44:08.855755+00:00",
+    "daily_burn_rate_pct": 1.09
   },
   {
     "inventory_id": "INV-AGR-SHO",
@@ -114,7 +122,8 @@
     "safety_stock": 525.0,
     "unit_cost_inr": 850.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855758+00:00"
+    "last_updated": "2026-10-06T08:44:08.855758+00:00",
+    "daily_burn_rate_pct": 1.06
   },
   {
     "inventory_id": "INV-AGR-BEL",
@@ -127,7 +136,8 @@
     "safety_stock": 420.0,
     "unit_cost_inr": 340.0,
     "status": "CRITICAL_DEFICIT",
-    "last_updated": "2026-10-06T08:44:08.855761+00:00"
+    "last_updated": "2026-10-06T08:44:08.855761+00:00",
+    "daily_burn_rate_pct": 1.99
   },
   {
     "inventory_id": "INV-AGR-BAG",
@@ -140,7 +150,8 @@
     "safety_stock": 280.0,
     "unit_cost_inr": 1600.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855764+00:00"
+    "last_updated": "2026-10-06T08:44:08.855764+00:00",
+    "daily_burn_rate_pct": 1.72
   },
   {
     "inventory_id": "INV-AGR-JAC",
@@ -153,7 +164,8 @@
     "safety_stock": 175.0,
     "unit_cost_inr": 3800.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855767+00:00"
+    "last_updated": "2026-10-06T08:44:08.855767+00:00",
+    "daily_burn_rate_pct": 1.2
   },
   {
     "inventory_id": "INV-NOI-SHO",
@@ -166,7 +178,8 @@
     "safety_stock": 525.0,
     "unit_cost_inr": 850.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855771+00:00"
+    "last_updated": "2026-10-06T08:44:08.855771+00:00",
+    "daily_burn_rate_pct": 1.05
   },
   {
     "inventory_id": "INV-NOI-BEL",
@@ -179,7 +192,8 @@
     "safety_stock": 420.0,
     "unit_cost_inr": 340.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855774+00:00"
+    "last_updated": "2026-10-06T08:44:08.855774+00:00",
+    "daily_burn_rate_pct": 1.69
   },
   {
     "inventory_id": "INV-NOI-BAG",
@@ -192,7 +206,8 @@
     "safety_stock": 280.0,
     "unit_cost_inr": 1600.0,
     "status": "NORMAL",
-    "last_updated": "2026-10-06T08:44:08.855777+00:00"
+    "last_updated": "2026-10-06T08:44:08.855777+00:00",
+    "daily_burn_rate_pct": 1.62
   },
   {
     "inventory_id": "INV-NOI-JAC",
@@ -205,6 +220,7 @@
     "safety_stock": 175.0,
     "unit_cost_inr": 3800.0,
     "status": "LOW_STOCK",
-    "last_updated": "2026-10-06T08:44:08.855780+00:00"
+    "last_updated": "2026-10-06T08:44:08.855780+00:00",
+    "daily_burn_rate_pct": 1.09
   }
 ]

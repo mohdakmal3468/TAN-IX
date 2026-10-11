@@ -2,20 +2,19 @@
 agents/inventory_agent.py
 -------------------------
 District Inventory Agent for the Uttar Pradesh Leather Supply Chain.
-Built with Google ADK (Agent Development Kit) and Gemini 3.1 Flash.
+Built with Google ADK (Agent Development Kit) and Gemini.
 
 Responsibilities:
 1. Monitor warehouse stock, daily burn rates, and reorder points.
 2. Raise structured stockout alerts when inventory is below safety thresholds.
 3. Suggest inter-district stock rebalancing transfers from donor hubs with surplus.
 4. Outputs strictly structured JSON with fields: alerts[], transfer_requests[].
-5. Supports Model Context Protocol (MCP) toolset via USE_MCP=true/false environment flag.
 """
 
 import os
 import sys
 import json
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, Optional
 from dotenv import load_dotenv
 
 # Ensure root directory is in sys.path
@@ -31,12 +30,10 @@ from tools.inventory_tools import (
     list_below_reorder_point,
     find_surplus_districts
 )
+from tools.llm import ask_gemini, MODEL_NAME
 
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+ALL_DISTRICTS = ["Agra", "Kanpur", "Unnao", "Noida"]
 
-# Check MCP toggle flag (default: false fallback to direct database)
-USE_MCP = os.getenv("USE_MCP", "false").lower() in ("true", "1", "yes")
 
 # ==============================================================================
 # AGENT INSTRUCTION (Job Description & Behavioral Rules)
@@ -86,17 +83,10 @@ You must return valid structured JSON matching this exact schema:
 
 
 # ==============================================================================
-# TOOLSET INITIALIZATION (MCP vs Direct Database Fallback)
+# TOOLSET INITIALIZATION
 # ==============================================================================
 def get_agent_tools():
-    """Initializes ADK agent tools based on the USE_MCP environment flag."""
-    if os.getenv("USE_MCP", "false").lower() in ("true", "1", "yes"):
-        try:
-            from tools.mcp_server import get_mcp_toolset
-            return [get_mcp_toolset()]
-        except Exception as e:
-            print(f"[Inventory Agent Warning] MCP initialization note: {e}. Falling back to direct tools.")
-
+    """Returns the toolset for the inventory agent."""
     return [
         get_stock_level,
         days_of_stock_left,
@@ -125,8 +115,7 @@ root_agent = agent
 class DistrictInventoryAgent:
     """
     District Inventory Agent controller for the multi-agent system.
-    Supports LLM-augmented evaluation via Gemini and deterministic tool synthesis.
-    Switches between MCP server execution and direct database fallback via USE_MCP.
+    Deterministic tools make the decisions; Gemini writes the executive brief.
     """
 
     def __init__(self):
@@ -135,16 +124,55 @@ class DistrictInventoryAgent:
         self.adk_agent = agent
 
     def fetch_stock(self, district: str, product: str) -> Dict[str, Any]:
-        """Fetches stock level via MCP if USE_MCP=true, otherwise uses direct database tools."""
-        use_mcp = os.getenv("USE_MCP", "false").lower() in ("true", "1", "yes")
-        if use_mcp:
-            from tools.mcp_server import call_mcp_tool
-            res = call_mcp_tool("get_stock_level", district=district, product=product)
-            res["source"] = "MCP_SERVER"
-            return res
-        res = get_stock_level(district=district, product=product)
-        res["source"] = "DIRECT_DATABASE"
-        return res
+        """Fetches stock level directly from inventory tools."""
+        return get_stock_level(district=district, product=product)
+
+    @staticmethod
+    def _build_alert(d: Dict[str, Any]) -> Dict[str, Any]:
+        """Turns one deficit row from the tools into a stockout alert."""
+        days = d["days_left"]
+        return {
+            "district": d["district"],
+            "cluster": d["district"],
+            "product": d["product"],
+            "item": d["product"],
+            "current_quantity": d["current_quantity"],
+            "reorder_point": d["reorder_point"],
+            "deficit": d["deficit"],
+            "days_left": days,
+            "unit": d["unit"],
+            "severity": "CRITICAL" if days < 3.0 or d["deficit"] > 800 else "WARNING",
+            "message": (
+                f"Inventory for {d['product']} in {d['district']} is below reorder point "
+                f"({d['current_quantity']} / {d['reorder_point']} {d['unit']}). "
+                f"Estimated runway: {days} days."
+            ),
+        }
+
+    @staticmethod
+    def _build_transfer(alert: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        """Finds the best donor district for an alert. Returns None when nobody has surplus."""
+        district, product = alert["district"], alert["product"]
+        donors = find_surplus_districts(product=product, min_surplus=alert["deficit"] * 0.5)
+        try:
+            # Donors come sorted by surplus (largest first); skip the deficit district itself
+            donor = next(x for x in donors if x["district"].capitalize() != district)
+        except StopIteration:
+            return None
+
+        quantity = min(alert["deficit"], donor["available_surplus"])
+        return {
+            "origin": donor["district"],
+            "destination": district,
+            "product": product,
+            "quantity": quantity,
+            "unit": alert["unit"],
+            "urgency": "HIGH" if alert["severity"] == "CRITICAL" else "MEDIUM",
+            "reason": (
+                f"Replenish {district} {product} deficit of {quantity} {alert['unit']} "
+                f"from {donor['district']} surplus buffer ({donor['current_quantity']} on hand)."
+            ),
+        }
 
     def analyze_inventory(self, target_district: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -154,71 +182,30 @@ class DistrictInventoryAgent:
             "transfer_requests": [...]
         }
         """
-        districts_to_scan = [target_district.capitalize()] if target_district else ["Agra", "Kanpur", "Unnao", "Noida"]
-        use_mcp = os.getenv("USE_MCP", "false").lower() in ("true", "1", "yes")
+        districts = [target_district.capitalize()] if target_district else ALL_DISTRICTS
 
         alerts = []
         transfer_requests = []
 
-        # Step 1: Scan for deficits using inventory tools (MCP or Direct)
-        for district in districts_to_scan:
-            if use_mcp:
-                from tools.mcp_server import call_mcp_tool
-                deficits = call_mcp_tool("list_below_reorder_point", district=district)
-            else:
-                deficits = list_below_reorder_point(district)
-
+        for district in districts:
+            deficits = list_below_reorder_point(district=district)
             for d in deficits:
-                product = d["product"]
-                days = d.get("days_left") or days_of_stock_left(district, product)
-                alert_item = {
-                    "district": district,
-                    "cluster": district,
-                    "product": product,
-                    "item": product,
-                    "current_quantity": d.get("current_quantity", d.get("quantity", 0)),
-                    "reorder_point": d["reorder_point"],
-                    "deficit": d["deficit"],
-                    "days_left": days,
-                    "unit": d.get("unit", "units"),
-                    "severity": "CRITICAL" if days < 3.0 or d["deficit"] > 800 else "WARNING",
-                    "message": f"Inventory for {product} in {district} is below reorder point ({d.get('current_quantity', d.get('quantity', 0))} / {d['reorder_point']} {d.get('unit', 'units')}). Estimated runway: {days} days."
-                }
-                alerts.append(alert_item)
+                alert = self._build_alert(d)
+                alerts.append(alert)
+                transfer = self._build_transfer(alert)
+                if transfer:
+                    transfer_requests.append(transfer)
 
-                # Step 2: Find donor districts with surplus for this product
-                if use_mcp:
-                    from tools.mcp_server import call_mcp_tool
-                    donors = call_mcp_tool("find_surplus_districts", product=product, min_surplus=d["deficit"] * 0.5)
-                else:
-                    donors = find_surplus_districts(product, min_surplus=d["deficit"] * 0.5)
+        prompt = f"""
+        You are the District Inventory Agent. Based on the following audited data:
+        Alerts: {alerts}
+        Transfer Requests: {transfer_requests}
+        Provide a 2-sentence executive briefing summarizing the stockout risk and recommended replenishment.
+        """
 
-                # Filter out the deficit district itself
-                eligible_donors = [donor for donor in donors if donor["district"].capitalize() != district]
-
-                if eligible_donors:
-                    best_donor = eligible_donors[0]
-                    donor_surplus = best_donor.get("surplus_available", best_donor.get("available_surplus", 0))
-                    donor_curr = best_donor.get("current_quantity", 0)
-                    transfer_qty = min(d["deficit"], donor_surplus)
-
-                    transfer_requests.append({
-                        "origin": best_donor["district"],
-                        "destination": district,
-                        "product": product,
-                        "quantity": transfer_qty,
-                        "unit": d.get("unit", "units"),
-                        "urgency": "HIGH" if alert_item["severity"] == "CRITICAL" else "MEDIUM",
-                        "reason": (
-                            f"Replenish {district} {product} deficit of {transfer_qty} {d.get('unit', 'units')} "
-                            f"from {best_donor['district']} surplus buffer ({donor_curr} on hand)."
-                        )
-                    })
-
-        result = {
+        return {
             "agent": self.name,
             "status": "ACTION_REQUIRED" if alerts else "HEALTHY",
-            "execution_mode": "MCP_TOOLSET" if use_mcp else "DIRECT_DATABASE",
             "alerts": alerts,
             "transfer_requests": transfer_requests,
             # Backwards-compatible fields for state orchestrator
@@ -232,37 +219,9 @@ class DistrictInventoryAgent:
                 }
                 for t in transfer_requests
             ],
-            "critical_deficits_count": len(alerts)
+            "critical_deficits_count": len(alerts),
+            "ai_executive_brief": ask_gemini(prompt),
         }
-
-        # If live Gemini API key is configured, enrich with AI reasoning brief
-        if GEMINI_API_KEY and GEMINI_API_KEY != "your_gemini_api_key_here":
-            try:
-                from google import genai
-                client = genai.Client(api_key=GEMINI_API_KEY)
-                prompt = f"""
-                You are the District Inventory Agent. Based on the following audited data:
-                Alerts: {alerts}
-                Transfer Requests: {transfer_requests}
-                Provide a 2-sentence executive briefing summarizing the stockout risk and recommended replenishment.
-                """
-                response = client.models.generate_content(
-                    model=MODEL_NAME,
-                    contents=prompt
-                )
-                result["ai_executive_brief"] = response.text.strip()
-            except Exception as e:
-                result["ai_executive_brief"] = (
-                    f"Heuristic Brief: Flagged {len(alerts)} stockout alerts. "
-                    f"Proposing inter-district replenishment from surplus donor hubs."
-                )
-        else:
-            result["ai_executive_brief"] = (
-                f"Heuristic Brief: Flagged {len(alerts)} stockout alerts. "
-                f"Proposing inter-district replenishment from surplus donor hubs."
-            )
-
-        return result
 
 
 # ==============================================================================
@@ -270,39 +229,18 @@ class DistrictInventoryAgent:
 # ==============================================================================
 if __name__ == "__main__":
     print("=" * 75)
-    print("DISTRICT INVENTORY AGENT (Google ADK & Gemini 3.1 Flash)")
+    print(f"DISTRICT INVENTORY AGENT (Google ADK & {MODEL_NAME})")
     print("Scenario: 'Agra is low on belts'")
     print("=" * 75)
 
     agent_controller = DistrictInventoryAgent()
+    stock = agent_controller.fetch_stock("Agra", "belts")
+    print(f"\nAgra belts: {stock['quantity']} {stock['unit']}")
 
-    # Test 1: Fetch stock via Direct Database Fallback (USE_MCP=False)
-    print("\n[Test 1] Direct Database Mode (USE_MCP=False)...")
-    os.environ["USE_MCP"] = "false"
-    stock_direct = agent_controller.fetch_stock("Agra", "belts")
-    print(f"  Source: {stock_direct.get('source')} | Agra Belts Quantity: {stock_direct.get('quantity')} {stock_direct.get('unit')}")
-
-    # Test 2: Fetch stock via MCP Tool (USE_MCP=True)
-    print("\n[Test 2] Model Context Protocol Mode (USE_MCP=True)...")
-    os.environ["USE_MCP"] = "true"
-    stock_mcp = agent_controller.fetch_stock("Agra", "belts")
-    print(f"  Source: {stock_mcp.get('source')} | Agra Belts Quantity: {stock_mcp.get('quantity')} {stock_mcp.get('unit')} (Reorder Point: {stock_mcp.get('reorder_point')})")
-
-    # Run full inventory analysis via MCP
-    print("\nRunning Full Warehouse Audit via MCP...")
-    output_mcp = agent_controller.analyze_inventory(target_district="Agra")
-
-    filtered_json = {
-        "execution_mode": output_mcp["execution_mode"],
-        "alerts": output_mcp["alerts"],
-        "transfer_requests": output_mcp["transfer_requests"]
-    }
-    print(json.dumps(filtered_json, indent=2))
-
-    # Reset clean environment
-    os.environ["USE_MCP"] = "false"
-
-    print("\n" + "=" * 75)
-    print("RUN WITH GOOGLE ADK CLI:")
-    print("  python -m google.adk.cli run agents/inventory_agent \"Agra is low on belts\" --in_memory")
-    print("=" * 75)
+    print("\nRunning full warehouse audit...")
+    out = agent_controller.analyze_inventory(target_district="Agra")
+    print(json.dumps({
+        "alerts": out["alerts"],
+        "transfer_requests": out["transfer_requests"],
+        "ai_executive_brief": out["ai_executive_brief"],
+    }, indent=2))

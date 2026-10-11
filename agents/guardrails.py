@@ -21,6 +21,7 @@ Workflow & Lifecycle:
 import os
 import sys
 import time
+import json
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 from dotenv import load_dotenv
@@ -300,10 +301,8 @@ def save_approval_item(
         "updated_at": datetime.now(timezone.utc).isoformat()
     }
 
-    # Persist to Firestore collection 'approvals'
     set_document("approvals", approval_id, record)
 
-    # Synchronize with in-memory store for instant lookup
     PENDING_APPROVALS[approval_id] = {
         **details,
         "plan_id": approval_id,
@@ -381,10 +380,6 @@ def wait_for_approval_resolution(
     """
     Pauses execution and polls Firestore collection 'approvals' until the status
     changes from 'pending' to 'approved' or 'rejected', or timeout expires.
-
-    Returns:
-        Dict containing resolved (bool), status ('approved' | 'rejected' | 'pending'),
-        and waited_seconds.
     """
     start_time = time.time()
 
@@ -408,3 +403,36 @@ def wait_for_approval_resolution(
             }
 
         time.sleep(poll_interval)
+
+
+# ==============================================================================
+# STANDALONE DEMO & TEST RUNNER
+# ==============================================================================
+if __name__ == "__main__":
+    print("=" * 80)
+    print("AUTONOMOUS GOVERNANCE & GUARDRAILS ENGINE (TAN-IX)")
+    print("Statutory Rules Matrix & Approval Lifecycle Verification")
+    print("=" * 80)
+
+    # Test Case 1: Low-cost transfer (Auto-approved)
+    print("\n[Case 1] Transfer under 50k INR...")
+    t1 = evaluate_guardrails({"type": "transfer", "estimated_cost_inr": 25000.0})
+    print(json.dumps(t1.to_dict(), indent=2))
+
+    # Test Case 2: High-cost transfer (Requires human approval)
+    print("\n[Case 2] Transfer >= 50k INR...")
+    t2 = evaluate_guardrails({"type": "transfer", "estimated_cost_inr": 75000.0})
+    print(json.dumps(t2.to_dict(), indent=2))
+
+    # Test Case 3: Major Reroute (> 30% cost increase)
+    print("\n[Case 3] Reroute with 40% cost increase...")
+    t3 = evaluate_guardrails({"type": "reroute", "original_cost_inr": 10000.0, "new_cost_inr": 14000.0})
+    print(json.dumps(t3.to_dict(), indent=2))
+
+    # Test Case 4: Compliance Paperwork Verification
+    print("\n[Case 4] Compliance Paperwork Sign-off...")
+    t4 = evaluate_guardrails({"requires_compliance_signoff": True, "document_type": "Form UP-EWAY-01"})
+    print(json.dumps(t4.to_dict(), indent=2))
+
+    print("\n" + "=" * 80)
+    print("=" * 80)

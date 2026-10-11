@@ -181,27 +181,26 @@ def index_all_policies() -> Dict[str, Any]:
     google_embeddings_used = False
     embedding_dim = 0
 
-    if GEMINI_API_KEY and GEMINI_API_KEY != "your_gemini_api_key_here":
-        try:
-            from google import genai
-            client = genai.Client(api_key=GEMINI_API_KEY)
-            print("\nConnecting to Google GenAI Embedding API (model: text-embedding-004)...")
+    try:
+        from tools.llm import get_genai_client
+        client = get_genai_client()
+        print("\nConnecting to Google GenAI Embedding API (model: text-embedding-004)...")
 
-            for chk in all_chunks:
-                embed_text = f"{chk['doc_title']} - {chk['section_title']}\n{chk['text']}"
-                resp = client.models.embed_content(
-                    model="text-embedding-004",
-                    contents=embed_text
-                )
-                vec = resp.embedding.values if hasattr(resp, "embedding") else resp.embeddings[0].values
-                chk["embedding"] = [round(float(x), 5) for x in vec]
+        for chk in all_chunks:
+            embed_text = f"{chk['doc_title']} - {chk['section_title']}\n{chk['text']}"
+            resp = client.models.embed_content(
+                model="text-embedding-004",
+                contents=embed_text
+            )
+            vec = resp.embedding.values if hasattr(resp, "embedding") else resp.embeddings[0].values
+            chk["embedding"] = [round(float(x), 5) for x in vec]
 
-            embedding_dim = len(all_chunks[0]["embedding"])
-            google_embeddings_used = True
-            print(f"-> Successfully generated Google GenAI embeddings (Dimension: {embedding_dim})")
-        except Exception as e:
-            print(f"[Notice] Google GenAI Embedding note: {e}")
-            print("-> Switching to Local Dense Semantic Vector Engine fallback.")
+        embedding_dim = len(all_chunks[0]["embedding"])
+        google_embeddings_used = True
+        print(f"-> Successfully generated Google GenAI embeddings (Dimension: {embedding_dim})")
+    except Exception as e:
+        print(f"[Notice] Google GenAI Embedding note: {e}")
+        print("-> Switching to Local Dense Semantic Vector Engine fallback.")
 
     # Local Vector Engine fallback
     vocab = []

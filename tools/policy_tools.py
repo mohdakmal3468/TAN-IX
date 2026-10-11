@@ -95,9 +95,8 @@ def search_policy(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
     scored_chunks = []
 
     if engine == "google-text-embedding-004":
-        from google import genai
-        api_key = os.getenv("GEMINI_API_KEY")
-        client = genai.Client(api_key=api_key)
+        from tools.llm import get_genai_client
+        client = get_genai_client()
         resp = client.models.embed_content(model="text-embedding-004", contents=query)
         q_vec = resp.embedding.values if hasattr(resp, "embedding") else resp.embeddings[0].values
     else:

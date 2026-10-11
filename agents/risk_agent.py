@@ -37,8 +37,7 @@ from tools.risk_tools import (
 from tools.vector_tools import search_policy_docs
 from config import UP_CLUSTERS, HIGHWAY_CORRIDORS
 
-MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+from tools.llm import ask_gemini, MODEL_NAME
 
 # ==============================================================================
 # AGENT INSTRUCTION (Job Description & Decision Framework)
@@ -284,23 +283,19 @@ class RegionalRiskAgent:
             }
         }
 
-        # AI briefing enrichment if Gemini is available
-        if GEMINI_API_KEY and GEMINI_API_KEY != "your_gemini_api_key_here":
-            try:
-                from google import genai
-                client = genai.Client(api_key=GEMINI_API_KEY)
-                prompt = f"""
-                You are the Regional Risk Agent for the UP Leather Industrial Corridor.
-                Review the following highway risk scores:
-                High Risk Lanes: {high_risk_lanes}
-                Total Delayed Shipments: {total_delayed_shipments}
-                Total Demurrage Cost: INR {total_cost_inr:,.2f}
-                Provide a crisp 2-sentence plain-English executive impact summary for state logistics dispatchers.
-                """
-                resp = client.models.generate_content(model=MODEL_NAME, contents=prompt)
-                structured_output["impact_analysis"]["plain_english_summary"] = resp.text.strip()
-            except Exception:
-                pass
+        # AI briefing enrichment
+        try:
+            prompt = f"""
+            You are the Regional Risk Agent for the UP Leather Industrial Corridor.
+            Review the following highway risk scores:
+            High Risk Lanes: {high_risk_lanes}
+            Total Delayed Shipments: {total_delayed_shipments}
+            Total Demurrage Cost: INR {total_cost_inr:,.2f}
+            Provide a crisp 2-sentence plain-English executive impact summary for state logistics dispatchers.
+            """
+            structured_output["impact_analysis"]["plain_english_summary"] = ask_gemini(prompt)
+        except Exception:
+            pass
 
         return structured_output
 
