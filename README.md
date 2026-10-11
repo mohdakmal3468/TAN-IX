@@ -1,12 +1,3 @@
-Here is the updated document with all your requested changes applied:
-
-* Renamed the project to **AgentHide** (replacing all references to TAN-IX)
-* Removed all Discord references and webhooks
-* Updated all Gemini references from **2.5** to **3.1**
-* Removed the **Quickstart Guide**, **Demo Walkthrough**, and **Cloud Run Deployment** sections
-
----
-
 # AgentHide
 
 ### State-Level Multi-Agent Supply Chain Risk & Inventory Manager for Leather Goods

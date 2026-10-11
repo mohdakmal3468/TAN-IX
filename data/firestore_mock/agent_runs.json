@@ -1,5 +1,2274 @@
 [
   {
+    "run_id": "RUN-20261011-081745-949A",
+    "timestamp": "2026-10-11T08:17:45.429619+00:00",
+    "trigger": "Dashboard demo run",
+    "status": "COMPLETED",
+    "summary": "Generated rebalancing plan PLAN-UP-1E29B5 (Kanpur -> Agra, 1757.0 belts)",
+    "subagents_output": {
+      "inventory_agent": {
+        "agent": "District Inventory Agent",
+        "status": "ACTION_REQUIRED",
+        "alerts": [
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "belts",
+            "item": "belts",
+            "current_quantity": 180.0,
+            "reorder_point": 1937.0,
+            "deficit": 1757.0,
+            "days_left": 1.1,
+            "unit": "units",
+            "severity": "CRITICAL",
+            "message": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+          },
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 1004.0,
+            "reorder_point": 1351.0,
+            "deficit": 347.0,
+            "days_left": 23.9,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Agra is below reorder point (1004.0 / 1351.0 garments). Estimated runway: 23.9 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 938.0,
+            "reorder_point": 1073.0,
+            "deficit": 135.0,
+            "days_left": 30.1,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Kanpur is below reorder point (938.0 / 1073.0 garments). Estimated runway: 30.1 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1138.0,
+            "reorder_point": 1198.0,
+            "deficit": 60.0,
+            "days_left": 15.2,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Kanpur is below reorder point (1138.0 / 1198.0 units). Estimated runway: 15.2 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 716.0,
+            "reorder_point": 1193.0,
+            "deficit": 477.0,
+            "days_left": 18.8,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Unnao is below reorder point (716.0 / 1193.0 garments). Estimated runway: 18.8 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 983.0,
+            "reorder_point": 1253.0,
+            "deficit": 270.0,
+            "days_left": 15.9,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Unnao is below reorder point (983.0 / 1253.0 units). Estimated runway: 15.9 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 325.0,
+            "reorder_point": 1912.0,
+            "deficit": 1587.0,
+            "days_left": 8.5,
+            "unit": "garments",
+            "severity": "CRITICAL",
+            "message": "Inventory for jackets in Noida is below reorder point (325.0 / 1912.0 garments). Estimated runway: 8.5 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1182.0,
+            "reorder_point": 1230.0,
+            "deficit": 48.0,
+            "days_left": 14.6,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Noida is below reorder point (1182.0 / 1230.0 units). Estimated runway: 14.6 days."
+          }
+        ],
+        "transfer_requests": [
+          {
+            "origin": "Kanpur",
+            "destination": "Agra",
+            "product": "belts",
+            "quantity": 1757.0,
+            "unit": "units",
+            "urgency": "HIGH",
+            "reason": "Replenish Agra belts deficit of 1757.0 units from Kanpur surplus buffer (6800.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Kanpur",
+            "product": "bags",
+            "quantity": 60.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Kanpur bags deficit of 60.0 units from Agra surplus buffer (1136.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Unnao",
+            "product": "bags",
+            "quantity": 270.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Unnao bags deficit of 270.0 units from Agra surplus buffer (1136.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Noida",
+            "product": "bags",
+            "quantity": 48.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Noida bags deficit of 48.0 units from Agra surplus buffer (1136.0 on hand)."
+          }
+        ],
+        "critical_deficits": [
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "belts",
+            "item": "belts",
+            "current_quantity": 180.0,
+            "reorder_point": 1937.0,
+            "deficit": 1757.0,
+            "days_left": 1.1,
+            "unit": "units",
+            "severity": "CRITICAL",
+            "message": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+          },
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 1004.0,
+            "reorder_point": 1351.0,
+            "deficit": 347.0,
+            "days_left": 23.9,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Agra is below reorder point (1004.0 / 1351.0 garments). Estimated runway: 23.9 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 938.0,
+            "reorder_point": 1073.0,
+            "deficit": 135.0,
+            "days_left": 30.1,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Kanpur is below reorder point (938.0 / 1073.0 garments). Estimated runway: 30.1 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1138.0,
+            "reorder_point": 1198.0,
+            "deficit": 60.0,
+            "days_left": 15.2,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Kanpur is below reorder point (1138.0 / 1198.0 units). Estimated runway: 15.2 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 716.0,
+            "reorder_point": 1193.0,
+            "deficit": 477.0,
+            "days_left": 18.8,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Unnao is below reorder point (716.0 / 1193.0 garments). Estimated runway: 18.8 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 983.0,
+            "reorder_point": 1253.0,
+            "deficit": 270.0,
+            "days_left": 15.9,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Unnao is below reorder point (983.0 / 1253.0 units). Estimated runway: 15.9 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 325.0,
+            "reorder_point": 1912.0,
+            "deficit": 1587.0,
+            "days_left": 8.5,
+            "unit": "garments",
+            "severity": "CRITICAL",
+            "message": "Inventory for jackets in Noida is below reorder point (325.0 / 1912.0 garments). Estimated runway: 8.5 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1182.0,
+            "reorder_point": 1230.0,
+            "deficit": 48.0,
+            "days_left": 14.6,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Noida is below reorder point (1182.0 / 1230.0 units). Estimated runway: 14.6 days."
+          }
+        ],
+        "available_surpluses": [
+          {
+            "cluster": "Kanpur",
+            "item": "belts",
+            "quantity": 1757.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 60.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 270.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 48.0,
+            "unit": "units"
+          }
+        ],
+        "critical_deficits_count": 8,
+        "ai_executive_brief": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}"
+      },
+      "risk_agent": {
+        "agent": "Regional Risk Agent",
+        "system_threat_level": "CRITICAL_ALERT",
+        "corridor_risks": {
+          "status": "CRITICAL_ALERT",
+          "active_disruptions_count": 11,
+          "active_disruptions": [
+            {
+              "event_id": "EVT-KNP-01",
+              "title": "UPPCB & NGT Effluent Inspection Shutdown Notice",
+              "location": "Kanpur (Jajmau)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-04",
+                "LANE-04-ALT"
+              ]
+            },
+            {
+              "event_id": "EVT-KNP-02",
+              "title": "Ganges River Basin High Water Discharge Warning",
+              "location": "Kanpur (Shuklaganj)",
+              "severity": "HIGH",
+              "status": "MONITORING",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            },
+            {
+              "event_id": "EVT-KNP-03",
+              "title": "Chrome Tanning Chemical Shortage",
+              "location": "Kanpur (Chakeri)",
+              "severity": "MEDIUM",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-05"
+              ]
+            },
+            {
+              "event_id": "EVT-UNO-01",
+              "title": "UPSIDC CETP Bio-Filter Maintenance",
+              "location": "Unnao (Banthar)",
+              "severity": "MEDIUM",
+              "status": "MONITORING",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            },
+            {
+              "event_id": "EVT-AGR-01",
+              "title": "Dense Winter Fog Night Speed Restrictions",
+              "location": "Agra (Yamuna Expressway Entry)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-11",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "EVT-AGR-02",
+              "title": "Footwear Belt & Upper Raw Component Shortage",
+              "location": "Agra (Sikandra)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-04",
+                "LANE-04-ALT",
+                "LANE-08",
+                "LANE-11"
+              ]
+            },
+            {
+              "event_id": "EVT-NOI-01",
+              "title": "Export Nappa Leather Pre-Christmas Crunch",
+              "location": "Noida (Sector 63)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-06",
+                "LANE-10",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "EVT-NOI-03",
+              "title": "GRAP Stage-III Diesel Truck Entry Restrictions in NCR",
+              "location": "Noida (Air Cargo Terminal Link)",
+              "severity": "MEDIUM",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-06",
+                "LANE-10",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "DISRUPT-001",
+              "title": "UPPCB & NGT Compliance Notice on Jajmau CETP",
+              "location": "Kanpur",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-04",
+                "LANE-04-ALT"
+              ]
+            },
+            {
+              "event_id": "DISRUPT-002",
+              "title": "Simulated Emergency: HIGHWAY_BLOCKADE in Unnao",
+              "location": "Unnao",
+              "severity": "CRITICAL",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            },
+            {
+              "event_id": "DISRUPT-003",
+              "title": "Simulated Emergency: RAW_MATERIAL_SPIKE in Agra",
+              "location": "Agra",
+              "severity": "CRITICAL",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-04",
+                "LANE-04-ALT",
+                "LANE-08",
+                "LANE-11"
+              ]
+            }
+          ],
+          "lane_risk_scores": [
+            {
+              "lane_id": "LANE-01",
+              "route_name": "NH-27 / Ganga Bridge Corridor",
+              "origin": "Kanpur",
+              "destination": "Unnao",
+              "risk_score": 84.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 46200.0
+            },
+            {
+              "lane_id": "LANE-02",
+              "route_name": "NH-27 / Ganga Bridge Corridor",
+              "origin": "Unnao",
+              "destination": "Kanpur",
+              "risk_score": 82.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 38500.0
+            },
+            {
+              "lane_id": "LANE-03",
+              "route_name": "Agra-Lucknow Expressway & NH-19",
+              "origin": "Kanpur",
+              "destination": "Agra",
+              "risk_score": 56.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 2,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 8800.0
+            },
+            {
+              "lane_id": "LANE-03-ALT",
+              "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+              "origin": "Kanpur",
+              "destination": "Agra",
+              "risk_score": 56.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 2,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 8800.0
+            },
+            {
+              "lane_id": "LANE-04",
+              "route_name": "Agra-Lucknow Expressway & NH-19",
+              "origin": "Agra",
+              "destination": "Kanpur",
+              "risk_score": 80.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 4,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 30800.0
+            },
+            {
+              "lane_id": "LANE-04-ALT",
+              "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+              "origin": "Agra",
+              "destination": "Kanpur",
+              "risk_score": 80.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 4,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 30800.0
+            },
+            {
+              "lane_id": "LANE-05",
+              "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+              "origin": "Kanpur",
+              "destination": "Noida",
+              "risk_score": 42.0,
+              "risk_level": "MODERATE",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 1.0,
+              "estimated_cost_inr": 11000.0
+            },
+            {
+              "lane_id": "LANE-06",
+              "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+              "origin": "Noida",
+              "destination": "Kanpur",
+              "risk_score": 62.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 22000.0
+            },
+            {
+              "lane_id": "LANE-07",
+              "route_name": "Agra-Lucknow Expressway",
+              "origin": "Unnao",
+              "destination": "Agra",
+              "risk_score": 0.0,
+              "risk_level": "LOW",
+              "is_disrupted": false,
+              "shipments_delayed": 0,
+              "delay_in_days": 0.0,
+              "estimated_cost_inr": 0.0
+            },
+            {
+              "lane_id": "LANE-08",
+              "route_name": "Agra-Lucknow Expressway",
+              "origin": "Agra",
+              "destination": "Unnao",
+              "risk_score": 84.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 46200.0
+            },
+            {
+              "lane_id": "LANE-09",
+              "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+              "origin": "Unnao",
+              "destination": "Noida",
+              "risk_score": 0.0,
+              "risk_level": "LOW",
+              "is_disrupted": false,
+              "shipments_delayed": 0,
+              "delay_in_days": 0.0,
+              "estimated_cost_inr": 0.0
+            },
+            {
+              "lane_id": "LANE-10",
+              "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+              "origin": "Noida",
+              "destination": "Unnao",
+              "risk_score": 62.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 22000.0
+            },
+            {
+              "lane_id": "LANE-11",
+              "route_name": "Yamuna Expressway",
+              "origin": "Agra",
+              "destination": "Noida",
+              "risk_score": 86.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 7,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 53900.0
+            },
+            {
+              "lane_id": "LANE-12",
+              "route_name": "Yamuna Expressway",
+              "origin": "Noida",
+              "destination": "Agra",
+              "risk_score": 64.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 26400.0
+            }
+          ],
+          "high_risk_lanes": [
+            "LANE-01",
+            "LANE-02",
+            "LANE-03",
+            "LANE-03-ALT",
+            "LANE-04",
+            "LANE-04-ALT",
+            "LANE-06",
+            "LANE-08",
+            "LANE-10",
+            "LANE-11",
+            "LANE-12"
+          ],
+          "impact_analysis": {
+            "plain_english_summary": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}",
+            "total_shipments_delayed": 57,
+            "max_delay_days": 3.5,
+            "total_cost_impact_inr": 345400.0,
+            "corridor_briefings": [
+              {
+                "lane_id": "LANE-01",
+                "impact": "NH-27 / Ganga Bridge Corridor (Kanpur -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-02",
+                "impact": "NH-27 / Ganga Bridge Corridor (Unnao -> Kanpur) is facing CRITICAL risk (Score: 82.0/100). 5 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 38,500.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-03",
+                "impact": "Agra-Lucknow Expressway & NH-19 (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-03-ALT",
+                "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-04",
+                "impact": "Agra-Lucknow Expressway & NH-19 (Agra -> Kanpur) is facing CRITICAL risk (Score: 80.0/100). 4 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 30,800.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-04-ALT",
+                "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Agra -> Kanpur) is facing CRITICAL risk (Score: 80.0/100). 4 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 30,800.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-05",
+                "impact": "Agra-Lucknow Expway + Yamuna Expway (Kanpur -> Noida) is facing MODERATE risk (Score: 42.0/100). 5 shipments delayed by approximately 1.0 days. Est. demurrage loss: INR 11,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-06",
+                "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Kanpur) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-08",
+                "impact": "Agra-Lucknow Expressway (Agra -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-10",
+                "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Unnao) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-11",
+                "impact": "Yamuna Expressway (Agra -> Noida) is facing CRITICAL risk (Score: 86.0/100). 7 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 53,900.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-12",
+                "impact": "Yamuna Expressway (Noida -> Agra) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              }
+            ],
+            "recommendations": [
+              "Execute autonomous rerouting via secondary national highways (e.g. NH-19 arterial alternatives).",
+              "Buffer finished inventory at Agra footwear assembly lines to prevent production stoppage.",
+              "Prioritize high-reliability carriers over low-cost options during active disruptions."
+            ]
+          }
+        },
+        "active_disruptions_count": 11,
+        "high_risk_lanes": [
+          "LANE-01",
+          "LANE-02",
+          "LANE-03",
+          "LANE-03-ALT",
+          "LANE-04",
+          "LANE-04-ALT",
+          "LANE-06",
+          "LANE-08",
+          "LANE-10",
+          "LANE-11",
+          "LANE-12"
+        ],
+        "impact_analysis": {
+          "plain_english_summary": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}",
+          "total_shipments_delayed": 57,
+          "max_delay_days": 3.5,
+          "total_cost_impact_inr": 345400.0,
+          "corridor_briefings": [
+            {
+              "lane_id": "LANE-01",
+              "impact": "NH-27 / Ganga Bridge Corridor (Kanpur -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-02",
+              "impact": "NH-27 / Ganga Bridge Corridor (Unnao -> Kanpur) is facing CRITICAL risk (Score: 82.0/100). 5 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 38,500.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-03",
+              "impact": "Agra-Lucknow Expressway & NH-19 (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-03-ALT",
+              "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-04",
+              "impact": "Agra-Lucknow Expressway & NH-19 (Agra -> Kanpur) is facing CRITICAL risk (Score: 80.0/100). 4 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 30,800.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-04-ALT",
+              "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Agra -> Kanpur) is facing CRITICAL risk (Score: 80.0/100). 4 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 30,800.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-05",
+              "impact": "Agra-Lucknow Expway + Yamuna Expway (Kanpur -> Noida) is facing MODERATE risk (Score: 42.0/100). 5 shipments delayed by approximately 1.0 days. Est. demurrage loss: INR 11,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-06",
+              "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Kanpur) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-08",
+              "impact": "Agra-Lucknow Expressway (Agra -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-10",
+              "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Unnao) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-11",
+              "impact": "Yamuna Expressway (Agra -> Noida) is facing CRITICAL risk (Score: 86.0/100). 7 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 53,900.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-12",
+              "impact": "Yamuna Expressway (Noida -> Agra) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            }
+          ],
+          "recommendations": [
+            "Execute autonomous rerouting via secondary national highways (e.g. NH-19 arterial alternatives).",
+            "Buffer finished inventory at Agra footwear assembly lines to prevent production stoppage.",
+            "Prioritize high-reliability carriers over low-cost options during active disruptions."
+          ]
+        },
+        "ai_risk_brief": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}"
+      },
+      "logistics_agent": {
+        "status": "ROUTE_OPTIMIZED",
+        "origin": "Kanpur",
+        "destination": "Agra",
+        "product": "belts",
+        "quantity": 1757.0,
+        "best_route": {
+          "route_id": "LANE-03",
+          "route_name": "Agra-Lucknow Expressway & NH-19",
+          "distance_km": 285.0,
+          "toll_inr": 780.0
+        },
+        "carrier": {
+          "carrier_id": "CAR-01",
+          "carrier_name": "Yamuna Fast Haulers",
+          "reliability_pct": 96.0,
+          "vehicle_assigned": "Express Container Fleet"
+        },
+        "cost_inr": 17048.5,
+        "eta_hours": 4.1,
+        "decision_rationale": "Leveraging the optimized Agra-Lucknow Expressway, this dispatch ensures the rapid transit of 1757 premium leather belts from Kanpur to Agra. Yamuna Fast Haulers provides the ideal balance of cost and speed, guaranteeing delivery within a remarkable 4.1 hours to uphold our corridor's reliability."
+      }
+    },
+    "final_plan": {
+      "plan_id": "PLAN-UP-1E29B5",
+      "action": "INTER_CLUSTER_STOCK_REBALANCE",
+      "origin": "Kanpur",
+      "destination": "Agra",
+      "item": "belts",
+      "product": "belts",
+      "quantity": 1757.0,
+      "unit": "units",
+      "estimated_cost_inr": 17048.5,
+      "odop_rebate_inr": 2557.28,
+      "net_cost_inr": 14491.22,
+      "transit_hours": 4.1,
+      "route_name": "Agra-Lucknow Expressway & NH-19",
+      "carrier": "Yamuna Fast Haulers",
+      "logistics_status": "ROUTE_OPTIMIZED",
+      "approval_tier": "REQUIRES_HUMAN_APPROVAL",
+      "approval_status": "PENDING",
+      "guardrail_rule": "TRANSFER_OVER_50K_HUMAN_APPROVAL",
+      "governance_note": "Transfer amount INR 17,048.50 meets or exceeds 50,000 INR threshold. Requires human approval.",
+      "risk_justification": "Replenish Agra belts deficit. Corridor threat level at planning time covers 11 high-risk lane(s). Detour routing: Not required.",
+      "logistics_details": {
+        "status": "ROUTE_OPTIMIZED",
+        "origin": "Kanpur",
+        "destination": "Agra",
+        "product": "belts",
+        "quantity": 1757.0,
+        "best_route": {
+          "route_id": "LANE-03",
+          "route_name": "Agra-Lucknow Expressway & NH-19",
+          "distance_km": 285.0,
+          "toll_inr": 780.0
+        },
+        "carrier": {
+          "carrier_id": "CAR-01",
+          "carrier_name": "Yamuna Fast Haulers",
+          "reliability_pct": 96.0,
+          "vehicle_assigned": "Express Container Fleet"
+        },
+        "cost_inr": 17048.5,
+        "eta_hours": 4.1,
+        "decision_rationale": "Leveraging the optimized Agra-Lucknow Expressway, this dispatch ensures the rapid transit of 1757 premium leather belts from Kanpur to Agra. Yamuna Fast Haulers provides the ideal balance of cost and speed, guaranteeing delivery within a remarkable 4.1 hours to uphold our corridor's reliability."
+      },
+      "attached_policies": [
+        {
+          "doc_name": "delivery_sla.md",
+          "title": "Delivery Service Level Agreement (SLA) by District",
+          "section": "A. Agra Footwear Cluster (Destination: Agra)",
+          "similarity_score": 0.586,
+          "cluster_scope": [
+            "Agra",
+            "Kanpur",
+            "Unnao",
+            "Noida"
+          ],
+          "snippet": "- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):** - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses. - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).",
+          "full_clause": "### A. Agra Footwear Cluster (Destination: Agra)\n- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):**\n  - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses.\n  - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).\n  - **Emergency Replenishment SLA:** 8.0 hours when the destination cluster reports inventory below critical reorder threshold (<2 days runway).\n- **Unnao $\\rightarrow$ Agra (`LANE-07`):**\n  - **Standard SLA:** 24.0 hours.\n  - **Priority SLA:** 12.0 hours.\n- **Noida $\\rightarrow$ Agra (`LANE-12`):**\n  - **Standard SLA:** 12.0 hours via Yamuna Expressway.\n  - **Priority SLA:** 6.0 hours."
+        },
+        {
+          "doc_name": "transit_permits.md",
+          "title": "Transit Permit & Statutory Compliance Rules",
+          "section": "A. Electronic Way Bill (e-Way Bill)",
+          "similarity_score": 0.505,
+          "cluster_scope": [
+            "Agra",
+            "Kanpur",
+            "Unnao",
+            "Noida"
+          ],
+          "snippet": "- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR. - **Validity Duration:** - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.",
+          "full_clause": "### A. Electronic Way Bill (e-Way Bill)\n- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR.\n- **Validity Duration:**\n  - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.\n  - 100 km to 300 km (e.g. Kanpur $\\leftrightarrow$ Agra): Valid for 2 calendar days.\n  - Above 300 km (e.g. Kanpur $\\leftrightarrow$ Noida): Valid for 3 calendar days.\n- **Extension Rule:** In the event of documented highway blockades or carrier mechanical breakdown, the carrier must log an e-Way Bill extension within 8 hours of expiry."
+        },
+        {
+          "doc_name": "emergency_freight.md",
+          "title": "Emergency Freight & Stock Rebalancing Policy",
+          "section": "3. Financial Subsidies & ODOP Freight Reimbursement",
+          "similarity_score": 0.415,
+          "cluster_scope": [
+            "Kanpur",
+            "Unnao",
+            "Agra",
+            "Noida"
+          ],
+          "snippet": "1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers. 2. **Fuel Surcharge Cap:** Carrie...",
+          "full_clause": "## 3. Financial Subsidies & ODOP Freight Reimbursement\n1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers.\n2. **Fuel Surcharge Cap:** Carrier diesel fuel escalation surcharges during declared emergency transit are capped at 8% above base contract rates.\n3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the TAN-IX system."
+        },
+        {
+          "doc_name": "approval_limits.md",
+          "title": "Financial Delegation & Human Approval Limits",
+          "section": "2. Authorization Threshold Matrix",
+          "similarity_score": 0.258,
+          "cluster_scope": [],
+          "snippet": "| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow | | :--- | :---: | :--- | :--- | | **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger...",
+          "full_clause": "## 2. Authorization Threshold Matrix\n\n| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow |\n| :--- | :---: | :--- | :--- |\n| **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger with zero human latency. |\n| **Tier 2: Supervisory** | **\u20b910,001.00 \u2013 \u20b950,000.00** | **District Logistics Officer / Supervisor** | Real-time **Human-in-the-Loop (HITL)** approval. Dispatched via interactive Discord webhook card and Dashboard modal. |\n| **Tier 3: Executive** | **> \u20b950,000.00** | **State Directorate / Principal Secretary** | Dual-key executive sign-off. Requires digital authorization from State Control Center. |\n\n---"
+        },
+        {
+          "doc_name": "blockade_handling.md",
+          "title": "Highway Blockade, Flood & Weather Hazard SOP",
+          "section": "A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)",
+          "similarity_score": 0.2,
+          "cluster_scope": [
+            "Agra"
+          ],
+          "snippet": "If `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs: 1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`). 2. The **Intra-State Logistics Agent** is mandate...",
+          "full_clause": "### A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)\nIf `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs:\n1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`).\n2. The **Intra-State Logistics Agent** is mandated to divert all pending and newly dispatched cargo to **`LANE-03-ALT`** (*National Highway NH-19 via Etawah and Shikohabad*).\n3. The carrier must be compensated for the 275 km arterial transit with adjusted toll rates (\u20b9340 base toll vs \u20b9780 expressway toll)."
+        }
+      ],
+      "documentation_package": {
+        "document_type": "FORM_UP_EWAY_01",
+        "permit_id": "UP-EWAY-20261011-12E18D",
+        "consignor": "Kanpur",
+        "consignee": "Agra",
+        "commodity": "belts",
+        "quantity": 1757.0,
+        "unit": "units",
+        "invoice_value_inr": 597380.0,
+        "eway_bill_required": true,
+        "carrier": "Yamuna Fast Haulers",
+        "route_assigned": "Agra-Lucknow Expressway & NH-19",
+        "statutory_clearances": [
+          "FASTag RFID Entry Transponder Verified",
+          "UP Commercial Taxes e-Way Compliance Check Cleared",
+          "ODOP Emergency Freight Rebate (15%) Pre-Authorized"
+        ],
+        "filled_permit_manifest": "================================================================================\n                    GOVERNMENT OF UTTAR PRADESH\n        DEPARTMENT OF COMMERCIAL TAXES & UP TRANSPORT COMMISSION\n             FORM UP-EWAY-01: INTER-DISTRICT TRANSIT PERMIT\n================================================================================\nPermit ID:          UP-EWAY-20261011-12E18D\nIssue Date:         2026-10-11T08:17:45.429619+00:00\nPermit Validity:    48 Hours (2 Calendar Days - Distance 100 to 300 km)\nStatus:             PROVISIONAL_CLEARANCE\n\n1. CONSIGNMENT & COMMODITY SUMMARY\n--------------------------------------------------------------------------------\nOrigin Cluster:     Kanpur (Warehouse / Tannery Hub)\nDestination:        Agra (Footwear / Production Facility)\nCommodity:          Belts\nQuantity:           1,757.0 units\nEstimated Value:    INR 597,380.00\nStatutory e-Way:    MANDATORY (Consignment invoice value exceeds INR 50,000 threshold) (Mandatory for invoice value > INR 50,000)\n\n2. LOGISTICS ROUTING & CARRIER DISPATCH\n--------------------------------------------------------------------------------\nAssigned Carrier:   Yamuna Fast Haulers (Carrier ID: CAR-01)\nVehicle Assigned:   Express Container Fleet\nCorridor Route:     Agra-Lucknow Expressway & NH-19 (Route ID: LANE-03)\nTransit Distance:   285.0 km\nEstimated Transit:  4.1 hours\nBase Toll Charges:  INR 780.00\nTotal Freight Cost: INR 17,048.50\n\n3. REGULATORY COMPLIANCE & POLICY VERIFICATION\n--------------------------------------------------------------------------------\nDelivery SLA:       Enforced per Delivery Service Level Agreement (SLA) by District: 24.0h Standard / 10.0h Rush\nVet Certificate:    CERTIFIED / EXEMPT (Finished commercial leather goods)\nHazmat / Chromium:  NON-HAZARDOUS (Class 8 chemical carriage exemption verified)\nEmergency Subsidy:  ELIGIBLE (15% freight tariff rebate applicable under UP ODOP)\nRerouting / Detour: Direct expressway corridor authorized. No active detour advisory.\nRFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)\n\nAuthorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)\nApproval Reference: PLAN-UP-1E29B5\n================================================================================"
+      },
+      "execution_status": "PAUSED_AWAITING_APPROVAL",
+      "discord_dispatch": {
+        "dispatched": true,
+        "channel": "Local Simulated Approval Queue",
+        "plan_id": "PLAN-UP-1E29B5",
+        "status": "Awaiting Human Approval",
+        "approve_url": "http://0.0.0.0:8000/approval/discord-callback?plan_id=PLAN-UP-1E29B5&action=approve",
+        "reject_url": "http://0.0.0.0:8000/approval/discord-callback?plan_id=PLAN-UP-1E29B5&action=reject",
+        "note": "Discord webhook URL not configured in .env; simulated locally."
+      }
+    },
+    "attached_policies": [
+      {
+        "doc_name": "delivery_sla.md",
+        "title": "Delivery Service Level Agreement (SLA) by District",
+        "section": "A. Agra Footwear Cluster (Destination: Agra)",
+        "similarity_score": 0.586,
+        "cluster_scope": [
+          "Agra",
+          "Kanpur",
+          "Unnao",
+          "Noida"
+        ],
+        "snippet": "- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):** - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses. - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).",
+        "full_clause": "### A. Agra Footwear Cluster (Destination: Agra)\n- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):**\n  - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses.\n  - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).\n  - **Emergency Replenishment SLA:** 8.0 hours when the destination cluster reports inventory below critical reorder threshold (<2 days runway).\n- **Unnao $\\rightarrow$ Agra (`LANE-07`):**\n  - **Standard SLA:** 24.0 hours.\n  - **Priority SLA:** 12.0 hours.\n- **Noida $\\rightarrow$ Agra (`LANE-12`):**\n  - **Standard SLA:** 12.0 hours via Yamuna Expressway.\n  - **Priority SLA:** 6.0 hours."
+      },
+      {
+        "doc_name": "transit_permits.md",
+        "title": "Transit Permit & Statutory Compliance Rules",
+        "section": "A. Electronic Way Bill (e-Way Bill)",
+        "similarity_score": 0.505,
+        "cluster_scope": [
+          "Agra",
+          "Kanpur",
+          "Unnao",
+          "Noida"
+        ],
+        "snippet": "- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR. - **Validity Duration:** - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.",
+        "full_clause": "### A. Electronic Way Bill (e-Way Bill)\n- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR.\n- **Validity Duration:**\n  - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.\n  - 100 km to 300 km (e.g. Kanpur $\\leftrightarrow$ Agra): Valid for 2 calendar days.\n  - Above 300 km (e.g. Kanpur $\\leftrightarrow$ Noida): Valid for 3 calendar days.\n- **Extension Rule:** In the event of documented highway blockades or carrier mechanical breakdown, the carrier must log an e-Way Bill extension within 8 hours of expiry."
+      },
+      {
+        "doc_name": "emergency_freight.md",
+        "title": "Emergency Freight & Stock Rebalancing Policy",
+        "section": "3. Financial Subsidies & ODOP Freight Reimbursement",
+        "similarity_score": 0.415,
+        "cluster_scope": [
+          "Kanpur",
+          "Unnao",
+          "Agra",
+          "Noida"
+        ],
+        "snippet": "1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers. 2. **Fuel Surcharge Cap:** Carrie...",
+        "full_clause": "## 3. Financial Subsidies & ODOP Freight Reimbursement\n1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers.\n2. **Fuel Surcharge Cap:** Carrier diesel fuel escalation surcharges during declared emergency transit are capped at 8% above base contract rates.\n3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the TAN-IX system."
+      },
+      {
+        "doc_name": "approval_limits.md",
+        "title": "Financial Delegation & Human Approval Limits",
+        "section": "2. Authorization Threshold Matrix",
+        "similarity_score": 0.258,
+        "cluster_scope": [],
+        "snippet": "| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow | | :--- | :---: | :--- | :--- | | **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger...",
+        "full_clause": "## 2. Authorization Threshold Matrix\n\n| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow |\n| :--- | :---: | :--- | :--- |\n| **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger with zero human latency. |\n| **Tier 2: Supervisory** | **\u20b910,001.00 \u2013 \u20b950,000.00** | **District Logistics Officer / Supervisor** | Real-time **Human-in-the-Loop (HITL)** approval. Dispatched via interactive Discord webhook card and Dashboard modal. |\n| **Tier 3: Executive** | **> \u20b950,000.00** | **State Directorate / Principal Secretary** | Dual-key executive sign-off. Requires digital authorization from State Control Center. |\n\n---"
+      },
+      {
+        "doc_name": "blockade_handling.md",
+        "title": "Highway Blockade, Flood & Weather Hazard SOP",
+        "section": "A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)",
+        "similarity_score": 0.2,
+        "cluster_scope": [
+          "Agra"
+        ],
+        "snippet": "If `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs: 1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`). 2. The **Intra-State Logistics Agent** is mandate...",
+        "full_clause": "### A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)\nIf `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs:\n1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`).\n2. The **Intra-State Logistics Agent** is mandated to divert all pending and newly dispatched cargo to **`LANE-03-ALT`** (*National Highway NH-19 via Etawah and Shikohabad*).\n3. The carrier must be compensated for the 275 km arterial transit with adjusted toll rates (\u20b9340 base toll vs \u20b9780 expressway toll)."
+      }
+    ],
+    "draft_documentation_package": {
+      "document_type": "FORM_UP_EWAY_01",
+      "permit_id": "UP-EWAY-20261011-12E18D",
+      "consignor": "Kanpur",
+      "consignee": "Agra",
+      "commodity": "belts",
+      "quantity": 1757.0,
+      "unit": "units",
+      "invoice_value_inr": 597380.0,
+      "eway_bill_required": true,
+      "carrier": "Yamuna Fast Haulers",
+      "route_assigned": "Agra-Lucknow Expressway & NH-19",
+      "statutory_clearances": [
+        "FASTag RFID Entry Transponder Verified",
+        "UP Commercial Taxes e-Way Compliance Check Cleared",
+        "ODOP Emergency Freight Rebate (15%) Pre-Authorized"
+      ],
+      "filled_permit_manifest": "================================================================================\n                    GOVERNMENT OF UTTAR PRADESH\n        DEPARTMENT OF COMMERCIAL TAXES & UP TRANSPORT COMMISSION\n             FORM UP-EWAY-01: INTER-DISTRICT TRANSIT PERMIT\n================================================================================\nPermit ID:          UP-EWAY-20261011-12E18D\nIssue Date:         2026-10-11T08:17:45.429619+00:00\nPermit Validity:    48 Hours (2 Calendar Days - Distance 100 to 300 km)\nStatus:             PROVISIONAL_CLEARANCE\n\n1. CONSIGNMENT & COMMODITY SUMMARY\n--------------------------------------------------------------------------------\nOrigin Cluster:     Kanpur (Warehouse / Tannery Hub)\nDestination:        Agra (Footwear / Production Facility)\nCommodity:          Belts\nQuantity:           1,757.0 units\nEstimated Value:    INR 597,380.00\nStatutory e-Way:    MANDATORY (Consignment invoice value exceeds INR 50,000 threshold) (Mandatory for invoice value > INR 50,000)\n\n2. LOGISTICS ROUTING & CARRIER DISPATCH\n--------------------------------------------------------------------------------\nAssigned Carrier:   Yamuna Fast Haulers (Carrier ID: CAR-01)\nVehicle Assigned:   Express Container Fleet\nCorridor Route:     Agra-Lucknow Expressway & NH-19 (Route ID: LANE-03)\nTransit Distance:   285.0 km\nEstimated Transit:  4.1 hours\nBase Toll Charges:  INR 780.00\nTotal Freight Cost: INR 17,048.50\n\n3. REGULATORY COMPLIANCE & POLICY VERIFICATION\n--------------------------------------------------------------------------------\nDelivery SLA:       Enforced per Delivery Service Level Agreement (SLA) by District: 24.0h Standard / 10.0h Rush\nVet Certificate:    CERTIFIED / EXEMPT (Finished commercial leather goods)\nHazmat / Chromium:  NON-HAZARDOUS (Class 8 chemical carriage exemption verified)\nEmergency Subsidy:  ELIGIBLE (15% freight tariff rebate applicable under UP ODOP)\nRerouting / Detour: Direct expressway corridor authorized. No active detour advisory.\nRFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)\n\nAuthorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)\nApproval Reference: PLAN-UP-1E29B5\n================================================================================"
+    },
+    "reasoning_events": [
+      {
+        "step": 1,
+        "event_id": "EVT-01-INIT",
+        "timestamp": "2026-10-11T08:17:45.429771+00:00",
+        "component": "State Master Orchestrator",
+        "action": "ORCHESTRATOR_INITIALIZED",
+        "status": "COMPLETED",
+        "details": "Initiated state assessment cycle under trigger: 'Dashboard demo run'."
+      },
+      {
+        "step": 2,
+        "event_id": "EVT-02-INVENTORY",
+        "timestamp": "2026-10-11T08:17:52.289108+00:00",
+        "component": "District Inventory Agent",
+        "action": "WAREHOUSE_AUDIT",
+        "status": "COMPLETED",
+        "details": "Audited warehouses across UP clusters. Flagged 8 stockout alerts. Formulated 4 inter-district replenishment transfer proposals.",
+        "data_preview": {
+          "deficits_count": 8,
+          "top_deficit": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+        }
+      },
+      {
+        "step": 3,
+        "event_id": "EVT-03-RISK",
+        "timestamp": "2026-10-11T08:17:59.456911+00:00",
+        "component": "Regional Risk Agent",
+        "action": "CORRIDOR_HAZARD_SCAN",
+        "status": "COMPLETED",
+        "details": "Corridor risk assessment complete. Threat Level: CRITICAL_ALERT. Active disruptions: 11. High-risk corridors: LANE-01, LANE-02, LANE-03, LANE-03-ALT, LANE-04, LANE-04-ALT, LANE-06, LANE-08, LANE-10, LANE-11, LANE-12.",
+        "data_preview": {
+          "threat_level": "CRITICAL_ALERT",
+          "high_risk_lanes": [
+            "LANE-01",
+            "LANE-02",
+            "LANE-03",
+            "LANE-03-ALT",
+            "LANE-04",
+            "LANE-04-ALT",
+            "LANE-06",
+            "LANE-08",
+            "LANE-10",
+            "LANE-11",
+            "LANE-12"
+          ]
+        }
+      },
+      {
+        "step": 4,
+        "event_id": "EVT-04-LOGISTICS",
+        "timestamp": "2026-10-11T08:18:06.625188+00:00",
+        "component": "Intra-State Logistics Agent",
+        "action": "EXPRESSWAY_ROUTE_OPTIMIZATION",
+        "status": "COMPLETED",
+        "details": "Synthesized dispatch transfer for 1,757.0 belts from Kanpur to Agra. Route assigned: Agra-Lucknow Expressway & NH-19 (285.0 km) via Yamuna Fast Haulers at INR 17,048.50 (ETA: 4.1h). Status: ROUTE_OPTIMIZED.",
+        "data_preview": {
+          "route": "Agra-Lucknow Expressway & NH-19",
+          "carrier": "Yamuna Fast Haulers",
+          "cost_inr": 17048.5,
+          "eta_hours": 4.1
+        }
+      },
+      {
+        "step": 5,
+        "event_id": "EVT-05-POLICY",
+        "timestamp": "2026-10-11T08:18:06.740383+00:00",
+        "component": "Policy Vector Engine",
+        "action": "STATUTORY_RULE_ATTACHMENT",
+        "status": "COMPLETED",
+        "details": "Attached 5 relevant statutory policy clauses via semantic vector search (Delivery SLAs for Agra, e-Way bill regulations, ODOP 15% rebate, approval matrix).",
+        "data_preview": {
+          "policies_attached_count": 5,
+          "top_documents": [
+            "approval_limits.md",
+            "blockade_handling.md",
+            "delivery_sla.md",
+            "emergency_freight.md",
+            "transit_permits.md"
+          ]
+        }
+      },
+      {
+        "step": 6,
+        "event_id": "EVT-06-DOCUMENTATION",
+        "timestamp": "2026-10-11T08:18:06.742669+00:00",
+        "component": "Documentation Engine",
+        "action": "TRANSIT_PERMIT_GENERATED",
+        "status": "COMPLETED",
+        "details": "Generated Draft Documentation Package Form UP-EWAY-01 (Permit ID: UP-EWAY-20261011-12E18D). Consignment value: INR 597,380.00 (e-Way Bill: MANDATORY). Validity: 48 Hours (2 Calendar Days - Distance 100 to 300 km).",
+        "data_preview": {
+          "permit_id": "UP-EWAY-20261011-12E18D",
+          "invoice_value_inr": 597380.0
+        }
+      },
+      {
+        "step": 7,
+        "event_id": "EVT-07-GOVERNANCE",
+        "timestamp": "2026-10-11T08:18:06.747201+00:00",
+        "component": "Guardrails Engine",
+        "action": "GUARDRAILS_EVALUATION",
+        "status": "COMPLETED",
+        "details": "Evaluated Plan PLAN-UP-1E29B5 against guardrails: TRANSFER_OVER_50K_HUMAN_APPROVAL. Status: pending (Human approval required). Transfer amount INR 17,048.50 meets or exceeds 50,000 INR threshold. Requires human approval.",
+        "data_preview": {
+          "plan_id": "PLAN-UP-1E29B5",
+          "rule": "TRANSFER_OVER_50K_HUMAN_APPROVAL",
+          "approval_status": "pending",
+          "requires_human": true
+        }
+      },
+      {
+        "step": 8,
+        "event_id": "EVT-08-SYNTHESIS",
+        "timestamp": "2026-10-11T08:18:17.375623+00:00",
+        "component": "State Master Orchestrator",
+        "action": "EXECUTIVE_BRIEF_SYNTHESIS",
+        "status": "COMPLETED",
+        "details": "Assembled executive synthesis combining inventory health, corridor risks, and the execution plan."
+      }
+    ],
+    "_id": "RUN-20261011-081745-949A"
+  },
+  {
+    "run_id": "RUN-20261011-075448-3517",
+    "timestamp": "2026-10-11T07:54:48.252785+00:00",
+    "trigger": "Dashboard demo run",
+    "status": "COMPLETED",
+    "summary": "Generated rebalancing plan PLAN-UP-B5E51F (Kanpur -> Agra, 1757.0 belts)",
+    "subagents_output": {
+      "inventory_agent": {
+        "agent": "District Inventory Agent",
+        "status": "ACTION_REQUIRED",
+        "alerts": [
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "belts",
+            "item": "belts",
+            "current_quantity": 180.0,
+            "reorder_point": 1937.0,
+            "deficit": 1757.0,
+            "days_left": 1.1,
+            "unit": "units",
+            "severity": "CRITICAL",
+            "message": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+          },
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 1004.0,
+            "reorder_point": 1351.0,
+            "deficit": 347.0,
+            "days_left": 23.9,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Agra is below reorder point (1004.0 / 1351.0 garments). Estimated runway: 23.9 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 938.0,
+            "reorder_point": 1073.0,
+            "deficit": 135.0,
+            "days_left": 30.1,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Kanpur is below reorder point (938.0 / 1073.0 garments). Estimated runway: 30.1 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1138.0,
+            "reorder_point": 1198.0,
+            "deficit": 60.0,
+            "days_left": 15.2,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Kanpur is below reorder point (1138.0 / 1198.0 units). Estimated runway: 15.2 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 716.0,
+            "reorder_point": 1193.0,
+            "deficit": 477.0,
+            "days_left": 18.8,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Unnao is below reorder point (716.0 / 1193.0 garments). Estimated runway: 18.8 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 983.0,
+            "reorder_point": 1253.0,
+            "deficit": 270.0,
+            "days_left": 15.9,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Unnao is below reorder point (983.0 / 1253.0 units). Estimated runway: 15.9 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 325.0,
+            "reorder_point": 1912.0,
+            "deficit": 1587.0,
+            "days_left": 8.5,
+            "unit": "garments",
+            "severity": "CRITICAL",
+            "message": "Inventory for jackets in Noida is below reorder point (325.0 / 1912.0 garments). Estimated runway: 8.5 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1182.0,
+            "reorder_point": 1230.0,
+            "deficit": 48.0,
+            "days_left": 14.6,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Noida is below reorder point (1182.0 / 1230.0 units). Estimated runway: 14.6 days."
+          }
+        ],
+        "transfer_requests": [
+          {
+            "origin": "Kanpur",
+            "destination": "Agra",
+            "product": "belts",
+            "quantity": 1757.0,
+            "unit": "units",
+            "urgency": "HIGH",
+            "reason": "Replenish Agra belts deficit of 1757.0 units from Kanpur surplus buffer (6800.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Kanpur",
+            "product": "bags",
+            "quantity": 60.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Kanpur bags deficit of 60.0 units from Agra surplus buffer (1136.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Unnao",
+            "product": "bags",
+            "quantity": 270.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Unnao bags deficit of 270.0 units from Agra surplus buffer (1136.0 on hand)."
+          },
+          {
+            "origin": "Agra",
+            "destination": "Noida",
+            "product": "bags",
+            "quantity": 48.0,
+            "unit": "units",
+            "urgency": "MEDIUM",
+            "reason": "Replenish Noida bags deficit of 48.0 units from Agra surplus buffer (1136.0 on hand)."
+          }
+        ],
+        "critical_deficits": [
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "belts",
+            "item": "belts",
+            "current_quantity": 180.0,
+            "reorder_point": 1937.0,
+            "deficit": 1757.0,
+            "days_left": 1.1,
+            "unit": "units",
+            "severity": "CRITICAL",
+            "message": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+          },
+          {
+            "district": "Agra",
+            "cluster": "Agra",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 1004.0,
+            "reorder_point": 1351.0,
+            "deficit": 347.0,
+            "days_left": 23.9,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Agra is below reorder point (1004.0 / 1351.0 garments). Estimated runway: 23.9 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 938.0,
+            "reorder_point": 1073.0,
+            "deficit": 135.0,
+            "days_left": 30.1,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Kanpur is below reorder point (938.0 / 1073.0 garments). Estimated runway: 30.1 days."
+          },
+          {
+            "district": "Kanpur",
+            "cluster": "Kanpur",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1138.0,
+            "reorder_point": 1198.0,
+            "deficit": 60.0,
+            "days_left": 15.2,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Kanpur is below reorder point (1138.0 / 1198.0 units). Estimated runway: 15.2 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 716.0,
+            "reorder_point": 1193.0,
+            "deficit": 477.0,
+            "days_left": 18.8,
+            "unit": "garments",
+            "severity": "WARNING",
+            "message": "Inventory for jackets in Unnao is below reorder point (716.0 / 1193.0 garments). Estimated runway: 18.8 days."
+          },
+          {
+            "district": "Unnao",
+            "cluster": "Unnao",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 983.0,
+            "reorder_point": 1253.0,
+            "deficit": 270.0,
+            "days_left": 15.9,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Unnao is below reorder point (983.0 / 1253.0 units). Estimated runway: 15.9 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "jackets",
+            "item": "jackets",
+            "current_quantity": 325.0,
+            "reorder_point": 1912.0,
+            "deficit": 1587.0,
+            "days_left": 8.5,
+            "unit": "garments",
+            "severity": "CRITICAL",
+            "message": "Inventory for jackets in Noida is below reorder point (325.0 / 1912.0 garments). Estimated runway: 8.5 days."
+          },
+          {
+            "district": "Noida",
+            "cluster": "Noida",
+            "product": "bags",
+            "item": "bags",
+            "current_quantity": 1182.0,
+            "reorder_point": 1230.0,
+            "deficit": 48.0,
+            "days_left": 14.6,
+            "unit": "units",
+            "severity": "WARNING",
+            "message": "Inventory for bags in Noida is below reorder point (1182.0 / 1230.0 units). Estimated runway: 14.6 days."
+          }
+        ],
+        "available_surpluses": [
+          {
+            "cluster": "Kanpur",
+            "item": "belts",
+            "quantity": 1757.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 60.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 270.0,
+            "unit": "units"
+          },
+          {
+            "cluster": "Agra",
+            "item": "bags",
+            "quantity": 48.0,
+            "unit": "units"
+          }
+        ],
+        "critical_deficits_count": 8,
+        "ai_executive_brief": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}"
+      },
+      "risk_agent": {
+        "agent": "Regional Risk Agent",
+        "system_threat_level": "CRITICAL_ALERT",
+        "corridor_risks": {
+          "status": "CRITICAL_ALERT",
+          "active_disruptions_count": 10,
+          "active_disruptions": [
+            {
+              "event_id": "EVT-KNP-01",
+              "title": "UPPCB & NGT Effluent Inspection Shutdown Notice",
+              "location": "Kanpur (Jajmau)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-04",
+                "LANE-04-ALT"
+              ]
+            },
+            {
+              "event_id": "EVT-KNP-02",
+              "title": "Ganges River Basin High Water Discharge Warning",
+              "location": "Kanpur (Shuklaganj)",
+              "severity": "HIGH",
+              "status": "MONITORING",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            },
+            {
+              "event_id": "EVT-KNP-03",
+              "title": "Chrome Tanning Chemical Shortage",
+              "location": "Kanpur (Chakeri)",
+              "severity": "MEDIUM",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-05"
+              ]
+            },
+            {
+              "event_id": "EVT-UNO-01",
+              "title": "UPSIDC CETP Bio-Filter Maintenance",
+              "location": "Unnao (Banthar)",
+              "severity": "MEDIUM",
+              "status": "MONITORING",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            },
+            {
+              "event_id": "EVT-AGR-01",
+              "title": "Dense Winter Fog Night Speed Restrictions",
+              "location": "Agra (Yamuna Expressway Entry)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-11",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "EVT-AGR-02",
+              "title": "Footwear Belt & Upper Raw Component Shortage",
+              "location": "Agra (Sikandra)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-04",
+                "LANE-04-ALT",
+                "LANE-08",
+                "LANE-11"
+              ]
+            },
+            {
+              "event_id": "EVT-NOI-01",
+              "title": "Export Nappa Leather Pre-Christmas Crunch",
+              "location": "Noida (Sector 63)",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-06",
+                "LANE-10",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "EVT-NOI-03",
+              "title": "GRAP Stage-III Diesel Truck Entry Restrictions in NCR",
+              "location": "Noida (Air Cargo Terminal Link)",
+              "severity": "MEDIUM",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-06",
+                "LANE-10",
+                "LANE-12"
+              ]
+            },
+            {
+              "event_id": "DISRUPT-001",
+              "title": "UPPCB & NGT Compliance Notice on Jajmau CETP",
+              "location": "Kanpur",
+              "severity": "HIGH",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-03",
+                "LANE-03-ALT",
+                "LANE-04",
+                "LANE-04-ALT"
+              ]
+            },
+            {
+              "event_id": "DISRUPT-002",
+              "title": "Simulated Emergency: HIGHWAY_BLOCKADE in Unnao",
+              "location": "Unnao",
+              "severity": "CRITICAL",
+              "status": "ACTIVE",
+              "affected_lanes": [
+                "LANE-01",
+                "LANE-02"
+              ]
+            }
+          ],
+          "lane_risk_scores": [
+            {
+              "lane_id": "LANE-01",
+              "route_name": "NH-27 / Ganga Bridge Corridor",
+              "origin": "Kanpur",
+              "destination": "Unnao",
+              "risk_score": 84.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 46200.0
+            },
+            {
+              "lane_id": "LANE-02",
+              "route_name": "NH-27 / Ganga Bridge Corridor",
+              "origin": "Unnao",
+              "destination": "Kanpur",
+              "risk_score": 82.0,
+              "risk_level": "CRITICAL",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 3.5,
+              "estimated_cost_inr": 38500.0
+            },
+            {
+              "lane_id": "LANE-03",
+              "route_name": "Agra-Lucknow Expressway & NH-19",
+              "origin": "Kanpur",
+              "destination": "Agra",
+              "risk_score": 56.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 2,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 8800.0
+            },
+            {
+              "lane_id": "LANE-03-ALT",
+              "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+              "origin": "Kanpur",
+              "destination": "Agra",
+              "risk_score": 56.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 2,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 8800.0
+            },
+            {
+              "lane_id": "LANE-04",
+              "route_name": "Agra-Lucknow Expressway & NH-19",
+              "origin": "Agra",
+              "destination": "Kanpur",
+              "risk_score": 60.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 4,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 17600.0
+            },
+            {
+              "lane_id": "LANE-04-ALT",
+              "route_name": "NH-19 via Etawah & Shikohabad (National Highway Alternative)",
+              "origin": "Agra",
+              "destination": "Kanpur",
+              "risk_score": 60.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 4,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 17600.0
+            },
+            {
+              "lane_id": "LANE-05",
+              "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+              "origin": "Kanpur",
+              "destination": "Noida",
+              "risk_score": 42.0,
+              "risk_level": "MODERATE",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 1.0,
+              "estimated_cost_inr": 11000.0
+            },
+            {
+              "lane_id": "LANE-06",
+              "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+              "origin": "Noida",
+              "destination": "Kanpur",
+              "risk_score": 62.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 22000.0
+            },
+            {
+              "lane_id": "LANE-07",
+              "route_name": "Agra-Lucknow Expressway",
+              "origin": "Unnao",
+              "destination": "Agra",
+              "risk_score": 0.0,
+              "risk_level": "LOW",
+              "is_disrupted": false,
+              "shipments_delayed": 0,
+              "delay_in_days": 0.0,
+              "estimated_cost_inr": 0.0
+            },
+            {
+              "lane_id": "LANE-08",
+              "route_name": "Agra-Lucknow Expressway",
+              "origin": "Agra",
+              "destination": "Unnao",
+              "risk_score": 64.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 26400.0
+            },
+            {
+              "lane_id": "LANE-09",
+              "route_name": "Agra-Lucknow Expway + Yamuna Expway",
+              "origin": "Unnao",
+              "destination": "Noida",
+              "risk_score": 0.0,
+              "risk_level": "LOW",
+              "is_disrupted": false,
+              "shipments_delayed": 0,
+              "delay_in_days": 0.0,
+              "estimated_cost_inr": 0.0
+            },
+            {
+              "lane_id": "LANE-10",
+              "route_name": "Yamuna Expway + Agra-Lucknow Expway",
+              "origin": "Noida",
+              "destination": "Unnao",
+              "risk_score": 62.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 5,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 22000.0
+            },
+            {
+              "lane_id": "LANE-11",
+              "route_name": "Yamuna Expressway",
+              "origin": "Agra",
+              "destination": "Noida",
+              "risk_score": 66.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 7,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 30800.0
+            },
+            {
+              "lane_id": "LANE-12",
+              "route_name": "Yamuna Expressway",
+              "origin": "Noida",
+              "destination": "Agra",
+              "risk_score": 64.0,
+              "risk_level": "ELEVATED",
+              "is_disrupted": true,
+              "shipments_delayed": 6,
+              "delay_in_days": 2.0,
+              "estimated_cost_inr": 26400.0
+            }
+          ],
+          "high_risk_lanes": [
+            "LANE-01",
+            "LANE-02",
+            "LANE-03",
+            "LANE-03-ALT",
+            "LANE-04",
+            "LANE-04-ALT",
+            "LANE-06",
+            "LANE-08",
+            "LANE-10",
+            "LANE-11",
+            "LANE-12"
+          ],
+          "impact_analysis": {
+            "plain_english_summary": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}",
+            "total_shipments_delayed": 57,
+            "max_delay_days": 3.5,
+            "total_cost_impact_inr": 276100.0,
+            "corridor_briefings": [
+              {
+                "lane_id": "LANE-01",
+                "impact": "NH-27 / Ganga Bridge Corridor (Kanpur -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-02",
+                "impact": "NH-27 / Ganga Bridge Corridor (Unnao -> Kanpur) is facing CRITICAL risk (Score: 82.0/100). 5 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 38,500.00.",
+                "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+              },
+              {
+                "lane_id": "LANE-03",
+                "impact": "Agra-Lucknow Expressway & NH-19 (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-03-ALT",
+                "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-04",
+                "impact": "Agra-Lucknow Expressway & NH-19 (Agra -> Kanpur) is facing ELEVATED risk (Score: 60.0/100). 4 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 17,600.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-04-ALT",
+                "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Agra -> Kanpur) is facing ELEVATED risk (Score: 60.0/100). 4 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 17,600.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-05",
+                "impact": "Agra-Lucknow Expway + Yamuna Expway (Kanpur -> Noida) is facing MODERATE risk (Score: 42.0/100). 5 shipments delayed by approximately 1.0 days. Est. demurrage loss: INR 11,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-06",
+                "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Kanpur) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-08",
+                "impact": "Agra-Lucknow Expressway (Agra -> Unnao) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-10",
+                "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Unnao) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-11",
+                "impact": "Yamuna Expressway (Agra -> Noida) is facing ELEVATED risk (Score: 66.0/100). 7 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 30,800.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              },
+              {
+                "lane_id": "LANE-12",
+                "impact": "Yamuna Expressway (Noida -> Agra) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+                "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+              }
+            ],
+            "recommendations": [
+              "Execute autonomous rerouting via secondary national highways (e.g. NH-19 arterial alternatives).",
+              "Buffer finished inventory at Agra footwear assembly lines to prevent production stoppage.",
+              "Prioritize high-reliability carriers over low-cost options during active disruptions."
+            ]
+          }
+        },
+        "active_disruptions_count": 10,
+        "high_risk_lanes": [
+          "LANE-01",
+          "LANE-02",
+          "LANE-03",
+          "LANE-03-ALT",
+          "LANE-04",
+          "LANE-04-ALT",
+          "LANE-06",
+          "LANE-08",
+          "LANE-10",
+          "LANE-11",
+          "LANE-12"
+        ],
+        "impact_analysis": {
+          "plain_english_summary": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}",
+          "total_shipments_delayed": 57,
+          "max_delay_days": 3.5,
+          "total_cost_impact_inr": 276100.0,
+          "corridor_briefings": [
+            {
+              "lane_id": "LANE-01",
+              "impact": "NH-27 / Ganga Bridge Corridor (Kanpur -> Unnao) is facing CRITICAL risk (Score: 84.0/100). 6 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 46,200.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-02",
+              "impact": "NH-27 / Ganga Bridge Corridor (Unnao -> Kanpur) is facing CRITICAL risk (Score: 82.0/100). 5 shipments delayed by approximately 3.5 days. Est. demurrage loss: INR 38,500.00.",
+              "recommended_action": "Immediately detour freight through alternative corridors or pause dispatches."
+            },
+            {
+              "lane_id": "LANE-03",
+              "impact": "Agra-Lucknow Expressway & NH-19 (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-03-ALT",
+              "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Kanpur -> Agra) is facing ELEVATED risk (Score: 56.0/100). 2 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 8,800.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-04",
+              "impact": "Agra-Lucknow Expressway & NH-19 (Agra -> Kanpur) is facing ELEVATED risk (Score: 60.0/100). 4 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 17,600.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-04-ALT",
+              "impact": "NH-19 via Etawah & Shikohabad (National Highway Alternative) (Agra -> Kanpur) is facing ELEVATED risk (Score: 60.0/100). 4 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 17,600.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-05",
+              "impact": "Agra-Lucknow Expway + Yamuna Expway (Kanpur -> Noida) is facing MODERATE risk (Score: 42.0/100). 5 shipments delayed by approximately 1.0 days. Est. demurrage loss: INR 11,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-06",
+              "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Kanpur) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-08",
+              "impact": "Agra-Lucknow Expressway (Agra -> Unnao) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-10",
+              "impact": "Yamuna Expway + Agra-Lucknow Expway (Noida -> Unnao) is facing ELEVATED risk (Score: 62.0/100). 5 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 22,000.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-11",
+              "impact": "Yamuna Expressway (Agra -> Noida) is facing ELEVATED risk (Score: 66.0/100). 7 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 30,800.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            },
+            {
+              "lane_id": "LANE-12",
+              "impact": "Yamuna Expressway (Noida -> Agra) is facing ELEVATED risk (Score: 64.0/100). 6 shipments delayed by approximately 2.0 days. Est. demurrage loss: INR 26,400.00.",
+              "recommended_action": "Switch to high-reliability carrier and monitor transit checkpoints."
+            }
+          ],
+          "recommendations": [
+            "Execute autonomous rerouting via secondary national highways (e.g. NH-19 arterial alternatives).",
+            "Buffer finished inventory at Agra footwear assembly lines to prevent production stoppage.",
+            "Prioritize high-reliability carriers over low-cost options during active disruptions."
+          ]
+        },
+        "ai_risk_brief": "Exception: Failed to get response from Gemini - 404 NOT_FOUND. {'error': {'code': 404, 'message': 'Publisher model `projects/tan-ix/locations/us-central1/publishers/google/models/gemini-3.1-flash` was not found or your project does not have access to it. Ensure you are using a valid model name and that the model is available in the specified region. For more information, see: https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations.', 'status': 'NOT_FOUND'}}"
+      },
+      "logistics_agent": {
+        "status": "ROUTE_OPTIMIZED",
+        "origin": "Kanpur",
+        "destination": "Agra",
+        "product": "belts",
+        "quantity": 1757.0,
+        "best_route": {
+          "route_id": "LANE-03",
+          "route_name": "Agra-Lucknow Expressway & NH-19",
+          "distance_km": 285.0,
+          "toll_inr": 780.0
+        },
+        "carrier": {
+          "carrier_id": "CAR-01",
+          "carrier_name": "Yamuna Fast Haulers",
+          "reliability_pct": 96.0,
+          "vehicle_assigned": "Express Container Fleet"
+        },
+        "cost_inr": 17048.5,
+        "eta_hours": 4.1,
+        "decision_rationale": "Leveraging the optimized Agra-Lucknow Expressway, this dispatch via Yamuna Fast Haulers ensures swift transit for 1757 leather belts from Kanpur to Agra. This selection prioritizes speed and reliability, delivering the critical shipment in just 4.1 hours to maintain the tight production and distribution schedules vital for our UP leather corridor."
+      }
+    },
+    "final_plan": {
+      "plan_id": "PLAN-UP-B5E51F",
+      "action": "INTER_CLUSTER_STOCK_REBALANCE",
+      "origin": "Kanpur",
+      "destination": "Agra",
+      "item": "belts",
+      "product": "belts",
+      "quantity": 1757.0,
+      "unit": "units",
+      "estimated_cost_inr": 17048.5,
+      "odop_rebate_inr": 2557.28,
+      "net_cost_inr": 14491.22,
+      "transit_hours": 4.1,
+      "route_name": "Agra-Lucknow Expressway & NH-19",
+      "carrier": "Yamuna Fast Haulers",
+      "logistics_status": "ROUTE_OPTIMIZED",
+      "approval_tier": "REQUIRES_HUMAN_APPROVAL",
+      "approval_status": "PENDING",
+      "guardrail_rule": "TRANSFER_OVER_50K_HUMAN_APPROVAL",
+      "governance_note": "Transfer amount INR 17,048.50 meets or exceeds 50,000 INR threshold. Requires human approval.",
+      "risk_justification": "Replenish Agra belts deficit. Corridor threat level at planning time covers 11 high-risk lane(s). Detour routing: Not required.",
+      "logistics_details": {
+        "status": "ROUTE_OPTIMIZED",
+        "origin": "Kanpur",
+        "destination": "Agra",
+        "product": "belts",
+        "quantity": 1757.0,
+        "best_route": {
+          "route_id": "LANE-03",
+          "route_name": "Agra-Lucknow Expressway & NH-19",
+          "distance_km": 285.0,
+          "toll_inr": 780.0
+        },
+        "carrier": {
+          "carrier_id": "CAR-01",
+          "carrier_name": "Yamuna Fast Haulers",
+          "reliability_pct": 96.0,
+          "vehicle_assigned": "Express Container Fleet"
+        },
+        "cost_inr": 17048.5,
+        "eta_hours": 4.1,
+        "decision_rationale": "Leveraging the optimized Agra-Lucknow Expressway, this dispatch via Yamuna Fast Haulers ensures swift transit for 1757 leather belts from Kanpur to Agra. This selection prioritizes speed and reliability, delivering the critical shipment in just 4.1 hours to maintain the tight production and distribution schedules vital for our UP leather corridor."
+      },
+      "attached_policies": [
+        {
+          "doc_name": "delivery_sla.md",
+          "title": "Delivery Service Level Agreement (SLA) by District",
+          "section": "A. Agra Footwear Cluster (Destination: Agra)",
+          "similarity_score": 0.586,
+          "cluster_scope": [
+            "Agra",
+            "Kanpur",
+            "Unnao",
+            "Noida"
+          ],
+          "snippet": "- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):** - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses. - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).",
+          "full_clause": "### A. Agra Footwear Cluster (Destination: Agra)\n- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):**\n  - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses.\n  - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).\n  - **Emergency Replenishment SLA:** 8.0 hours when the destination cluster reports inventory below critical reorder threshold (<2 days runway).\n- **Unnao $\\rightarrow$ Agra (`LANE-07`):**\n  - **Standard SLA:** 24.0 hours.\n  - **Priority SLA:** 12.0 hours.\n- **Noida $\\rightarrow$ Agra (`LANE-12`):**\n  - **Standard SLA:** 12.0 hours via Yamuna Expressway.\n  - **Priority SLA:** 6.0 hours."
+        },
+        {
+          "doc_name": "transit_permits.md",
+          "title": "Transit Permit & Statutory Compliance Rules",
+          "section": "A. Electronic Way Bill (e-Way Bill)",
+          "similarity_score": 0.505,
+          "cluster_scope": [
+            "Agra",
+            "Kanpur",
+            "Unnao",
+            "Noida"
+          ],
+          "snippet": "- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR. - **Validity Duration:** - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.",
+          "full_clause": "### A. Electronic Way Bill (e-Way Bill)\n- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR.\n- **Validity Duration:**\n  - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.\n  - 100 km to 300 km (e.g. Kanpur $\\leftrightarrow$ Agra): Valid for 2 calendar days.\n  - Above 300 km (e.g. Kanpur $\\leftrightarrow$ Noida): Valid for 3 calendar days.\n- **Extension Rule:** In the event of documented highway blockades or carrier mechanical breakdown, the carrier must log an e-Way Bill extension within 8 hours of expiry."
+        },
+        {
+          "doc_name": "emergency_freight.md",
+          "title": "Emergency Freight & Stock Rebalancing Policy",
+          "section": "3. Financial Subsidies & ODOP Freight Reimbursement",
+          "similarity_score": 0.415,
+          "cluster_scope": [
+            "Kanpur",
+            "Unnao",
+            "Agra",
+            "Noida"
+          ],
+          "snippet": "1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers. 2. **Fuel Surcharge Cap:** Carrie...",
+          "full_clause": "## 3. Financial Subsidies & ODOP Freight Reimbursement\n1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers.\n2. **Fuel Surcharge Cap:** Carrier diesel fuel escalation surcharges during declared emergency transit are capped at 8% above base contract rates.\n3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the TAN-IX system."
+        },
+        {
+          "doc_name": "approval_limits.md",
+          "title": "Financial Delegation & Human Approval Limits",
+          "section": "2. Authorization Threshold Matrix",
+          "similarity_score": 0.258,
+          "cluster_scope": [],
+          "snippet": "| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow | | :--- | :---: | :--- | :--- | | **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger...",
+          "full_clause": "## 2. Authorization Threshold Matrix\n\n| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow |\n| :--- | :---: | :--- | :--- |\n| **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger with zero human latency. |\n| **Tier 2: Supervisory** | **\u20b910,001.00 \u2013 \u20b950,000.00** | **District Logistics Officer / Supervisor** | Real-time **Human-in-the-Loop (HITL)** approval. Dispatched via interactive Discord webhook card and Dashboard modal. |\n| **Tier 3: Executive** | **> \u20b950,000.00** | **State Directorate / Principal Secretary** | Dual-key executive sign-off. Requires digital authorization from State Control Center. |\n\n---"
+        },
+        {
+          "doc_name": "blockade_handling.md",
+          "title": "Highway Blockade, Flood & Weather Hazard SOP",
+          "section": "A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)",
+          "similarity_score": 0.2,
+          "cluster_scope": [
+            "Agra"
+          ],
+          "snippet": "If `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs: 1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`). 2. The **Intra-State Logistics Agent** is mandate...",
+          "full_clause": "### A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)\nIf `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs:\n1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`).\n2. The **Intra-State Logistics Agent** is mandated to divert all pending and newly dispatched cargo to **`LANE-03-ALT`** (*National Highway NH-19 via Etawah and Shikohabad*).\n3. The carrier must be compensated for the 275 km arterial transit with adjusted toll rates (\u20b9340 base toll vs \u20b9780 expressway toll)."
+        }
+      ],
+      "documentation_package": {
+        "document_type": "FORM_UP_EWAY_01",
+        "permit_id": "UP-EWAY-20261011-1933DA",
+        "consignor": "Kanpur",
+        "consignee": "Agra",
+        "commodity": "belts",
+        "quantity": 1757.0,
+        "unit": "units",
+        "invoice_value_inr": 597380.0,
+        "eway_bill_required": true,
+        "carrier": "Yamuna Fast Haulers",
+        "route_assigned": "Agra-Lucknow Expressway & NH-19",
+        "statutory_clearances": [
+          "FASTag RFID Entry Transponder Verified",
+          "UP Commercial Taxes e-Way Compliance Check Cleared",
+          "ODOP Emergency Freight Rebate (15%) Pre-Authorized"
+        ],
+        "filled_permit_manifest": "================================================================================\n                    GOVERNMENT OF UTTAR PRADESH\n        DEPARTMENT OF COMMERCIAL TAXES & UP TRANSPORT COMMISSION\n             FORM UP-EWAY-01: INTER-DISTRICT TRANSIT PERMIT\n================================================================================\nPermit ID:          UP-EWAY-20261011-1933DA\nIssue Date:         2026-10-11T07:54:48.252785+00:00\nPermit Validity:    48 Hours (2 Calendar Days - Distance 100 to 300 km)\nStatus:             PROVISIONAL_CLEARANCE\n\n1. CONSIGNMENT & COMMODITY SUMMARY\n--------------------------------------------------------------------------------\nOrigin Cluster:     Kanpur (Warehouse / Tannery Hub)\nDestination:        Agra (Footwear / Production Facility)\nCommodity:          Belts\nQuantity:           1,757.0 units\nEstimated Value:    INR 597,380.00\nStatutory e-Way:    MANDATORY (Consignment invoice value exceeds INR 50,000 threshold) (Mandatory for invoice value > INR 50,000)\n\n2. LOGISTICS ROUTING & CARRIER DISPATCH\n--------------------------------------------------------------------------------\nAssigned Carrier:   Yamuna Fast Haulers (Carrier ID: CAR-01)\nVehicle Assigned:   Express Container Fleet\nCorridor Route:     Agra-Lucknow Expressway & NH-19 (Route ID: LANE-03)\nTransit Distance:   285.0 km\nEstimated Transit:  4.1 hours\nBase Toll Charges:  INR 780.00\nTotal Freight Cost: INR 17,048.50\n\n3. REGULATORY COMPLIANCE & POLICY VERIFICATION\n--------------------------------------------------------------------------------\nDelivery SLA:       Enforced per Delivery Service Level Agreement (SLA) by District: 24.0h Standard / 10.0h Rush\nVet Certificate:    CERTIFIED / EXEMPT (Finished commercial leather goods)\nHazmat / Chromium:  NON-HAZARDOUS (Class 8 chemical carriage exemption verified)\nEmergency Subsidy:  ELIGIBLE (15% freight tariff rebate applicable under UP ODOP)\nRerouting / Detour: Direct expressway corridor authorized. No active detour advisory.\nRFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)\n\nAuthorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)\nApproval Reference: PLAN-UP-B5E51F\n================================================================================"
+      },
+      "execution_status": "PAUSED_AWAITING_APPROVAL",
+      "discord_dispatch": {
+        "dispatched": true,
+        "channel": "Local Simulated Approval Queue",
+        "plan_id": "PLAN-UP-B5E51F",
+        "status": "Awaiting Human Approval",
+        "approve_url": "http://0.0.0.0:8000/approval/discord-callback?plan_id=PLAN-UP-B5E51F&action=approve",
+        "reject_url": "http://0.0.0.0:8000/approval/discord-callback?plan_id=PLAN-UP-B5E51F&action=reject",
+        "note": "Discord webhook URL not configured in .env; simulated locally."
+      }
+    },
+    "attached_policies": [
+      {
+        "doc_name": "delivery_sla.md",
+        "title": "Delivery Service Level Agreement (SLA) by District",
+        "section": "A. Agra Footwear Cluster (Destination: Agra)",
+        "similarity_score": 0.586,
+        "cluster_scope": [
+          "Agra",
+          "Kanpur",
+          "Unnao",
+          "Noida"
+        ],
+        "snippet": "- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):** - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses. - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).",
+        "full_clause": "### A. Agra Footwear Cluster (Destination: Agra)\n- **Kanpur $\\rightarrow$ Agra (`LANE-03` / `LANE-03-ALT`):**\n  - **Standard SLA:** 24.0 hours from dispatch timestamp to gate receipt at Sikandra / Hing Ki Mandi warehouses.\n  - **Priority / Rush SLA:** 10.0 hours maximum via the Agra-Lucknow Expressway (`LANE-03`).\n  - **Emergency Replenishment SLA:** 8.0 hours when the destination cluster reports inventory below critical reorder threshold (<2 days runway).\n- **Unnao $\\rightarrow$ Agra (`LANE-07`):**\n  - **Standard SLA:** 24.0 hours.\n  - **Priority SLA:** 12.0 hours.\n- **Noida $\\rightarrow$ Agra (`LANE-12`):**\n  - **Standard SLA:** 12.0 hours via Yamuna Expressway.\n  - **Priority SLA:** 6.0 hours."
+      },
+      {
+        "doc_name": "transit_permits.md",
+        "title": "Transit Permit & Statutory Compliance Rules",
+        "section": "A. Electronic Way Bill (e-Way Bill)",
+        "similarity_score": 0.505,
+        "cluster_scope": [
+          "Agra",
+          "Kanpur",
+          "Unnao",
+          "Noida"
+        ],
+        "snippet": "- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR. - **Validity Duration:** - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.",
+        "full_clause": "### A. Electronic Way Bill (e-Way Bill)\n- **Threshold:** Mandated for every consignment whose invoice value exceeds \u20b950,000 INR.\n- **Validity Duration:**\n  - Up to 100 km (e.g. Kanpur $\\leftrightarrow$ Unnao): Valid for 1 calendar day.\n  - 100 km to 300 km (e.g. Kanpur $\\leftrightarrow$ Agra): Valid for 2 calendar days.\n  - Above 300 km (e.g. Kanpur $\\leftrightarrow$ Noida): Valid for 3 calendar days.\n- **Extension Rule:** In the event of documented highway blockades or carrier mechanical breakdown, the carrier must log an e-Way Bill extension within 8 hours of expiry."
+      },
+      {
+        "doc_name": "emergency_freight.md",
+        "title": "Emergency Freight & Stock Rebalancing Policy",
+        "section": "3. Financial Subsidies & ODOP Freight Reimbursement",
+        "similarity_score": 0.415,
+        "cluster_scope": [
+          "Kanpur",
+          "Unnao",
+          "Agra",
+          "Noida"
+        ],
+        "snippet": "1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers. 2. **Fuel Surcharge Cap:** Carrie...",
+        "full_clause": "## 3. Financial Subsidies & ODOP Freight Reimbursement\n1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers.\n2. **Fuel Surcharge Cap:** Carrier diesel fuel escalation surcharges during declared emergency transit are capped at 8% above base contract rates.\n3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the TAN-IX system."
+      },
+      {
+        "doc_name": "approval_limits.md",
+        "title": "Financial Delegation & Human Approval Limits",
+        "section": "2. Authorization Threshold Matrix",
+        "similarity_score": 0.258,
+        "cluster_scope": [],
+        "snippet": "| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow | | :--- | :---: | :--- | :--- | | **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger...",
+        "full_clause": "## 2. Authorization Threshold Matrix\n\n| Authority Tier | Expenditure Range (INR) | Authorizer / Approver | Governance Workflow |\n| :--- | :---: | :--- | :--- |\n| **Tier 1: Autonomous** | **$\\le$ \u20b910,000.00** | **State Master Orchestrator (AI)** | Fully autonomous dispatch. Logged immediately to Firestore audit ledger with zero human latency. |\n| **Tier 2: Supervisory** | **\u20b910,001.00 \u2013 \u20b950,000.00** | **District Logistics Officer / Supervisor** | Real-time **Human-in-the-Loop (HITL)** approval. Dispatched via interactive Discord webhook card and Dashboard modal. |\n| **Tier 3: Executive** | **> \u20b950,000.00** | **State Directorate / Principal Secretary** | Dual-key executive sign-off. Requires digital authorization from State Control Center. |\n\n---"
+      },
+      {
+        "doc_name": "blockade_handling.md",
+        "title": "Highway Blockade, Flood & Weather Hazard SOP",
+        "section": "A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)",
+        "similarity_score": 0.2,
+        "cluster_scope": [
+          "Agra"
+        ],
+        "snippet": "If `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs: 1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`). 2. The **Intra-State Logistics Agent** is mandate...",
+        "full_clause": "### A. Agra-Lucknow Expressway Blockade Protocol (`LANE-03`)\nIf `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, multi-vehicle pileups, or structural bridge repairs:\n1. The **Regional Risk Agent** immediately updates the lane risk score to $\\ge 75.0$ (`CRITICAL`).\n2. The **Intra-State Logistics Agent** is mandated to divert all pending and newly dispatched cargo to **`LANE-03-ALT`** (*National Highway NH-19 via Etawah and Shikohabad*).\n3. The carrier must be compensated for the 275 km arterial transit with adjusted toll rates (\u20b9340 base toll vs \u20b9780 expressway toll)."
+      }
+    ],
+    "draft_documentation_package": {
+      "document_type": "FORM_UP_EWAY_01",
+      "permit_id": "UP-EWAY-20261011-1933DA",
+      "consignor": "Kanpur",
+      "consignee": "Agra",
+      "commodity": "belts",
+      "quantity": 1757.0,
+      "unit": "units",
+      "invoice_value_inr": 597380.0,
+      "eway_bill_required": true,
+      "carrier": "Yamuna Fast Haulers",
+      "route_assigned": "Agra-Lucknow Expressway & NH-19",
+      "statutory_clearances": [
+        "FASTag RFID Entry Transponder Verified",
+        "UP Commercial Taxes e-Way Compliance Check Cleared",
+        "ODOP Emergency Freight Rebate (15%) Pre-Authorized"
+      ],
+      "filled_permit_manifest": "================================================================================\n                    GOVERNMENT OF UTTAR PRADESH\n        DEPARTMENT OF COMMERCIAL TAXES & UP TRANSPORT COMMISSION\n             FORM UP-EWAY-01: INTER-DISTRICT TRANSIT PERMIT\n================================================================================\nPermit ID:          UP-EWAY-20261011-1933DA\nIssue Date:         2026-10-11T07:54:48.252785+00:00\nPermit Validity:    48 Hours (2 Calendar Days - Distance 100 to 300 km)\nStatus:             PROVISIONAL_CLEARANCE\n\n1. CONSIGNMENT & COMMODITY SUMMARY\n--------------------------------------------------------------------------------\nOrigin Cluster:     Kanpur (Warehouse / Tannery Hub)\nDestination:        Agra (Footwear / Production Facility)\nCommodity:          Belts\nQuantity:           1,757.0 units\nEstimated Value:    INR 597,380.00\nStatutory e-Way:    MANDATORY (Consignment invoice value exceeds INR 50,000 threshold) (Mandatory for invoice value > INR 50,000)\n\n2. LOGISTICS ROUTING & CARRIER DISPATCH\n--------------------------------------------------------------------------------\nAssigned Carrier:   Yamuna Fast Haulers (Carrier ID: CAR-01)\nVehicle Assigned:   Express Container Fleet\nCorridor Route:     Agra-Lucknow Expressway & NH-19 (Route ID: LANE-03)\nTransit Distance:   285.0 km\nEstimated Transit:  4.1 hours\nBase Toll Charges:  INR 780.00\nTotal Freight Cost: INR 17,048.50\n\n3. REGULATORY COMPLIANCE & POLICY VERIFICATION\n--------------------------------------------------------------------------------\nDelivery SLA:       Enforced per Delivery Service Level Agreement (SLA) by District: 24.0h Standard / 10.0h Rush\nVet Certificate:    CERTIFIED / EXEMPT (Finished commercial leather goods)\nHazmat / Chromium:  NON-HAZARDOUS (Class 8 chemical carriage exemption verified)\nEmergency Subsidy:  ELIGIBLE (15% freight tariff rebate applicable under UP ODOP)\nRerouting / Detour: Direct expressway corridor authorized. No active detour advisory.\nRFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)\n\nAuthorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)\nApproval Reference: PLAN-UP-B5E51F\n================================================================================"
+    },
+    "reasoning_events": [
+      {
+        "step": 1,
+        "event_id": "EVT-01-INIT",
+        "timestamp": "2026-10-11T07:54:48.252880+00:00",
+        "component": "State Master Orchestrator",
+        "action": "ORCHESTRATOR_INITIALIZED",
+        "status": "COMPLETED",
+        "details": "Initiated state assessment cycle under trigger: 'Dashboard demo run'."
+      },
+      {
+        "step": 2,
+        "event_id": "EVT-02-INVENTORY",
+        "timestamp": "2026-10-11T07:54:58.221350+00:00",
+        "component": "District Inventory Agent",
+        "action": "WAREHOUSE_AUDIT",
+        "status": "COMPLETED",
+        "details": "Audited warehouses across UP clusters. Flagged 8 stockout alerts. Formulated 4 inter-district replenishment transfer proposals.",
+        "data_preview": {
+          "deficits_count": 8,
+          "top_deficit": "Inventory for belts in Agra is below reorder point (180.0 / 1937.0 units). Estimated runway: 1.1 days."
+        }
+      },
+      {
+        "step": 3,
+        "event_id": "EVT-03-RISK",
+        "timestamp": "2026-10-11T07:55:05.641089+00:00",
+        "component": "Regional Risk Agent",
+        "action": "CORRIDOR_HAZARD_SCAN",
+        "status": "COMPLETED",
+        "details": "Corridor risk assessment complete. Threat Level: CRITICAL_ALERT. Active disruptions: 10. High-risk corridors: LANE-01, LANE-02, LANE-03, LANE-03-ALT, LANE-04, LANE-04-ALT, LANE-06, LANE-08, LANE-10, LANE-11, LANE-12.",
+        "data_preview": {
+          "threat_level": "CRITICAL_ALERT",
+          "high_risk_lanes": [
+            "LANE-01",
+            "LANE-02",
+            "LANE-03",
+            "LANE-03-ALT",
+            "LANE-04",
+            "LANE-04-ALT",
+            "LANE-06",
+            "LANE-08",
+            "LANE-10",
+            "LANE-11",
+            "LANE-12"
+          ]
+        }
+      },
+      {
+        "step": 4,
+        "event_id": "EVT-04-LOGISTICS",
+        "timestamp": "2026-10-11T07:55:14.616100+00:00",
+        "component": "Intra-State Logistics Agent",
+        "action": "EXPRESSWAY_ROUTE_OPTIMIZATION",
+        "status": "COMPLETED",
+        "details": "Synthesized dispatch transfer for 1,757.0 belts from Kanpur to Agra. Route assigned: Agra-Lucknow Expressway & NH-19 (285.0 km) via Yamuna Fast Haulers at INR 17,048.50 (ETA: 4.1h). Status: ROUTE_OPTIMIZED.",
+        "data_preview": {
+          "route": "Agra-Lucknow Expressway & NH-19",
+          "carrier": "Yamuna Fast Haulers",
+          "cost_inr": 17048.5,
+          "eta_hours": 4.1
+        }
+      },
+      {
+        "step": 5,
+        "event_id": "EVT-05-POLICY",
+        "timestamp": "2026-10-11T07:55:14.784718+00:00",
+        "component": "Policy Vector Engine",
+        "action": "STATUTORY_RULE_ATTACHMENT",
+        "status": "COMPLETED",
+        "details": "Attached 5 relevant statutory policy clauses via semantic vector search (Delivery SLAs for Agra, e-Way bill regulations, ODOP 15% rebate, approval matrix).",
+        "data_preview": {
+          "policies_attached_count": 5,
+          "top_documents": [
+            "approval_limits.md",
+            "blockade_handling.md",
+            "delivery_sla.md",
+            "emergency_freight.md",
+            "transit_permits.md"
+          ]
+        }
+      },
+      {
+        "step": 6,
+        "event_id": "EVT-06-DOCUMENTATION",
+        "timestamp": "2026-10-11T07:55:14.812885+00:00",
+        "component": "Documentation Engine",
+        "action": "TRANSIT_PERMIT_GENERATED",
+        "status": "COMPLETED",
+        "details": "Generated Draft Documentation Package Form UP-EWAY-01 (Permit ID: UP-EWAY-20261011-1933DA). Consignment value: INR 597,380.00 (e-Way Bill: MANDATORY). Validity: 48 Hours (2 Calendar Days - Distance 100 to 300 km).",
+        "data_preview": {
+          "permit_id": "UP-EWAY-20261011-1933DA",
+          "invoice_value_inr": 597380.0
+        }
+      },
+      {
+        "step": 7,
+        "event_id": "EVT-07-GOVERNANCE",
+        "timestamp": "2026-10-11T07:55:14.819512+00:00",
+        "component": "Guardrails Engine",
+        "action": "GUARDRAILS_EVALUATION",
+        "status": "COMPLETED",
+        "details": "Evaluated Plan PLAN-UP-B5E51F against guardrails: TRANSFER_OVER_50K_HUMAN_APPROVAL. Status: pending (Human approval required). Transfer amount INR 17,048.50 meets or exceeds 50,000 INR threshold. Requires human approval.",
+        "data_preview": {
+          "plan_id": "PLAN-UP-B5E51F",
+          "rule": "TRANSFER_OVER_50K_HUMAN_APPROVAL",
+          "approval_status": "pending",
+          "requires_human": true
+        }
+      },
+      {
+        "step": 8,
+        "event_id": "EVT-08-SYNTHESIS",
+        "timestamp": "2026-10-11T07:55:33.800172+00:00",
+        "component": "State Master Orchestrator",
+        "action": "EXECUTIVE_BRIEF_SYNTHESIS",
+        "status": "COMPLETED",
+        "details": "Assembled executive synthesis combining inventory health, corridor risks, and the execution plan."
+      }
+    ],
+    "_id": "RUN-20261011-075448-3517"
+  },
+  {
     "run_id": "RUN-20261011-072115-D436",
     "timestamp": "2026-10-11T07:21:15.568145+00:00",
     "trigger": "Dashboard demo run",

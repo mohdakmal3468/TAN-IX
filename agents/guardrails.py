@@ -40,8 +40,8 @@ from tools.firestore_client import set_document, get_document, list_documents
 from tools.discord_tools import PENDING_APPROVALS
 
 # Constants
-TRANSFER_AUTO_LIMIT_INR = 50000.0
-PURCHASE_ORDER_LIMIT_INR = 50000.0
+TRANSFER_AUTO_LIMIT_INR = 5000.0
+PURCHASE_ORDER_LIMIT_INR = 5000.0
 REROUTE_MAX_COST_INCREASE_PCT = 30.0
 
 VALID_STATUSES = ("pending", "approved", "rejected")
