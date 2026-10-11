@@ -1,4 +1,4 @@
-# TAN-IX (Tannery Intelligent eXchange)
+# AgentHide (Tannery Intelligent eXchange)
 ### State-Level Multi-Agent Supply Chain Risk & Inventory Manager for Leather Goods
 **Focus Region: Uttar Pradesh Leather Clusters (Kanpur, Unnao, Agra, Noida)**
 
