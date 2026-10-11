@@ -1,7 +1,7 @@
 """
 tools/inventory_tools.py
 ------------------------
-Autonomous inventory tools for Google ADK and TAN-IX agents.
+Autonomous inventory tools for Google ADK and AgentHide agents.
 All functions include explicit type hints and detailed Google-style docstrings
 so that Google ADK and Gemini can inspect and convert them into
 accurate function declarations.

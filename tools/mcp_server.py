@@ -1,7 +1,7 @@
 """
 tools/mcp_server.py
 -------------------
-Model Context Protocol (MCP) Server for the TAN-IX UP Leather Supply Chain.
+Model Context Protocol (MCP) Server for the AgentHide UP Leather Supply Chain.
 Exposes standardized MCP tools for:
 1. firestore_read(collection, doc_id, limit) -> Reads collections or documents
 2. firestore_write(collection, doc_id, data, merge) -> Writes or merges documents
@@ -47,7 +47,7 @@ DATA_DIR = os.path.join(ROOT_DIR, "data")
 SQLITE_DB_PATH = os.path.join(DATA_DIR, "leather_logistics.db")
 
 # Initialize Model Context Protocol Server
-server = MCPServer("tan-ix-logistics-mcp")
+server = MCPServer("agenthide-logistics-mcp")
 
 
 # ==============================================================================

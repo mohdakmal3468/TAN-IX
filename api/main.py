@@ -1,7 +1,7 @@
 """
 api/main.py
 -----------
-FastAPI backend service for TAN-IX:
+FastAPI backend service for AgentHide:
 State-Level Multi-Agent Supply Chain Risk & Inventory Manager for UP Leather Goods.
 
 Core Endpoints:
@@ -69,7 +69,7 @@ MOCK_DIR = os.path.join(DATA_DIR, "firestore_mock")
 
 # Initialize FastAPI application
 app = FastAPI(
-    title="TAN-IX Multi-Agent Supply Chain Engine",
+    title="AgentHide Multi-Agent Supply Chain Engine",
     description="State-Level Multi-Agent Supply Chain Risk & Inventory Manager for Uttar Pradesh Leather Goods",
     version="1.3.0",
     docs_url="/docs",
@@ -96,7 +96,7 @@ orchestrator = StateMasterOrchestrator()
 def root():
     """Welcome and system metadata endpoint."""
     return {
-        "system": "TAN-IX (Tannery Intelligent eXchange)",
+        "system": "AgentHide (Tannery Intelligent eXchange)",
         "region": "Uttar Pradesh Leather Corridor (Kanpur, Unnao, Agra, Noida)",
         "status": "Operational",
         "documentation": "/docs",
@@ -109,7 +109,7 @@ def health_check():
     """Health check endpoint to verify backend service liveness."""
     return {
         "status": "ok",
-        "service": "TAN-IX Multi-Agent API",
+        "service": "AgentHide Multi-Agent API",
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
 
@@ -729,7 +729,7 @@ def discord_approval_callback(plan_id: str = Query(...), action: str = Query(...
             """
         return f"""
         <html>
-            <head><title>TAN-IX Authorization</title></head>
+            <head><title>AgentHide Authorization</title></head>
             <body style="font-family: 'Segoe UI', Arial; padding: 40px; background: #f0fdf4; color: #166534; text-align: center;">
                 <div style="background: white; border: 2px solid #22c55e; border-radius: 12px; padding: 30px; max-width: 600px; margin: 0 auto;">
                     <h1 style="color: #15803d; margin-bottom: 8px;">Plan Authorized by Human Supervisor</h1>
@@ -752,7 +752,7 @@ def discord_approval_callback(plan_id: str = Query(...), action: str = Query(...
             PENDING_APPROVALS[plan_id]["approval_status"] = "REJECTED"
         return f"""
         <html>
-            <head><title>TAN-IX Plan Rejected</title></head>
+            <head><title>AgentHide Plan Rejected</title></head>
             <body style="font-family: 'Segoe UI', Arial; padding: 40px; background: #fef2f2; color: #991b1b; text-align: center;">
                 <div style="background: white; border: 2px solid #ef4444; border-radius: 12px; padding: 30px; max-width: 600px; margin: 0 auto;">
                     <h1>Transfer Plan Rejected</h1>

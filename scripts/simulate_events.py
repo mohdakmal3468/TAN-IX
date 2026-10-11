@@ -2,7 +2,7 @@
 scripts/simulate_events.py
 --------------------------
 Simulates real-world supply chain disruption and demand shock events by posting
-to the TAN-IX FastAPI endpoints:
+to the AgentHide FastAPI endpoints:
 1. Blockade Event -> POST /disruption (Ganges Bridge / NH-27 flood blockade)
 2. Demand-Spike Event -> POST /stock-update (Sudden surge in Agra shoes cutting stock)
 3. Fog Restriction Event -> POST /disruption (Yamuna Expressway night fog speed cap)
@@ -68,7 +68,7 @@ def get_data(mode, client, endpoint):
 
 def main():
     print("=" * 70)
-    print("TAN-IX Event Simulator: Injecting Fake Disruptions & Demand Spikes")
+    print("AgentHide Event Simulator: Injecting Fake Disruptions & Demand Spikes")
     print("=" * 70)
 
     mode, client = get_client()

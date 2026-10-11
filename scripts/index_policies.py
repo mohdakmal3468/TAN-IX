@@ -156,7 +156,7 @@ def compute_vector(text: str, vocab: List[str], idf_weights: Dict[str, float]) -
 def index_all_policies() -> Dict[str, Any]:
     """Reads, chunks, and creates vector embeddings for all policy files."""
     print("=" * 75)
-    print("TAN-IX POLICY VECTOR INDEXER")
+    print("AgentHide POLICY VECTOR INDEXER")
     print("=" * 75)
 
     if not os.path.exists(POLICIES_DIR):

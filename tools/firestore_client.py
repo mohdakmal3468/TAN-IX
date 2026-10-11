@@ -1,7 +1,7 @@
 """
 tools/firestore_client.py
 -------------------------
-Reusable utility module for Google Cloud Firestore operations in TAN-IX.
+Reusable utility module for Google Cloud Firestore operations in AgentHide.
 Provides type-safe helper functions for:
 - get_document
 - set_document
@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Project ID resolution with priority to GOOGLE_CLOUD_PROJECT
-PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "tan-ix-demo"))
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "agenthide-demo"))
 DATABASE_NAME = os.getenv("FIRESTORE_DATABASE", "(default)")
 
 USE_MOCK_DATA = os.getenv("USE_MOCK_DATA", "true").lower() in ("true", "1", "yes")

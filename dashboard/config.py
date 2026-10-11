@@ -1,7 +1,7 @@
 """
 dashboard/config.py
 -------------------
-Frontend and Dashboard configuration for TAN-IX.
+Frontend and Dashboard configuration for AgentHide.
 Loads API_BASE_URL and service endpoints from environment variables.
 """
 
@@ -27,7 +27,7 @@ API_ENDPOINTS = {
 }
 
 # Dashboard UI Settings
-APP_TITLE = "TAN-IX: UP Leather Supply Chain & Risk Command Center"
+APP_TITLE = "AgentHide: UP Leather Supply Chain & Risk Command Center"
 APP_ICON = "🛡️"
 DEFAULT_REFRESH_INTERVAL_SEC = int(os.getenv("DASHBOARD_REFRESH_SEC", "15"))
 

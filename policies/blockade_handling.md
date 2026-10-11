@@ -31,4 +31,4 @@ If `LANE-03` (Agra-Lucknow Expressway) is obstructed by agricultural protests, m
 
 ## 3. Communication & Stakeholder Notification
 1. Downstream manufacturing clusters (Agra footwear assembly lines and Noida export units) must receive an automated digital dispatch advisory within **15 minutes** of any declared corridor blockade.
-2. Carrier fleet managers must acknowledge the rerouting directive via the TAN-IX dispatch API before departing checkposts.
+2. Carrier fleet managers must acknowledge the rerouting directive via the AgentHide dispatch API before departing checkposts.

@@ -1,7 +1,7 @@
 """
 tests/test_guardrails.py
 ------------------------
-Unit and integration tests for TAN-IX Supply Chain Guardrails (agents/guardrails.py).
+Unit and integration tests for AgentHide Supply Chain Guardrails (agents/guardrails.py).
 Tests all 4 statutory governance rules:
 1. Transfers under 50,000 INR are auto-approved; transfers >= 50,000 INR require human approval.
 2. Standard reroutes (cost increase <= 30%) are auto-approved; route changes > 30% require human approval.

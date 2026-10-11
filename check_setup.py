@@ -1,7 +1,7 @@
 """
 check_setup.py
 --------------
-Validates the Python environment for TAN-IX:
+Validates the Python environment for AgentHide:
 1. Verifies Python is 3.10+
 2. Checks all required packages and prints their installed versions.
 """
@@ -31,7 +31,7 @@ def check_python_version() -> bool:
     version_str = f"{major}.{minor}.{micro}"
 
     print("=" * 60, flush=True)
-    print("TAN-IX Python Environment Verification", flush=True)
+    print("AgentHide Python Environment Verification", flush=True)
     print("=" * 60, flush=True)
     print(f"Active Python Executable: {sys.executable}", flush=True)
     print(f"Detected Python Version : {version_str}", flush=True)

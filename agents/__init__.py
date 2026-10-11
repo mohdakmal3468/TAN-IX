@@ -1,6 +1,6 @@
 """
 agents package initialization.
-Exports the 4 core autonomous agents for TAN-IX.
+Exports the 4 core autonomous agents for AgentHide.
 """
 
 from agents.inventory_agent import DistrictInventoryAgent

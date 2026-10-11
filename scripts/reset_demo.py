@@ -1,7 +1,7 @@
 """
 scripts/reset_demo.py
 ---------------------
-Resets TAN-IX warehouse inventory and active disruptions back to the pristine baseline.
+Resets AgentHide warehouse inventory and active disruptions back to the pristine baseline.
 Run with: python scripts/reset_demo.py
 """
 
@@ -15,7 +15,7 @@ from tools.risk_tools import clear_disruptions
 
 
 def reset():
-    print("[TAN-IX] Resetting demo state...")
+    print("[AgentHide] Resetting demo state...")
     clear_disruptions()
     print("[OK] All active disruptions cleared.")
     print("[OK] Baseline inventory ready for demonstration.")

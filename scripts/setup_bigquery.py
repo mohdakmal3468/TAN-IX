@@ -20,7 +20,7 @@ sys.path.append(ROOT_DIR)
 
 load_dotenv(os.path.join(ROOT_DIR, ".env"))
 
-PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "tan-ix-demo"))
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "agenthide-demo"))
 DATASET_ID = "leather_logistics"
 LOCATION = "asia-south1"
 
@@ -138,7 +138,7 @@ def load_csv_to_bigquery(client, table_id, csv_path, schema):
 
 def main():
     print("=" * 65)
-    print("TAN-IX: BigQuery Dataset & Table Ingestion")
+    print("AgentHide: BigQuery Dataset & Table Ingestion")
     print(f"Target Project: {PROJECT_ID} | Dataset: {DATASET_ID}")
     print("=" * 65)
 

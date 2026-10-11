@@ -1,7 +1,7 @@
 """
 tools/policy_tools.py
 ---------------------
-Semantic Policy Vector Search tool for TAN-IX agents.
+Semantic Policy Vector Search tool for AgentHide agents.
 Exposes:
 - search_policy(query, top_k) -> Retrieves the most relevant statutory policy clauses and SLAs.
 

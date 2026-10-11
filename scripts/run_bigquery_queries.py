@@ -21,7 +21,7 @@ sys.path.append(ROOT_DIR)
 
 load_dotenv(os.path.join(ROOT_DIR, ".env"))
 
-PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "tan-ix-demo"))
+PROJECT_ID = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "agenthide-demo"))
 SQLITE_DB = os.path.join(ROOT_DIR, "data", "leather_logistics.db")
 
 # Standardized queries compatible with both BigQuery and SQLite
@@ -113,7 +113,7 @@ def run_queries_on_sqlite():
 
 def main():
     print("=" * 80)
-    print("TAN-IX: Executing BigQuery Analytical Queries")
+    print("AgentHide: Executing BigQuery Analytical Queries")
     print("Source: docs/bigquery_queries.sql")
     print("=" * 80)
 

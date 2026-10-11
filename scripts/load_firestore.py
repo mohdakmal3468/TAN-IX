@@ -1,7 +1,7 @@
 """
 scripts/load_firestore.py
 -------------------------
-Loads TAN-IX sample data into Google Cloud Firestore across 7 collections:
+Loads AgentHide sample data into Google Cloud Firestore across 7 collections:
 1. inventory (16 records)
 2. hubs (4 cluster profiles)
 3. carriers (4 transport carriers)
@@ -20,7 +20,7 @@ import sys
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 
-# Ensure TAN-IX root directory is in python path
+# Ensure AgentHide root directory is in python path
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(ROOT_DIR)
 
@@ -175,7 +175,7 @@ def load_json_file(filename: str):
 
 def main():
     print("=" * 65)
-    print("TAN-IX: Google Cloud Firestore Data Ingestion")
+    print("AgentHide: Google Cloud Firestore Data Ingestion")
     print(f"Target Google Cloud Project: {PROJECT_ID}")
     print("=" * 65)
 

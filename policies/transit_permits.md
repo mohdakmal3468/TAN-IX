@@ -78,7 +78,7 @@ Emergency Subsidy:  {ODOP_SUBSIDY_STATUS}
 Rerouting / Detour: {DETOUR_ADVISORY}
 RFID Checkpoint:    VERIFIED (FASTag linked at Expressway Entry)
 
-Authorized By:      STATE MASTER ORCHESTRATOR (TAN-IX System)
+Authorized By:      STATE MASTER ORCHESTRATOR (AgentHide System)
 Approval Reference: {PLAN_ID}
 ================================================================================
 ```

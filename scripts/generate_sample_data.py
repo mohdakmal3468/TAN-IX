@@ -1,7 +1,7 @@
 """
 scripts/generate_sample_data.py
 -------------------------------
-Generates realistic domain-specific sample data for TAN-IX:
+Generates realistic domain-specific sample data for AgentHide:
 1. 4 UP Districts: Kanpur, Unnao, Agra, Noida
 2. 4 Leather Products per District: shoes, belts, bags, jackets
    - Deliberate imbalance: Agra has CRITICAL DEFICIT of belts; Kanpur has SURPLUS of belts!
@@ -458,7 +458,7 @@ def generate_historical_shipments(num_records=200):
 
 def main():
     print("=" * 60)
-    print("Generating Realistic Sample Data for TAN-IX")
+    print("Generating Realistic Sample Data for AgentHide")
     print("Districts: Kanpur, Unnao, Agra, Noida")
     print("Products : shoes, belts, bags, jackets")
     print("Target   : Agra low on belts; Kanpur surplus on belts")

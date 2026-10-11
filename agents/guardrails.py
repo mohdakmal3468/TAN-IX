@@ -414,7 +414,7 @@ def wait_for_approval_resolution(
 # ==============================================================================
 if __name__ == "__main__":
     print("=" * 80)
-    print("AUTONOMOUS GOVERNANCE & GUARDRAILS ENGINE (TAN-IX)")
+    print("AUTONOMOUS GOVERNANCE & GUARDRAILS ENGINE (AgentHide)")
     print("Statutory Rules Matrix & Approval Lifecycle Verification")
     print("=" * 80)
 

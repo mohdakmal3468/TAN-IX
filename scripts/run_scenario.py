@@ -31,7 +31,7 @@ from tools.logistics_tools import reset_blocked_routes, mark_route_blocked
 
 def run_scenario():
     print("=" * 85)
-    print("TAN-IX END-TO-END SCENARIO: UNNAO BLOCKADE + AGRA BELT STOCKOUT")
+    print("AgentHide END-TO-END SCENARIO: UNNAO BLOCKADE + AGRA BELT STOCKOUT")
     print("=" * 85)
 
     # 1. Reset baseline state

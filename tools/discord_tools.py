@@ -41,7 +41,7 @@ def send_discord_approval_request(rebalance_plan: Dict[str, Any]) -> Dict[str, A
 
     # Discord Embed Payload format
     discord_payload = {
-        "username": "TAN-IX State Orchestrator",
+        "username": "AgentHide State Orchestrator",
         "avatar_url": "https://img.icons8.com/color/96/leather.png",
         "content": "⚠️ **STATE-LEVEL HUMAN APPROVAL REQUIRED FOR LEATHER REBALANCING**",
         "embeds": [
@@ -66,7 +66,7 @@ def send_discord_approval_request(rebalance_plan: Dict[str, Any]) -> Dict[str, A
                     }
                 ],
                 "footer": {
-                    "text": "TAN-IX Autonomous Supply Chain Engine | Uttar Pradesh Clusters"
+                    "text": "AgentHide Autonomous Supply Chain Engine | Uttar Pradesh Clusters"
                 }
             }
         ]

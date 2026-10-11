@@ -1,4 +1,4 @@
-# Dockerfile for TAN-IX deployment to Google Cloud Run
+# Dockerfile for AgentHide deployment to Google Cloud Run
 FROM python:3.11-slim
 
 # Avoid buffering stdout/stderr

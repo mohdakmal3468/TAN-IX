@@ -6,7 +6,7 @@
 ---
 
 ## 1. Governance Architecture
-To balance autonomous operational speed with fiscal governance, TAN-IX enforces a strict 3-tiered Delegation of Financial Powers (DoFP) model for freight dispatches and emergency stock rebalancing.
+To balance autonomous operational speed with fiscal governance, AgentHide enforces a strict 3-tiered Delegation of Financial Powers (DoFP) model for freight dispatches and emergency stock rebalancing.
 
 ---
 

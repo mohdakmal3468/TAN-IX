@@ -1,7 +1,7 @@
 """
 api/models.py
 -------------
-Pydantic v2 data models for TAN-IX:
+Pydantic v2 data models for AgentHide:
 1. InventoryRecord
 2. HubProfile
 3. Shipment

@@ -1,7 +1,7 @@
 """
 config.py
 ---------
-Central configuration for TAN-IX.
+Central configuration for AgentHide.
 Loads environment variables safely and defines constants for Uttar Pradesh clusters:
 - Kanpur (Tanneries, Saddlery, Industrial Leather)
 - Unnao (Leather Complex, Raw to Wet Blue processing)
@@ -22,7 +22,7 @@ GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 # --- Google Cloud Platform Settings ---
-GCP_PROJECT_ID: str = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "tan-ix-demo"))
+GCP_PROJECT_ID: str = os.getenv("GOOGLE_CLOUD_PROJECT", os.getenv("GCP_PROJECT_ID", "agenthide-demo"))
 FIRESTORE_DATABASE: str = os.getenv("FIRESTORE_DATABASE", "(default)")
 BIGQUERY_DATASET: str = os.getenv("BIGQUERY_DATASET", "up_leather_logistics")
 

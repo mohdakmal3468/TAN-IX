@@ -1,7 +1,7 @@
 """
 tools/logistics_tools.py
 ------------------------
-Autonomous logistics and highway routing tools for Google ADK and TAN-IX agents.
+Autonomous logistics and highway routing tools for Google ADK and AgentHide agents.
 All functions include explicit type hints and detailed Google-style docstrings.
 
 Core Functions:

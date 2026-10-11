@@ -1,7 +1,7 @@
 """
 dashboard/frontend/utils/api_client.py
 --------------------------------------
-Lightweight HTTP client communicating with the TAN-IX FastAPI backend.
+Lightweight HTTP client communicating with the AgentHide FastAPI backend.
 Utilizes API_BASE_URL configured in dashboard/config.py.
 """
 

@@ -1,7 +1,7 @@
 """
 tests/test_basic.py
 -------------------
-Unit tests for TAN-IX multi-agent core tools and orchestrator logic.
+Unit tests for AgentHide multi-agent core tools and orchestrator logic.
 Can be executed with: python -m unittest tests/test_basic.py
 """
 

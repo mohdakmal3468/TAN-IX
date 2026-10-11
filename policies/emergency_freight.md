@@ -24,4 +24,4 @@ When an emergency is declared:
 ## 3. Financial Subsidies & ODOP Freight Reimbursement
 1. **15% ODOP Freight Rebate:** Under the Uttar Pradesh One District One Product (ODOP) Leather Promotion Scheme, 15% of the total emergency logistics cost is subsidized by the state government for inter-district raw hide and component transfers.
 2. **Fuel Surcharge Cap:** Carrier diesel fuel escalation surcharges during declared emergency transit are capped at 8% above base contract rates.
-3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the TAN-IX system.
+3. **Claim Processing:** Subsidized freight rebates are auto-reconciled against the state logistics ledger upon delivery sign-off in the AgentHide system.
