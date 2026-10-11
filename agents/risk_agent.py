@@ -4,6 +4,9 @@ agents/risk_agent.py
 Regional Risk Agent for the Uttar Pradesh Leather Industrial Corridor.
 Built with Google ADK (Agent Development Kit) and Gemini 3.1 Flash.
 
+The Regional Risk Agent monitors disruptions and environmental hazards, evaluates lane-level risk scores, 
+quantifies operational delays, and generates structured JSON impact analyses with strategic guidance.
+
 Responsibilities:
 1. Monitors active supply chain disruptions, regulatory mandates (NGT/UPPCB), and weather hazards.
 2. Evaluates lane-level quantitative risk scores (0 to 100) across all highway corridors.

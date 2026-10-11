@@ -4,6 +4,9 @@ agents/inventory_agent.py
 District Inventory Agent for the Uttar Pradesh Leather Supply Chain.
 Built with Google ADK (Agent Development Kit) and Gemini.
 
+The District Inventory Agent monitors warehouse stock, burn rates, and reorder points, raises stockout alerts, 
+suggests inter-district rebalancing transfers, and outputs structured JSON.
+
 Responsibilities:
 1. Monitor warehouse stock, daily burn rates, and reorder points.
 2. Raise structured stockout alerts when inventory is below safety thresholds.

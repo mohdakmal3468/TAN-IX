@@ -4,6 +4,9 @@ agents/orchestrator.py
 State Master Orchestrator for the Uttar Pradesh Leather Supply Chain.
 Built with Google ADK (Agent Development Kit) and Gemini models using Google GenAI SDK.
 
+The State Master Orchestrator coordinates specialist sub-agents, applies statutory policies, generates execution 
+plans with compliance documentation, enforces human-in-the-loop governance, and logs all runs to Firestore.
+
 Responsibilities:
 1. Directs and synthesizes specialist agents:
    - District Inventory Agent (monitors inventory, burn rates, stockouts)

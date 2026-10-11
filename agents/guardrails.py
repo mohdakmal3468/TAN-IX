@@ -1,7 +1,7 @@
 """
 agents/guardrails.py
 --------------------
-Autonomous Supply Chain Governance and Guardrails Engine for TAN-IX.
+Autonomous Supply Chain Governance and Guardrails Engine for AgentHide.
 
 Statutory Governance Rules Matrix:
 1. Transfers under 50,000 INR -> Auto-approved.
@@ -11,6 +11,10 @@ Statutory Governance Rules Matrix:
 3. Purchase orders over 50,000 INR -> Require human approval.
    Purchase orders <= 50,000 INR -> Auto-approved.
 4. All compliance paperwork -> Require human approval.
+
+The Governance and Guardrails Engine automatically approves low-cost transfers, standard reroutes, 
+and minor purchase orders, while routing high-value transactions and compliance paperwork to Firestore 
+for human review and orchestrator pausing.
 
 Workflow & Lifecycle:
 - Items requiring human approval are saved to the Firestore 'approvals' collection

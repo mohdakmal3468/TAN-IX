@@ -4,6 +4,9 @@ agents/logistics_agent.py
 Intra-State Logistics Agent for the Uttar Pradesh Leather Industrial Corridor.
 Built with Google ADK (Agent Development Kit) and Gemini models using Google GenAI SDK.
 
+The Intra-State Logistics Agent evaluates highway route lanes, computes transit costs and ETAs across commercial 
+carriers, dynamically avoids blocked routes, and returns strictly structured JSON.
+
 Responsibilities:
 1. Evaluates highway route lanes between UP clusters (Kanpur, Unnao, Agra, Noida).
 2. Computes transit costs, toll charges, and ETAs across commercial freight carriers.
